@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;">
+    <g transform="matrix(1,0,0,1,-160,-27)">
+        <g id="homewear" transform="matrix(0.198347,0,0,0.198347,202.237,28.3884)">
+            <rect x="-208" y="-7" width="121" height="121" style="fill:none;" />
+            <g transform="matrix(5.04167,0,0,5.04167,-115.438,99.0827)">
+                <path d="M0,-3.634C-0.776,-3.512 -1.859,-3.246 -3.044,-2.625C-4.542,-1.839 -5.754,-0.699 -6.35,0"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(-5.04167,0,0,5.20117,-97.0279,-21.0363)">
+                <path
+                    d="M11.991,12.684C11.991,12.156 11.55,11.729 11.006,11.729C11.006,11.729 11.005,11.729 11.005,11.729C10.461,11.729 10.02,12.156 10.02,12.684L10.02,13.682C10.02,14.21 10.461,14.637 11.005,14.637C11.005,14.637 11.006,14.637 11.006,14.637C11.55,14.637 11.991,14.21 11.991,13.682L11.991,12.684Z"
+                    style="fill:none;stroke:currentColor;stroke-width:0.98px;" />
+            </g>
+            <g transform="matrix(5.04167,0,0,5.04167,-208,-18.9387)">
+                <path d="M10.02,12.185L7.925,12.185L7.925,14.183L10.02,14.183"
+                    style="fill:none;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(5.04167,0,0,5.04167,-208,-18.9387)">
+                <path d="M11.991,14.183L16.077,14.183L16.077,12.185L11.991,12.185"
+                    style="fill:none;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(-5.04167,0,0,5.04167,-96.9825,39.9682)">
+                <path d="M10.029,2.499L10.029,11.757L12,11.757L12,2.499"
+                    style="fill:none;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(5.04167,0,0,5.04167,-1019.61,-143.125)">
+                <path
+                    d="M171.01,46.431C170.826,46.304 170.119,45.898 169.94,45.804C168.755,45.183 166.641,44.407 166.641,44.407L168.906,38.815"
+                    style="fill:none;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(-1.89273,-4.6729,-4.6729,1.89273,-110.226,56.0807)">
+                <path d="M-4.149,2.796L1.891,2.812"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(-0.854663,-4.9687,-4.9687,0.854663,-159.243,36.5749)">
+                <path d="M-0.861,1.92L1.617,1.918"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(0.85457,-4.96871,-4.96871,-0.85457,-119.999,38.427)">
+                <path d="M-1.029,1.221L1.449,1.221"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(-5.04167,0,0,5.04167,-166.665,8.1245)">
+                <path d="M0,0L-4.788,6.817L0,0Z"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(5.04167,0,0,5.04167,-143.852,8.12298)">
+                <path d="M-0.936,5.111L3.098,0"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(-4.65242,1.94252,1.94252,4.65242,-166.975,74.3532)">
+                <path
+                    d="M-5.118,-12.098L-3.351,-12.093C-2.652,-12.094 -2.022,-11.674 -1.753,-11.029L2.423,-1.028L1.799,-0.768"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+            <g transform="matrix(4.65242,1.94252,1.94252,-4.65242,-115.136,8.04848)">
+                <path
+                    d="M-2.391,-1.015L-0.643,-1.028C0.056,-1.027 0.686,-1.447 0.955,-2.092L5.131,-12.093L4.526,-12.346"
+                    style="fill:none;fill-rule:nonzero;stroke:currentColor;stroke-width:1px;" />
+            </g>
+        </g>
+    </g>
+</svg>

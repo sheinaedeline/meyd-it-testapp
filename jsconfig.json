@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/assets/*": ["assets/*"],
+			"@/content/*": ["assets/content/*"],
+			"@/icons/*": ["assets/icons/*"],
+			"@/components/*": ["components/*"],
+			"@/config/*": ["config/*"],
+			"@/layouts/*": ["layouts/*"],
+			"@/pages/*": ["pages/*"],
+			"@/public/*": ["public/*"],
+			"@/redux/*": ["redux/*"]
+		}
+	}
+}
