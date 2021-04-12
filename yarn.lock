@@ -933,6 +933,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/quicksand@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/quicksand/-/quicksand-4.2.2.tgz#50811e16611266dcee8a8e0767e770b23e68ed79"
+  integrity sha512-YaEG3b5eST4eyj2E28tkJJwnUSMP/zvxI7K/Nx9mkk5aqgDp2WJFzcQ84MFnFVwgy+mZodpzPaPJ6KGtv0q/lg==
+
 "@hapi/accept@5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.1.tgz#068553e867f0f63225a506ed74e899441af53e10"
