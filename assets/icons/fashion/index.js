@@ -1,27 +1,31 @@
-import AdaptiveIcon from './Adaptive.svg'
-import BohoIcon from './Boho.svg'
-import BridalIcon from './Bridal.svg'
-import DressToImpressIcon from './DressToImpress.svg'
-import EverydayIcon from './Everyday.svg'
-import ExecutiveIcon from './Executive.svg'
-import HomewearIcon from './Homewear.svg'
-import RedCarpetIcon from './RedCarpet.svg'
-import SizePositiveIcon from './SizePositive.svg'
-import SpecialOccasionIcon from './SpecialOccasions.svg'
-import WinterIcon from './Winter.svg'
-import VintageIcon from './Vintage.svg'
+import BohemianIcon from './bohemian.svg'
+import BrideIcon from './bride.svg'
+import ClinkingGlassesIcon from './clinking-glasses.svg'
+import EverydayWearIcon from './everyday-wear.svg'
+import HeartWithArrowIcon from './heart-with-arrow.svg'
+import KidswearIcon from './kidswear.svg'
+import MonroeDressIcon from './monroe-dress.svg'
+import ProstheticLegIcon from './prosthetic-leg.svg'
+import RedCarpetIcon from './red-carpet.svg'
+import RobeIcon from './robe.svg'
+import SizePositiveIcon from './size-positive.svg'
+import TutuIcon from './tutu.svg'
+import WinterOutfitIcon from './winter-outfit.svg'
+import WorkwearIcon from './workwear.svg'
 
 export {
-	AdaptiveIcon,
-	BohoIcon,
-	BridalIcon,
-	DressToImpressIcon,
-	EverydayIcon,
-	ExecutiveIcon,
-	HomewearIcon,
+	BohemianIcon,
+	BrideIcon,
+	ClinkingGlassesIcon,
+	EverydayWearIcon,
+	HeartWithArrowIcon,
+	KidswearIcon,
+	MonroeDressIcon,
+	ProstheticLegIcon,
 	RedCarpetIcon,
+	RobeIcon,
 	SizePositiveIcon,
-	SpecialOccasionIcon,
-	WinterIcon,
-	VintageIcon,
+	TutuIcon,
+	WinterOutfitIcon,
+	WorkwearIcon,
 }
