@@ -1,48 +1,48 @@
 // The array of fashion tags that go into the icon grid.
 
 import {
-	AdaptiveIcon,
-	BohoIcon,
-	BridalIcon,
-	DressToImpressIcon,
-	EverydayIcon,
-	ExecutiveIcon,
-	HomewearIcon,
+	ProstheticLegIcon,
+	BohemianIcon,
+	BrideIcon,
+	HeartWithArrowIcon,
+	EverydayWearIcon,
+	WorkwearIcon,
+	RobeIcon,
 	RedCarpetIcon,
 	SizePositiveIcon,
-	SpecialOccasionIcon,
-	VintageIcon,
-	WinterIcon,
+	ClinkingGlassesIcon,
+	MonroeDressIcon,
+	WinterOutfitIcon,
 } from '@/assets/icons/fashion'
 
 module.exports = [
 	{
 		name: 'Adaptive',
-		component: AdaptiveIcon,
+		component: ProstheticLegIcon,
 	},
 	{
 		name: 'Bohemian',
-		component: BohoIcon,
+		component: BohemianIcon,
 	},
 	{
 		name: 'Bridal',
-		component: BridalIcon,
+		component: BrideIcon,
 	},
 	{
 		name: 'Dress To Impress',
-		component: DressToImpressIcon,
+		component: HeartWithArrowIcon,
 	},
 	{
 		name: 'Everyday',
-		component: EverydayIcon,
+		component: EverydayWearIcon,
 	},
 	{
 		name: 'Executive',
-		component: ExecutiveIcon,
+		component: WorkwearIcon,
 	},
 	{
 		name: 'Homewear',
-		component: HomewearIcon,
+		component: RobeIcon,
 	},
 	{
 		name: 'Red Carpet',
@@ -54,14 +54,14 @@ module.exports = [
 	},
 	{
 		name: 'Special Occasions',
-		component: SpecialOccasionIcon,
+		component: ClinkingGlassesIcon,
 	},
 	{
 		name: 'Vintage Inspired',
-		component: VintageIcon,
+		component: MonroeDressIcon,
 	},
 	{
 		name: 'Winter',
-		component: WinterIcon,
+		component: WinterOutfitIcon,
 	},
 ]
