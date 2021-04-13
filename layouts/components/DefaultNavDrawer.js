@@ -11,7 +11,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import SvgIcon from '@material-ui/core/SvgIcon'
 // import icons
-import { MenuIcon } from '@/icons/ui'
+import { MenuIcon } from '@/icons/user-interface'
 
 const useStyles = makeStyles({
 	list: {

@@ -11,8 +11,9 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Chip from '@material-ui/core/Chip'
-import SearchIcon from '@material-ui/icons/Search'
 import Typography from '@material-ui/core/Typography'
+// import icons
+import { SearchIcon } from '@/icons/user-interface'
 // import content
 import GalleryItems from '@/content/GalleryItems'
 
@@ -109,9 +110,9 @@ const Gallery = (props) => {
 					variant="contained"
 					color={'secondary'}
 					size="large"
+					startIcon={<SearchIcon />}
 					className={classes.button}
 				>
-					<SearchIcon />
           Explore more and find your vibe
 				</Button>
 			</Box>
