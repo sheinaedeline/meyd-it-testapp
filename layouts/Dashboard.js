@@ -25,12 +25,12 @@ import DefaultFooter from '@/layouts/components/DefaultFooter'
 
 // import icons
 import { MeyditLogoIcon } from '@/assets/meydit'
-import { UserIcon } from '@/icons/ui'
+import { UserIcon } from '@/icons/user-interface'
 import {
 	ChevronRightIcon,
 	ChevronLeftIcon,
 } from '@/icons/arrows'
-import { SquareMessageIcon } from '@/icons/communication'
+import { MessageSquareIcon } from '@/icons/communication'
 import { GridIcon } from '@/icons/layouts'
 
 const drawerWidth = 240
@@ -126,7 +126,7 @@ const Layout = (props) => {
 			text: 'My Makings',
 		},
 		{
-			icon: SquareMessageIcon,
+			icon: MessageSquareIcon,
 			href: '/Index',
 			text: 'Messages',
 		},
