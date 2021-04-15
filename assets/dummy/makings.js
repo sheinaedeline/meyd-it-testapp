@@ -1,37 +1,40 @@
 const list = [
 	{
-		id: 1,
+		id: '1',
 		title: "Armin's Halloween Holiday",
+		tags: ['Costume', 'Halloween'],
+		budget: '50',
+		location: 'El Camino, Wynyard',
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
 		photoid: 'tBAsD_VnxCY',
 	},
 	{
-		id: 2,
+		id: '2',
 		title: 'Cookie Commemoration With Kevin',
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
 	},
 	{
-		id: 3,
+		id: '3',
 		title: 'Cosplay Carousal With Sushi',
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
 	},
 	{
-		id: 4,
+		id: '4',
 		title: "Nicole's Pump It Up Party",
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
 	},
 	{
-		id: 5,
-		title: "Shashank's Bachelor ",
+		id: '5',
+		title: "Shashank's Bachelor Bonanza",
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
 	},
 	{
-		id: 6,
+		id: '6',
 		title: 'Painting It Pink With Ryan',
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
 	},
 	{
-		id: 7,
+		id: '7',
 		title: "Archit's Footwear Festival",
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
 	},
