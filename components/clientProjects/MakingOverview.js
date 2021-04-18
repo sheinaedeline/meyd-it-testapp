@@ -1,8 +1,8 @@
 /* This is the details of the selected making,
   displayed at the top of the projects page */
 
-/* eslint-disable react/prop-types */
 import React from 'react'
+import { PropTypes } from 'prop-types'
 
 // import stylings
 import { makeStyles } from '@material-ui/core'
@@ -94,6 +94,11 @@ const MakingOverview = ({ making }) => {
 			</Grid>
 		</Paper>
 	)
+}
+
+// Props validation to make sure input parameters are the correct type
+MakingOverview.propTypes = {
+	making: PropTypes.object.isRequired,
 }
 
 export default MakingOverview
