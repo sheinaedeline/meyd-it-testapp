@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'none',
 	},
 	fab: {
-		position: 'absolute',
+		position: 'fixed',
 		bottom: theme.spacing(4),
 		left: theme.spacing(2),
 		backgroundColor: theme.palette.primary.dark,
