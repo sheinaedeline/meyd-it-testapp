@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography'
 // import icons
 import AddIcon from '@material-ui/icons/Add'
 // import custom components
-// import LayoutFooter from '@/layouts/components/DefaultFooter'
-import MakingsList from '@/components/client/dashboard/MakingsList'
+import LayoutFooter from '@/layouts/components/DefaultFooter'
+import MakingsList from '@/components/client/MakingsList'
 // import MakingsListEmpty from '@/components/client/dashboard/MakingsListEmpty'
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }))
 
-export default function PermanentDrawerLeft () {
+export default function PermanentDrawerLeft() {
 	const classes = useStyles()
 
 	return (
@@ -63,15 +63,16 @@ export default function PermanentDrawerLeft () {
 					}}
 				>
 					<Typography>
-            A notification from Meydit
+						A notification from Meydit
 						<Link
 							href="#"
 							style={{
 								float: 'right',
 								textDecoration: 'none',
+								color: '#8460C2',
 							}}
 						>
-              ACTION
+							ACTION
 						</Link>
 					</Typography>
 				</div>
@@ -92,13 +93,14 @@ export default function PermanentDrawerLeft () {
 						href="#"
 						style={{
 							textDecoration: 'none',
+							color: '#8460C2',
 						}}
 					>
-            MY MAKINGS
+						MY MAKINGS
 					</Link>
 					<Button
 						variant="outlined"
-						href="./NewProject"
+						href="./client/dashboard"
 						style={{
 							float: 'right',
 							borderRadius: '0px',
@@ -107,14 +109,14 @@ export default function PermanentDrawerLeft () {
 						}}
 					>
 						<AddIcon />
-            NEW MAKINGS
+						NEW MAKINGS
 					</Button>
 				</Typography>
 			</Container>
 
 			<MakingsList />
 
-			{/* <LayoutFooter /> */}
+			<LayoutFooter />
 		</div>
 	)
 }
