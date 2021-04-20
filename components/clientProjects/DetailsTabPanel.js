@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import SwipeableViews from 'react-swipeable-views'
-
+// import custom components
 import Slugify from '@/config/Slugify'
 
 const TabPanel = (props) => {
@@ -56,6 +56,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }))
 
+/**
+ *
+ * @param {array} tabs - The array of tabs it should display (contains the tab text and component to be displayed)
+ * @param {number} makingID - The making ID in the URL
+ * @returns The tabs underneath the making overview
+ */
 const DetailsTabPanel = ({ children, tabs, makingID }) => {
 	const classes = useStyles()
 	const router = useRouter()
@@ -91,13 +97,11 @@ const DetailsTabPanel = ({ children, tabs, makingID }) => {
 					))}
 				</Tabs>
 			</AppBar>
-			<SwipeableViews>
-				{tabs.map((item) => (
-					<TabPanel value={value} index={item.id} key={'tab' + item.id}>
-						{children}
-					</TabPanel>
-				))}
-			</SwipeableViews>
+			{tabs.map((item) => (
+				<TabPanel value={value} index={item.id} key={'tab' + item.id}>
+					{item.component}
+				</TabPanel>
+			))}
 		</div>
 	)
 }
@@ -106,8 +110,8 @@ const DetailsTabPanel = ({ children, tabs, makingID }) => {
 DetailsTabPanel.propTypes = {
 	children: PropTypes.node,
 	id: PropTypes.number,
-	tabs: PropTypes.object.isRequired,
-	makingID: PropTypes.number.isRequired,
+	tabs: PropTypes.array.isRequired,
+	makingID: PropTypes.string.isRequired,
 }
 
 export default DetailsTabPanel
