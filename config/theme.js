@@ -41,6 +41,11 @@ const theme = createMuiTheme({
 				textTransform: 'uppercase',
 			},
 		},
+		MuiTextField: {
+			root: {
+				borderRadius: 0,
+			},
+		},
 	},
 })
 
