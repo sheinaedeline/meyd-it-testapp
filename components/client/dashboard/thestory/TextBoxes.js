@@ -71,7 +71,7 @@ export default function TextBoxes() {
 						/>
 						<FormHelperText
 							id="component-helper-text"
-							style={{ marginLeft: '10px' }}
+							style={{ marginLeft: '10px', color: '#000000' }}
 						>
 							The exact date you need the garment by.
 						</FormHelperText>
@@ -89,7 +89,10 @@ export default function TextBoxes() {
 								</InputAdornment>
 							}
 						/>
-						<FormHelperText id="component-helper-text">
+						<FormHelperText
+							id="component-helper-text"
+							style={{ color: '#000000' }}
+						>
 							Typically starting at $500
 						</FormHelperText>
 					</FormControl>
@@ -106,7 +109,10 @@ export default function TextBoxes() {
 								</InputAdornment>
 							}
 						/>
-						<FormHelperText id="component-helper-text">
+						<FormHelperText
+							id="component-helper-text"
+							style={{ color: '#000000' }}
+						>
 							So we can match you with the closest creative in your location
 						</FormHelperText>
 					</FormControl>

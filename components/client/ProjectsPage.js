@@ -100,7 +100,7 @@ export default function PermanentDrawerLeft() {
 					</Link>
 					<Button
 						variant="outlined"
-						href="./client/dashboard"
+						href="./client/makings/new"
 						style={{
 							float: 'right',
 							borderRadius: '0px',

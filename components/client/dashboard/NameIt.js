@@ -10,7 +10,7 @@ import {
 	FormControl,
 	OutlinedInput,
 	FormHelperText,
-	Container,
+	Box,
 } from '@material-ui/core'
 import React from 'react'
 import Check from '@/assets/icons/user-interface/check.svg'
@@ -75,21 +75,20 @@ const NameIt = () => {
 				</FormHelperText>
 			</FormControl>
 			<br />
-			<Button classes={{ root: classes.tag }}>
-				<Check
-					style={{ display: 'inline-block' }}
-					classes={{ root: classes.centered }}
-				/>
-				<Typography
-					style={{ display: 'inline-block' }}
-					classes={{ root: classes.centered }}
-				>
-					NAME IT
-				</Typography>
+			<Button
+				classes={{ root: classes.tag }}
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					flexWrap: 'wrap',
+				}}
+			>
+				<Check />
+				<Typography>NAME IT</Typography>
 			</Button>
 			<br />
 			<Typography variant="p" classes={{ root: classes.centered }}>
-				We'll review your making after this.
+				* You'll be able to modify your making anytime later.
 			</Typography>
 		</div>
 	)

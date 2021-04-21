@@ -1,6 +1,5 @@
 import SideBar from '@/components/client/SideBar'
-import Process from './newProject/Process'
-import React from 'react'
+import Process from '@/components/client/dashboard/Process'
 
 const Index = () => (
 	<div>

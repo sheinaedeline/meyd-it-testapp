@@ -25,12 +25,9 @@ import DefaultFooter from '@/layouts/components/DefaultFooter'
 
 // import icons
 import { MeyditLogoIcon } from '@/assets/meydit'
-import { UserIcon } from '@/icons/ui'
-import {
-	ChevronRightIcon,
-	ChevronLeftIcon,
-} from '@/icons/arrows'
-import { SquareMessageIcon } from '@/icons/communication'
+import { UserIcon } from '@/icons/user-interface'
+import { ChevronRightIcon, ChevronLeftIcon } from '@/icons/arrows'
+import { MessageSquareIcon } from '@/icons/communication/'
 import { GridIcon } from '@/icons/layouts'
 
 const drawerWidth = 240
@@ -74,8 +71,7 @@ const useStyles = makeStyles((theme) => ({
 	fixedHeight: {
 		height: 240,
 	},
-	meyditLogo: {
-	},
+	meyditLogo: {},
 	companyName: {
 		color: theme.palette.primary.contrastText,
 	},
@@ -103,7 +99,10 @@ const Layout = (props) => {
 	const classes = useStyles()
 	const [open, setOpen] = React.useState(false)
 	const toggleDrawer = (state) => (event) => {
-		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+		if (
+			event.type === 'keydown' &&
+			(event.key === 'Tab' || event.key === 'Shift')
+		) {
 			return
 		}
 
@@ -126,7 +125,7 @@ const Layout = (props) => {
 			text: 'My Makings',
 		},
 		{
-			icon: SquareMessageIcon,
+			icon: MessageSquareIcon,
 			href: '/Index',
 			text: 'Messages',
 		},
@@ -142,7 +141,7 @@ const Layout = (props) => {
 		return (
 			<ListItem button>
 				<ListItemIcon>
-					<SvgIcon component={icon} className={classes.icon}/>
+					<SvgIcon component={icon} className={classes.icon} />
 				</ListItemIcon>
 				<ListItemText href={href} primary={text} />
 			</ListItem>
@@ -160,7 +159,6 @@ const Layout = (props) => {
 				onClose={toggleDrawer(false)}
 			>
 				<div onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
-
 					{/* The close drawer button */}
 					<div className={classes.toolbarIcon}>
 						<IconButton onClick={toggleDrawer(false)}>
@@ -175,13 +173,17 @@ const Layout = (props) => {
 							<MeyditLogoIcon className={classes.meyditLogo} />
 
 							{/* Company name under the logo */}
-							<Typography align='center' className={classes.companyName}>
+							<Typography align="center" className={classes.companyName}>
 								<b>Meydit</b>
 							</Typography>
 						</Link>
 
 						{/* Text that goes under the logo */}
-						<Typography align="center" color="initial" className={classes.subtext}>
+						<Typography
+							align="center"
+							color="initial"
+							className={classes.subtext}
+						>
 							{subtext}
 						</Typography>
 					</div>
@@ -189,9 +191,9 @@ const Layout = (props) => {
 
 					{/* The list of directories */}
 					<List>
-						{directories.map((item) => (
+						{directories.map((item) =>
 							listItem(item.icon, item.href, item.text)
-						))}
+						)}
 					</List>
 				</div>
 			</Drawer>
@@ -205,7 +207,11 @@ const Layout = (props) => {
 				unmountOnExit
 			>
 				<Fab className={classes.fab}>
-					<SvgIcon component={ChevronRightIcon} onClick={toggleDrawer(true)} style={{ fill: 'transparent' }}/>
+					<SvgIcon
+						component={ChevronRightIcon}
+						onClick={toggleDrawer(true)}
+						style={{ fill: 'transparent' }}
+					/>
 				</Fab>
 			</Zoom>
 

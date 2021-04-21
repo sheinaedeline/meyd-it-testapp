@@ -5,11 +5,13 @@ getting the required tags and picture for the project
 
 import { makeStyles } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
-import { Button, Typography, Box, Chip } from '@material-ui/core'
+import { Button, Typography, Box, Chip, Select } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import CheckIcon from '@material-ui/icons/Check'
 import React from 'react'
+
+import TagAdder from './tags/tagadder'
 
 const useStyles = makeStyles({
 	root: {
@@ -79,57 +81,7 @@ const Tags = () => {
 			>
 				or start adding tags right away
 			</Typography>
-
-			<Box padding="30px" display="inline-block">
-				<Chip
-					classes={{ root: classes.tag }}
-					label="School Graduation"
-					onClick={handleClick}
-				/>
-				<Chip
-					classes={{ root: classes.tag }}
-					label="Princess Style"
-					onClick={handleClick}
-				/>
-
-				<Button
-					style={{
-						borderRadius: '25px',
-						color: '#8460C2',
-						flexWrap: 'wrap',
-						flex: '1',
-					}}
-				>
-					<AddIcon />
-					&nbsp;&nbsp;FIND MORE
-				</Button>
-			</Box>
-
-			<ResponsiveMasonry
-				columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-				style={{
-					marginLeft: '10px',
-					marginRight: '10px',
-				}}
-			>
-				<Masonry gutter="100" className={classes.masonryContainer}>
-					{items.map((item, i) => (
-						<Chip
-							onClick={tick}
-							style={{
-								backgroundColor: '#8460C2',
-								padding: '3px',
-								marginBottom: '10px',
-								height: '50vh',
-								width: '23vw',
-								borderRadius: '0px',
-							}}
-						>
-							<CheckIcon />
-						</Chip>
-					))}
-				</Masonry>
-			</ResponsiveMasonry>
+			<TagAdder />
 		</div>
 	)
 }

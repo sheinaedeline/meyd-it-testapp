@@ -72,7 +72,7 @@ export default function PermanentDrawerLeft() {
 						margin: '0 auto',
 					}}
 				>
-					<Link href="/">
+					<Link href="/client">
 						<MeyditLogoIcon />
 
 						<Typography
@@ -110,21 +110,21 @@ export default function PermanentDrawerLeft() {
 						</ListItemIcon>
 						<ListItemText primary={'User Name'} />
 					</ListItem>
-
-					<ListItem button className={classes.listItem}>
-						<ListItemIcon>
-							<Image
-								src="/grid_on.svg"
-								className={classes.icon}
-								style={{
-									width: '24px',
-									background: 'transparent',
-								}}
-							/>
-						</ListItemIcon>
-						<ListItemText href="/Index" primary={'MY MAKINGS'} />
-					</ListItem>
-
+					<Link href="/client/makings">
+						<ListItem button className={classes.listItem}>
+							<ListItemIcon>
+								<Image
+									src="/grid_on.svg"
+									className={classes.icon}
+									style={{
+										width: '24px',
+										background: 'transparent',
+									}}
+								/>
+							</ListItemIcon>
+							<ListItemText primary={'MY MAKINGS'} />
+						</ListItem>
+					</Link>
 					<ListItem button className={classes.listItem}>
 						<ListItemIcon>
 							<Image
