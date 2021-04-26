@@ -1,12 +1,12 @@
+// The measurements component in the "measurements" tab in my makings page
+
 /* eslint-disable react/display-name */
 import React from 'react'
 import PropTypes from 'prop-types'
 // import styling
 import {
 	makeStyles,
-	withStyles,
 } from '@material-ui/core/styles'
-import theme from '@/config/theme'
 // import material-ui components
 import Grid from '@material-ui/core/Grid'
 import {
@@ -46,13 +46,19 @@ const useStyles = makeStyles((theme) => ({
 	dataGrid: {
 		border: 'none',
 		height: '100%',
+		color: theme.palette.primary.contrastText,
 	},
 	estimateIcon: {
-		width: '50%',
+		width: '20px',
 		height: 'auto',
 	},
 }))
 
+/**
+ *
+ * @param {array} measurements - An array of measurement objects (with part, approx, and size props)
+ * @returns The mannequin and a sortable, searchable table of measurements
+ */
 const Measurements = ({ measurements }) => {
 	const classes = useStyles()
 
@@ -68,7 +74,7 @@ const Measurements = ({ measurements }) => {
 					InputProps={{
 						startAdornment: (
 							<InputAdornment position="start">
-								<SearchIcon style={{ }} />
+								<SearchIcon />
 							</InputAdornment>
 						),
 					}}
