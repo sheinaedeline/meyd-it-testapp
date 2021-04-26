@@ -11,7 +11,7 @@ import Gallery from '@/components/homepage/Gallery'
 const Moodboard = ({ making }) => {
 	return (
 		<div>
-			<Gallery galleryItems={making.moodboard} photoOnly={true} isCollection={false}/>
+			<Gallery galleryItems={making.moodboard} photoOnly={true} isCollection={false} buttonActive={false}/>
 		</div>
 	)
 }
