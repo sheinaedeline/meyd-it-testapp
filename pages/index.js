@@ -7,6 +7,8 @@ import Gallery from '@/components/homepage/Gallery'
 import IconGrid from '@/components/homepage/IconGrid'
 import Introduction from '@/components/homepage/Introduction'
 import Values from '@/components/homepage/Values'
+// import content
+import GalleryItems from '@/content/GalleryItems'
 
 export default function Home () {
 	return (
@@ -14,7 +16,7 @@ export default function Home () {
 			<Introduction />
 			<IconGrid />
 			<Values />
-			<Gallery />
+			<Gallery galleryItems={GalleryItems} photoOnly={false} isCollection={true}/>
 		</Layout>
 	)
 }

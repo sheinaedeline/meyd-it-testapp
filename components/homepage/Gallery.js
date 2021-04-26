@@ -1,4 +1,4 @@
-// The grid of images in masonry layout at the bottom of the homepage
+// A grid of images laid out in masonry
 
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'
@@ -14,8 +14,8 @@ import Chip from '@material-ui/core/Chip'
 import Typography from '@material-ui/core/Typography'
 // import icons
 import { SearchIcon } from '@/icons/user-interface'
-// import content
-import GalleryItems from '@/content/GalleryItems'
+
+import { PropTypes } from 'prop-types'
 
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
@@ -49,8 +49,24 @@ const useStyles = makeStyles({
 	},
 })
 
-const Gallery = (props) => {
+/**
+ *
+ * @param {array} galleryItems - The array of objects or photo IDs to display
+ * @param {bool} photoOnly - Whether to display just the photo, or include the title and tags
+ * @param {bool} isCollection - Whether the array should fetch from an unsplash collection or a single photo
+ * @param {bool} buttonActive - Whether the "discover more" button in the bottom should appear or not
+ * @returns A grid of images laid out in masonry
+ */
+
+const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive }) => {
 	const classes = useStyles()
+	const imgSrc = (item) => {
+		if (isCollection) {
+			return ('https://source.unsplash.com/collection/' + item.collection)
+		} else {
+			return ('https://source.unsplash.com/' + item)
+		}
+	}
 
 	return (
 		<Box className={classes.box}>
@@ -62,62 +78,83 @@ const Gallery = (props) => {
 
 					{/* For each item in Gallery array, make a new card item.
 							Each card item will have a title, tags, and picture. */}
-					{GalleryItems.map((item, i) => (
-						<Box className={classes.masonryItem} key={item.title}>
-							<Card className={classes.root}>
+					{galleryItems.map((item, i) => (
+						<Box className={classes.masonryItem} key={i}>
+							<Card className={classes.root} square>
 								<CardActionArea>
-									<CardContent>
 
-										{/* The title */}
-										<Typography gutterBottom variant="h5" component="h2" style={{ color: '#000' }}>
-											{item.title}
-										</Typography>
+									{/* If photoOnly is set to false, display the title and tags, otherwise
+										just display the photo */}
+									{!photoOnly
+										? (
+											<CardContent>
 
-										{/* The tags */}
-										<Typography
-											variant="body2"
-											color="textSecondary"
-											component="p"
-										>
-											{item.tags.map((tag, i) => (
-												<Chip
-													key={i}
-													size="small"
-													className={classes.chip}
-													variant="outlined"
-													color="secondary"
-													label={tag.toUpperCase()}
-												/>
-											))}
-										</Typography>
-									</CardContent>
+												{/* The title */}
+												<Typography gutterBottom variant="h5" component="h2" style={{ color: '#000' }}>
+													{item.title}
+												</Typography>
+
+												{/* The tags */}
+												<Typography
+													variant="body2"
+													color="textSecondary"
+													component="p"
+												>
+													{item.tags.map((tag, i) => (
+														<Chip
+															key={'tag-' + tag + i}
+															size="small"
+															className={classes.chip}
+															variant="outlined"
+															color="secondary"
+															label={tag.toUpperCase()}
+														/>
+													))}
+												</Typography>
+											</CardContent>
+										)
+										: null
+									}
 
 									{/* The photo */}
 									<CardMedia
 										component="img"
 										className={classes.media}
-										src={`https://source.unsplash.com/collection/${item.collection}`}
+										src={imgSrc(item)}
 										title="Contemplative Reptile"
 									/>
 								</CardActionArea>
+
 							</Card>
 						</Box>
 					))}
 				</Masonry>
 			</ResponsiveMasonry>
-			<Box className={classes.buttonWrapper}>
-				<Button
-					variant="contained"
-					color={'secondary'}
-					size="large"
-					startIcon={<SearchIcon />}
-					className={classes.button}
-				>
+
+			{buttonActive
+				? (
+					<Box className={classes.buttonWrapper}>
+						<Button
+							variant="contained"
+							color={'secondary'}
+							size="large"
+							startIcon={<SearchIcon />}
+							className={classes.button}
+						>
           Explore more and find your vibe
-				</Button>
-			</Box>
+						</Button>
+					</Box>
+				)
+				: null}
 		</Box>
 	)
+}
+
+Gallery.propTypes = {
+	galleryItems: PropTypes.array.isRequired,
+	photoOnly: PropTypes.bool,
+	isCollection: PropTypes.bool,
+	buttonActive: PropTypes.bool,
 }
 
 export default Gallery
