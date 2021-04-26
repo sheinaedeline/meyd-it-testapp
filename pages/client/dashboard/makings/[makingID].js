@@ -9,6 +9,7 @@ import MakingOverview from '@/components/clientProjects/MakingOverview'
 import DetailsTabPanel from '@/components/clientProjects/DetailsTabPanel'
 import Moodboard from '@/components/clientProjects/Moodboard'
 import Measurements from '@/components/clientProjects/Measurements'
+import MakingTimeline from '@/components/clientProjects/MakingTimeline'
 
 import { Link } from '@material-ui/core'
 
@@ -39,6 +40,7 @@ const Post = ({ children }) => {
 				{
 					id: 2,
 					text: 'timeline',
+					component: <MakingTimeline timeline={making.timeline} />,
 				},
 			])
 		}
