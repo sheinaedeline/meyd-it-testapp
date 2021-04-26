@@ -53,11 +53,12 @@ const useStyles = makeStyles({
  *
  * @param {array} galleryItems - The array of objects or photo IDs to display
  * @param {bool} photoOnly - Whether to display just the photo, or include the title and tags
- * @param {bool} isCollection - Whether the array should fetch from an unsplash collection or a single photo"
+ * @param {bool} isCollection - Whether the array should fetch from an unsplash collection or a single photo
+ * @param {bool} buttonActive - Whether the "discover more" button in the bottom should appear or not
  * @returns A grid of images laid out in masonry
  */
 
-const Gallery = ({ galleryItems, photoOnly, isCollection }) => {
+const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive }) => {
 	const classes = useStyles()
 	const imgSrc = (item) => {
 		if (isCollection) {
@@ -129,17 +130,22 @@ const Gallery = ({ galleryItems, photoOnly, isCollection }) => {
 					))}
 				</Masonry>
 			</ResponsiveMasonry>
-			<Box className={classes.buttonWrapper}>
-				<Button
-					variant="contained"
-					color={'secondary'}
-					size="large"
-					startIcon={<SearchIcon />}
-					className={classes.button}
-				>
+
+			{buttonActive
+				? (
+					<Box className={classes.buttonWrapper}>
+						<Button
+							variant="contained"
+							color={'secondary'}
+							size="large"
+							startIcon={<SearchIcon />}
+							className={classes.button}
+						>
           Explore more and find your vibe
-				</Button>
-			</Box>
+						</Button>
+					</Box>
+				)
+				: null}
 		</Box>
 	)
 }
@@ -148,6 +154,7 @@ Gallery.propTypes = {
 	galleryItems: PropTypes.array.isRequired,
 	photoOnly: PropTypes.bool,
 	isCollection: PropTypes.bool,
+	buttonActive: PropTypes.bool,
 }
 
 export default Gallery
