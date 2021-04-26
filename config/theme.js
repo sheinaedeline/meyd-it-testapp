@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core/styles'
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			light: '#FDFCFE',
+			light: '#fff',
 			main: '#F0ECF8',
 			dark: '#DACFED',
 			contrastText: '#000',
@@ -39,6 +39,11 @@ const theme = createMuiTheme({
 			root: {
 				borderRadius: 0,
 				textTransform: 'uppercase',
+			},
+		},
+		MuiTextField: {
+			root: {
+				borderRadius: 0,
 			},
 		},
 	},
