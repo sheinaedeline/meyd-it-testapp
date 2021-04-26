@@ -1,24 +1,25 @@
+// The layout for the dashboard that shows the drawer and footer
+
 // import stylings
-import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '@/config/theme'
 
 import React from 'react'
-import Button from '@material-ui/core/Button'
+import Fab from '@material-ui/core/Fab'
+import SvgIcon from '@material-ui/core/SvgIcon'
+import Typography from '@material-ui/core/Typography'
+import Zoom from '@material-ui/core/Zoom'
+import Hidden from '@material-ui/core/Hidden'
+import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
+import IconButton from '@material-ui/core/IconButton'
+import Link from '@material-ui/core/Link'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
-import Container from '@material-ui/core/Container'
-import Link from '@material-ui/core/Link'
-import SvgIcon from '@material-ui/core/SvgIcon'
-import Zoom from '@material-ui/core/Zoom'
-import Fab from '@material-ui/core/Fab'
 
 // import custom components
 import DefaultFooter from '@/layouts/components/DefaultFooter'
@@ -27,8 +28,8 @@ import DefaultFooter from '@/layouts/components/DefaultFooter'
 import { MeyditLogoIcon } from '@/assets/meydit'
 import { UserIcon } from '@/icons/user-interface'
 import {
-	ChevronRightIcon,
 	ChevronLeftIcon,
+	ChevronRightIcon,
 } from '@/icons/arrows'
 import { MessageSquareIcon } from '@/icons/communication'
 import { GridIcon } from '@/icons/layouts'
@@ -44,26 +45,43 @@ const useStyles = makeStyles((theme) => ({
 	},
 	toolbarIcon: {
 		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'flex-end',
+		alignItems: 'end',
+		justifyContent: 'right',
 		padding: '0 8px',
 		fill: 'transparent',
+		height: '100%',
+		position: 'absolute',
+		right: 0,
 	},
 	drawerPaper: {
-		position: 'relative',
 		whiteSpace: 'nowrap',
 		width: drawerWidth,
+		maxWidth: '100%',
+		transition: theme.transitions.create('width', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	},
+	drawerPaperClose: {
+		overflowX: 'hidden',
+		transition: theme.transitions.create('width', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		width: '0px',
 	},
 	content: {
-		flexGrow: 1,
-		height: '100vh',
-		overflow: 'auto',
+		display: 'flex',
+		flexDirection: 'column',
+		width: '100%',
+		overflow: 'hidden hidden',
 	},
 	container: {
-		paddingTop: theme.spacing(4),
-		paddingBottom: theme.spacing(4),
+		padding: theme.spacing(4),
 		minHeight: '100vh',
-		minWidth: '300px',
+		display: 'flex',
+		alignItems: 'flex-start',
+		backgroundColor: theme.palette.primary.main,
 	},
 	paper: {
 		padding: theme.spacing(2),
@@ -74,16 +92,6 @@ const useStyles = makeStyles((theme) => ({
 	fixedHeight: {
 		height: 240,
 	},
-	meyditLogo: {
-	},
-	companyName: {
-		color: theme.palette.primary.contrastText,
-	},
-	icon: {
-		width: '24px',
-		height: 'auto',
-		fill: 'transparent',
-	},
 	openButton: {
 		height: '10%',
 		display: 'block',
@@ -92,22 +100,49 @@ const useStyles = makeStyles((theme) => ({
 		display: 'none',
 	},
 	fab: {
-		position: 'absolute',
+		position: 'fixed',
 		bottom: theme.spacing(4),
 		left: theme.spacing(2),
 		backgroundColor: theme.palette.primary.dark,
+	},
+	meyditBlock: {
+		paddingTop: theme.spacing(2),
+	},
+	meyditLogo: {
+		width: '40%',
+		height: 'auto',
+		maxWidth: drawerWidth,
+		minWidth: '100px',
+		margin: '0 auto',
+	},
+	companyName: {
+		color: theme.palette.primary.contrastText,
+	},
+	meyditLink: {
+		display: 'flex',
+		flexDirection: 'column',
+		width: '100%',
+		alignContent: 'center',
+	},
+	icon: {
+		width: '24px',
+		height: 'auto',
+		fill: 'transparent',
 	},
 }))
 
 const Layout = (props) => {
 	const classes = useStyles()
+
+	// State of the drawer
 	const [open, setOpen] = React.useState(false)
 	const toggleDrawer = (state) => (event) => {
-		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-			return
-		}
-
 		setOpen(state)
+	}
+
+	const transitionDuration = {
+		enter: theme.transitions.duration.enteringScreen,
+		exit: theme.transitions.duration.leavingScreen,
 	}
 
 	// The text under the company name
@@ -132,88 +167,110 @@ const Layout = (props) => {
 		},
 	]
 
-	const transitionDuration = {
-		enter: theme.transitions.duration.enteringScreen,
-		exit: theme.transitions.duration.leavingScreen,
-	}
-
 	// The items in the list in the drawer
-	const listItem = (icon, href, text) => {
+	const listItem = (icon, href, text, key) => {
 		return (
-			<ListItem button>
+			<ListItem button key={key} style={{ minWidth: '100%' }}>
 				<ListItemIcon>
-					<SvgIcon component={icon} className={classes.icon}/>
+					<SvgIcon component={icon} className={classes.icon} />
 				</ListItemIcon>
 				<ListItemText href={href} primary={text} />
 			</ListItem>
 		)
 	}
 
+	const drawer = (
+		<div className={classes.content}>
+
+			{/* The logo, name, and subtext */}
+			<div className={classes.meyditBlock}>
+				{/* The logo */}
+				<Link href="/" className={classes.meyditLink}>
+					<MeyditLogoIcon className={classes.meyditLogo} />
+
+					{/* Company name under the logo */}
+					<Typography align="center" className={classes.companyName}>
+						<b>Meydit</b>
+					</Typography>
+				</Link>
+
+				{/* Text that goes under the logo */}
+				<Typography
+					align="center"
+					color="initial"
+					className={classes.subtext}
+				>
+					{subtext}
+				</Typography>
+			</div>
+			<Divider />
+
+			{/* The list of directories */}
+			<List>
+				{directories.map((item) =>
+					listItem(item.icon, item.href, item.text, item.text),
+				)}
+			</List>
+			<Divider />
+
+			{/* The close drawer button */}
+			<div className={classes.toolbarIcon}>
+				<IconButton onClick={toggleDrawer(false)}>
+					<ChevronLeftIcon />
+				</IconButton>
+			</div>
+		</div>
+	)
+
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
 
-			{/* The drawer */}
-			<Drawer
-				className={classes.drawerPaper}
-				open={open}
-				onClose={toggleDrawer(false)}
-			>
-				<div onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+			{/* Drawer on small screens */}
+			<Hidden smUp>
+				<Drawer
+					variant="temporary"
+					open={open}
+					onClose={toggleDrawer(false)}
+					classes={{ paper: classes.drawerPaper }}
+					ModalProps={{ keepMounted: true }} // Better performance on mobile
+				>
+					{drawer}
+				</Drawer>
+			</Hidden>
 
-					{/* The close drawer button */}
-					<div className={classes.toolbarIcon}>
-						<IconButton onClick={toggleDrawer(false)}>
-							<ChevronLeftIcon />
-						</IconButton>
-					</div>
-
-					{/* The logo, name, and subtext */}
-					<div>
-						{/* The logo */}
-						<Link href="/">
-							<MeyditLogoIcon className={classes.meyditLogo} />
-
-							{/* Company name under the logo */}
-							<Typography align='center' className={classes.companyName}>
-								<b>Meydit</b>
-							</Typography>
-						</Link>
-
-						{/* Text that goes under the logo */}
-						<Typography align="center" color="initial" className={classes.subtext}>
-							{subtext}
-						</Typography>
-					</div>
-					<Divider />
-
-					{/* The list of directories */}
-					<List>
-						{directories.map((item) => (
-							listItem(item.icon, item.href, item.text)
-						))}
-					</List>
-				</div>
-			</Drawer>
-
-			<Zoom
-				in={!open}
-				timeout={transitionDuration}
-				style={{
-					transitionDelay: `${!open ? transitionDuration.exit : 0}ms`,
-				}}
-				unmountOnExit
-			>
-				<Fab className={classes.fab}>
-					<SvgIcon component={ChevronRightIcon} onClick={toggleDrawer(true)} style={{ fill: 'transparent' }}/>
-				</Fab>
-			</Zoom>
+			{/* Drawer on big screens */}
+			<Hidden xsDown>
+				<Drawer
+					variant="permanent"
+					open={open}
+					classes={{ paper: clsx(open ? classes.drawerPaper : classes.drawerPaperClose) }}
+				>
+					{drawer}
+				</Drawer>
+			</Hidden>
 
 			<main className={classes.content}>
-				<Container maxWidth="lg" className={classes.container}>
+				<div className={classes.container}>
 					{/* eslint-disable-next-line react/prop-types */}
 					{props.children}
-				</Container>
+
+					<Zoom
+						in={!open}
+						timeout={transitionDuration}
+						style={{
+							transitionDelay: `${!open ? transitionDuration.exit : 0}ms`,
+						}}
+						unmountOnExit
+					>
+						<Fab className={classes.fab} onClick={toggleDrawer(true)}>
+							<SvgIcon
+								component={ChevronRightIcon}
+								style={{ fill: 'transparent' }}
+							/>
+						</Fab>
+					</Zoom>
+				</div>
 				<DefaultFooter />
 			</main>
 		</div>
