@@ -1,5 +1,0 @@
-[0m2021.04.17 10:34:46 INFO  Started: Metals version 0.10.1 in workspace 'C:\Users\Nicolaru\Documents\next-react-app' for client vscode 1.55.2.[0m
-[0m2021.04.17 10:34:47 INFO  time: initialize in 0.38s[0m
-[0m2021.04.17 10:34:47 WARN  Build server is not auto-connectable.[0m
-[0m2021.04.17 10:34:47 WARN  no build tool detected in workspace 'C:\Users\Nicolaru\Documents\next-react-app'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
-[0m2021.04.17 10:53:17 INFO  shutting down Metals[0m
