@@ -40,6 +40,25 @@ const list = [
 				size: 18,
 			},
 		],
+		timeline: [
+			{
+				title: 'Discussion',
+				desc: 'Minim adipisicing elit do sunt veniam consectetur ipsum id. Pariatur non eu culpa ad. Culpa mollit et consectetur aute reprehenderit cillum mollit aliqua deserunt ut.',
+				date: '10/4/21',
+				photo: 'LPWl2pEVGKc',
+			},
+			{
+				title: 'Measurements',
+				desc: 'Excepteur exercitation eiusmod minim magna cupidatat esse.',
+				date: '12/4/21',
+			},
+			{
+				title: 'Mask First Impressions',
+				desc: 'Exercitation deserunt anim culpa dolore commodo cillum ut ut. Ea aliquip aliqua aliquip qui pariatur qui dolor quis reprehenderit ex sit quis deserunt officia. Amet nostrud sit aliquip ea ut ut laboris tempor aliqua laboris do irure excepteur proident. Duis cillum incididunt enim id reprehenderit officia in. Nulla commodo cillum esse eiusmod ad et ad irure. Sit amet exercitation nulla proident laboris id enim nostrud occaecat dolore.',
+				date: '17/4/21',
+				photo: '0EI_4R2r0qg',
+			},
+		],
 	},
 	{
 		id: '2',
