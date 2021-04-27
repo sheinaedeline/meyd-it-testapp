@@ -47,6 +47,9 @@ const theme = createMuiTheme({
 			},
 		},
 	},
+	shape: {
+		borderRadius: 0,
+	},
 })
 
 export default theme
