@@ -75,6 +75,8 @@ const MakingOverview = ({ making }) => {
 								)
 							})}
 						</Grid>
+
+						{/* The input fields */}
 						<InputFields making={making} disabled={true} />
 					</Grid>
 				</Grid>

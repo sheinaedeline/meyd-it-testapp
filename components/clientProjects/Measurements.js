@@ -7,16 +7,19 @@ import PropTypes from 'prop-types'
 import {
 	makeStyles,
 } from '@material-ui/core/styles'
+import theme from '@/config/theme'
 // import material-ui components
-import Grid from '@material-ui/core/Grid'
 import {
 	DataGrid,
 	GridToolbarContainer,
 } from '@material-ui/data-grid'
+import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import InputAdornment from '@material-ui/core/InputAdornment'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import InputAdornment from '@material-ui/core/InputAdornment'
 // import custom components
 import { MannequinImage } from '@/assets/graphics'
 import {
@@ -45,12 +48,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 	dataGrid: {
 		border: 'none',
-		height: '100%',
 		color: theme.palette.primary.contrastText,
 	},
 	estimateIcon: {
 		width: '20px',
 		height: 'auto',
+	},
+	noRowOverlay: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		display: 'flex',
+		flexDirection: 'column',
 	},
 }))
 
@@ -62,27 +70,63 @@ const useStyles = makeStyles((theme) => ({
 const Measurements = ({ measurements }) => {
 	const classes = useStyles()
 
+	const [query, setQuery] = React.useState('')
+	const [data, setData] = React.useState([])
+	const [searchData, setSearchData] = React.useState([])
+
+	const handleQueryChange = (event) => {
+		setQuery(event.target.value)
+
+		// For each item in the measurements array, run the contains function on that item.
+		const filteredData = searchData.filter((item) => {
+			return contains(item, event.target.value)
+		})
+
+		// Set the data displayed to the filtered data
+		setData(filteredData)
+	}
+
+	// Take "part" from measurements array and check if at least some of the word
+	// matches the search query
+	const contains = ({ part }, txt) => {
+		const lowCasePart = part.toLowerCase()
+
+		if (lowCasePart.includes(txt.toLowerCase())) {
+			return true
+		}
+		return false
+	}
+
+	// So that the "no rows" message doesn't display
+	const rowOverlay = () => (
+		<Box></Box>
+	)
+
+	// The searchbar component
 	const searchBar = () => {
 		return (
 			<GridToolbarContainer>
 				<TextField
-					id="outlined-search"
 					placeholder="Search"
-					type="search"
 					variant="outlined"
 					fullWidth
 					InputProps={{
 						startAdornment: (
 							<InputAdornment position="start">
-								<SearchIcon />
+								<SearchIcon style={{ height: '25px' }}/>
 							</InputAdornment>
 						),
 					}}
 					className={classes.searchBar}
+					// defaultValue={query}
+					value={query}
+					onChange={handleQueryChange}
+					// onBlur={handleQueryChange}
 				/>
 			</GridToolbarContainer>
 		)
 	}
+
 	// The columns
 	const tableHeads = [
 		{
@@ -109,6 +153,12 @@ const Measurements = ({ measurements }) => {
 		},
 	]
 
+	React.useEffect(() => {
+		// Initialise
+		setData(measurements)
+		setSearchData(measurements)
+	}, [])
+
 	return (
 		<Grid container className={classes.gridContainer}>
 			<Grid item xs={12} sm={6}>
@@ -122,17 +172,40 @@ const Measurements = ({ measurements }) => {
 			{/* The table of measurements */}
 			<Grid item xs={12} sm={6}>
 				<Paper square elevation={0} style={{ height: '100%' }}>
+					{searchBar()}
 					<DataGrid
-						rows={measurements}
+						rows={data}
 						columns={tableHeads}
-						hideFooter
-						components={{
-							Toolbar: searchBar,
-						}}
+						hideFooter={data.length === 0}
+						hideFooterRowCount
+						hideFooterSelectedRowCount
+						autoPageSize
+						autoHeight
 						className={classes.dataGrid}
+						components={{
+							NoRowsOverlay: rowOverlay,
+						}}
 					/>
+
+					{/* If there is no data to match the search query, display the message and button
+						to clear the search */}
+					{data.length === 0
+						? (
+							<Box className={classes.noRowOverlay}>
+
+								<Typography align="center" style={{ color: theme.palette.primary.dark }}>
+									Your search did not turn up any results.
+								</Typography>
+								<Button onClick={() => {
+									setQuery('')
+									setData(measurements)
+								}}>Clear search</Button>
+							</Box>
+						)
+						: null}
 				</Paper>
 			</Grid>
+
 		</Grid>
 	)
 }

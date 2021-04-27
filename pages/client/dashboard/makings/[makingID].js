@@ -11,8 +11,6 @@ import Moodboard from '@/components/clientProjects/Moodboard'
 import Measurements from '@/components/clientProjects/Measurements'
 import MakingTimeline from '@/components/clientProjects/MakingTimeline'
 
-import { Link } from '@material-ui/core'
-
 const Post = ({ children }) => {
 	const router = useRouter()
 	const { makingID } = router.query

@@ -98,7 +98,7 @@ const DetailsTabPanel = ({ children, tabs, makingID }) => {
 				</Tabs>
 			</AppBar>
 			{tabs.map((item) => (
-				<TabPanel value={value} index={item.id} key={'tab' + item.id}>
+				<TabPanel value={value} index={item.id} key={'tab' + item.id} style={{ width: '100%' }}>
 					{item.component}
 				</TabPanel>
 			))}
