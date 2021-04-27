@@ -30,6 +30,9 @@ const useStyles = makeStyles({
 		maxWidth: '95%',
 		minWidth: '80%',
 	},
+	icon: {
+		height: '25px',
+	},
 })
 
 const InputFields = ({ making, disabled }) => {
@@ -70,7 +73,7 @@ const InputFields = ({ making, disabled }) => {
 							value={budget}
 							endAdornment={
 								<InputAdornment position="start">
-									<DollarSignIcon />
+									<DollarSignIcon className={classes.icon} />
 								</InputAdornment>
 							}
 						/>
@@ -89,7 +92,7 @@ const InputFields = ({ making, disabled }) => {
 							value={making.location}
 							endAdornment={
 								<InputAdornment position="start">
-									<MapPinIcon />
+									<MapPinIcon className={classes.icon} />
 								</InputAdornment>
 							}
 						/>
