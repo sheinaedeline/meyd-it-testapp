@@ -118,10 +118,8 @@ const Measurements = ({ measurements }) => {
 						),
 					}}
 					className={classes.searchBar}
-					// defaultValue={query}
 					value={query}
 					onChange={handleQueryChange}
-					// onBlur={handleQueryChange}
 				/>
 			</GridToolbarContainer>
 		)
