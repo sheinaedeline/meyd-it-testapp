@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '@/config/theme'
 
 import React from 'react'
+import Container from '@material-ui/core/Container'
 import Fab from '@material-ui/core/Fab'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Typography from '@material-ui/core/Typography'
@@ -39,6 +40,9 @@ const drawerWidth = 240
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: 'flex',
+		flexDirection: 'column',
+		width: '100%',
+		overflow: 'hidden hidden',
 	},
 	toolbar: {
 		paddingRight: 24, // keep right padding when drawer closed
@@ -50,13 +54,16 @@ const useStyles = makeStyles((theme) => ({
 		padding: '0 8px',
 		fill: 'transparent',
 		height: '100%',
-		position: 'absolute',
 		right: 0,
+		position: 'absolute',
+	},
+	drawer: {
+		position: 'relative',
+		width: drawerWidth,
+		flexShrink: 0,
 	},
 	drawerPaper: {
-		whiteSpace: 'nowrap',
 		width: drawerWidth,
-		maxWidth: '100%',
 		transition: theme.transitions.create('width', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen,
@@ -71,15 +78,26 @@ const useStyles = makeStyles((theme) => ({
 		width: '0px',
 	},
 	content: {
-		display: 'flex',
-		flexDirection: 'column',
-		width: '100%',
-		overflow: 'hidden hidden',
+		flexGrow: 1,
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		marginLeft: 0,
+	},
+	contentShift: {
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+		[theme.breakpoints.up('md')]: {
+
+			marginLeft: drawerWidth,
+		},
 	},
 	container: {
 		padding: theme.spacing(4),
 		minHeight: '100vh',
-		display: 'flex',
 		alignItems: 'flex-start',
 		backgroundColor: theme.palette.primary.main,
 	},
@@ -180,7 +198,7 @@ const Layout = (props) => {
 	}
 
 	const drawer = (
-		<div className={classes.content}>
+		<div className={classes.root}>
 
 			{/* The logo, name, and subtext */}
 			<div className={classes.meyditBlock}>
@@ -216,7 +234,7 @@ const Layout = (props) => {
 			{/* The close drawer button */}
 			<div className={classes.toolbarIcon}>
 				<IconButton onClick={toggleDrawer(false)}>
-					<ChevronLeftIcon />
+					<ChevronLeftIcon style={{ height: '30px' }}/>
 				</IconButton>
 			</div>
 		</div>
@@ -242,34 +260,46 @@ const Layout = (props) => {
 			{/* Drawer on big screens */}
 			<Hidden xsDown>
 				<Drawer
-					variant="permanent"
+					anchor="left"
+					variant="persistent"
+					onClose={toggleDrawer(false)}
 					open={open}
-					classes={{ paper: clsx(open ? classes.drawerPaper : classes.drawerPaperClose) }}
+					classes={{ paper: classes.drawerPaper }}
+					// classes={{ paper: clsx(open ? classes.drawerPaper : classes.drawerPaperClose) }}
 				>
 					{drawer}
 				</Drawer>
 			</Hidden>
 
-			<main className={classes.content}>
+			<main
+				className={clsx(classes.content, {
+					[classes.contentShift]: open,
+				})}
+			>
 				<div className={classes.container}>
-					{/* eslint-disable-next-line react/prop-types */}
-					{props.children}
-
-					<Zoom
-						in={!open}
-						timeout={transitionDuration}
-						style={{
-							transitionDelay: `${!open ? transitionDuration.exit : 0}ms`,
-						}}
-						unmountOnExit
+					<Container
+						maxWidth="lg"
 					>
-						<Fab className={classes.fab} onClick={toggleDrawer(true)}>
-							<SvgIcon
-								component={ChevronRightIcon}
-								style={{ fill: 'transparent' }}
-							/>
-						</Fab>
-					</Zoom>
+
+						{/* eslint-disable-next-line react/prop-types */}
+						{props.children}
+
+						<Zoom
+							in={!open}
+							timeout={transitionDuration}
+							style={{
+								transitionDelay: `${!open ? transitionDuration.exit : 0}ms`,
+							}}
+							unmountOnExit
+						>
+							<Fab className={classes.fab} onClick={toggleDrawer(true)}>
+								<SvgIcon
+									component={ChevronRightIcon}
+									style={{ fill: 'transparent' }}
+								/>
+							</Fab>
+						</Zoom>
+					</Container>
 				</div>
 				<DefaultFooter />
 			</main>
