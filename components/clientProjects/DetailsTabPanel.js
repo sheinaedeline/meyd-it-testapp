@@ -54,15 +54,20 @@ const useStyles = makeStyles((theme) => ({
 	tabPanel: {
 		backgroundColor: theme.palette.primary.light,
 	},
+	tabs: {
+		'& > *': {
+			padding: 0,
+		},
+	},
 }))
 
 /**
  *
  * @param {array} tabs - The array of tabs it should display (contains the tab text and component to be displayed)
- * @param {number} makingID - The making ID in the URL
+ * @param {string} url - The home url of the current making
  * @returns The tabs underneath the making overview
  */
-const DetailsTabPanel = ({ children, tabs, makingID }) => {
+const DetailsTabPanel = ({ children, tabs, url }) => {
 	const classes = useStyles()
 	const router = useRouter()
 	const [value, setValue] = React.useState(0)
@@ -73,7 +78,7 @@ const DetailsTabPanel = ({ children, tabs, makingID }) => {
 	}
 
 	React.useEffect(() => {
-		router.push(`/client/dashboard/makings/${makingID}/${Slugify(tabs[value].text)}`, undefined, { shallow: true })
+		router.push(`${url}/${Slugify(tabs[value].text)}`, undefined, { shallow: true })
 	}, [value])
 
 	const smallScreen = useMediaQuery(theme.breakpoints.down('xs'))
@@ -98,7 +103,9 @@ const DetailsTabPanel = ({ children, tabs, makingID }) => {
 				</Tabs>
 			</AppBar>
 			{tabs.map((item) => (
-				<TabPanel value={value} index={item.id} key={'tab' + item.id} style={{ width: '100%' }}>
+				<TabPanel value={value} index={item.id} key={'tab' + item.id} style={{ width: '100%' }}
+					className={classes.tabs}
+				>
 					{item.component}
 				</TabPanel>
 			))}
@@ -111,7 +118,7 @@ DetailsTabPanel.propTypes = {
 	children: PropTypes.node,
 	id: PropTypes.number,
 	tabs: PropTypes.array.isRequired,
-	makingID: PropTypes.string.isRequired,
+	url: PropTypes.string,
 }
 
 export default DetailsTabPanel

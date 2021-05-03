@@ -1,12 +1,13 @@
 // The layout for the dashboard that shows the drawer and footer
 
+import React from 'react'
+import PropTypes from 'prop-types'
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '@/config/theme'
-
-import React from 'react'
+// import material ui components
 import Container from '@material-ui/core/Container'
 import Fab from '@material-ui/core/Fab'
 import SvgIcon from '@material-ui/core/SvgIcon'
@@ -21,19 +22,14 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-
 // import custom components
 import DefaultFooter from '@/layouts/components/DefaultFooter'
-
 // import icons
 import { MeyditLogoIcon } from '@/assets/meydit'
-import { UserIcon } from '@/icons/user-interface'
 import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 } from '@/icons/arrows'
-import { MessageSquareIcon } from '@/icons/communication'
-import { GridIcon } from '@/icons/layouts'
 
 const drawerWidth = 240
 
@@ -149,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }))
 
-const Layout = (props) => {
+const Layout = ({ children, directories }) => {
 	const classes = useStyles()
 
 	// State of the drawer
@@ -165,25 +161,6 @@ const Layout = (props) => {
 
 	// The text under the company name
 	const subtext = 'Subtext'
-
-	// The list of directories
-	const directories = [
-		{
-			icon: UserIcon,
-			href: '/Index',
-			text: 'User Name',
-		},
-		{
-			icon: GridIcon,
-			href: '',
-			text: 'My Makings',
-		},
-		{
-			icon: MessageSquareIcon,
-			href: '/Index',
-			text: 'Messages',
-		},
-	]
 
 	// The items in the list in the drawer
 	const listItem = (icon, href, text, key) => {
@@ -280,9 +257,7 @@ const Layout = (props) => {
 					<Container
 						maxWidth="lg"
 					>
-
-						{/* eslint-disable-next-line react/prop-types */}
-						{props.children}
+						{children}
 
 						<Zoom
 							in={!open}
@@ -305,6 +280,11 @@ const Layout = (props) => {
 			</main>
 		</div>
 	)
+}
+
+Layout.propTypes = {
+	directories: PropTypes.array.isRequired,
+	children: PropTypes.node,
 }
 
 export default Layout
