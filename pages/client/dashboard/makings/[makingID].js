@@ -50,7 +50,7 @@ const Post = ({ children }) => {
 				? (
 					<div>
 						<MakingOverview making={making} />
-						<DetailsTabPanel tabs={tabs} makingID={makingID}>
+						<DetailsTabPanel tabs={tabs} url={`/client/dashboard/makings/${makingID}`}>
 							{children}
 						</DetailsTabPanel>
 					</div>

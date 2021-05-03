@@ -11,9 +11,12 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
-
 // import custom components
 import Layout from '@/layouts/Dashboard'
+// import icons
+import { MessageSquareIcon } from '@/icons/communication'
+import { GridIcon } from '@/icons/layouts'
+import { UserIcon } from '@/icons/user-interface'
 
 const useStyles = makeStyles({
 	appBar: {
@@ -36,8 +39,27 @@ const Index = (props) => {
 	const classes = useStyles()
 	const notification = true
 
+	// The list of directories for the dashboard drawer
+	const directories = [
+		{
+			icon: UserIcon,
+			href: '/Index',
+			text: 'User Name',
+		},
+		{
+			icon: GridIcon,
+			href: '',
+			text: 'My Makings',
+		},
+		{
+			icon: MessageSquareIcon,
+			href: '/Index',
+			text: 'Messages',
+		},
+	]
+
 	return (
-		<Layout>
+		<Layout directories={directories}>
 			<Grid container>
 
 				{/* If there is a notification, show notification appbar */}
