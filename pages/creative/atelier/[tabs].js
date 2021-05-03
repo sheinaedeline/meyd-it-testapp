@@ -9,7 +9,6 @@ const tabs = () => {
 
 	return (
 		<Index>
-			<p>hello {tabs}</p>
 		</Index>
 	)
 }
