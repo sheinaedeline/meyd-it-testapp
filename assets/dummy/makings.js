@@ -59,72 +59,46 @@ const list = [
 				photo: '0EI_4R2r0qg',
 			},
 		],
+		projectStatus: 'Project Status',
 	},
 	{
 		id: '2',
 		title: 'Cookie Commemoration With Kevin',
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
+		photoid: 'kID9sxbJ3BQ',
+		projectStatus: 'Project Status',
 	},
 	{
 		id: '3',
-		title: 'Cosplay Carousal With Sushi',
+		title: 'Cosplay Contest With Sushi',
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
+		photoid: '16Vs-FIoY6U',
+		projectStatus: 'Project Status',
 	},
 	{
 		id: '4',
-		title: "Nicole's Pump It Up Party",
+		title: "Nicole's Rhythm Game Rave",
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
+		photoid: 'sEvXeIUh1t4',
+		projectStatus: 'Project Status',
 	},
 	{
 		id: '5',
-		title: "Shashank's Bachelor Bonanza",
+		title: 'Footwear Festival with Koey',
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
+		photoid: 'Xfd-PHwqkRc',
+		projectStatus: 'Project Status',
 	},
 	{
 		id: '6',
-		title: 'Painting It Pink With Ryan',
+		title: "Raj's Cooking Carousal",
 		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
-	},
-	{
-		id: '7',
-		title: "Archit's Footwear Festival",
-		description: 'Et cillum mollit eu culpa magna sit. Aliqua ad non sint est veniam non nostrud est occaecat deserunt dolore. Irure ipsum tempor eiusmod culpa deserunt ex eiusmod. Qui ea Lorem pariatur tempor sunt velit eiusmod cillum minim reprehenderit aliquip labore fugiat. Consectetur reprehenderit aute minim cillum amet mollit nisi ex. Consectetur commodo pariatur qui esse consequat et enim magna consequat Lorem mollit fugiat cillum commodo.',
+		photoid: 'bG5rhvRH0JM',
+		projectStatus: 'Project Status',
 	},
 ]
 
 export default {
 	makings: list,
 	making: list[0],
-}
-
-// Used in getStaticPaths function in index.js of makings page
-export function getAllMakingIDs () {
-	// Returns an array that looks like this:
-	// [
-	//   {
-	//     params: {
-	//       id: 'ssg-ssr'
-	//     }
-	//   },
-	//   {
-	//     params: {
-	//       id: 'pre-rendering'
-	//     }
-	//   }
-	// ]
-
-	// This function must return an object with params key and the id
-	return list.map(making => {
-		return {
-			params: {
-				id: making.id.toString(),
-			},
-		}
-	})
-}
-
-export function getMakingData (id) {
-	const item = list.find((item) => item.id === id)
-
-	return item
 }
