@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%',
 	},
 	mannequinPaper: {
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: theme.palette.primary.main,
 		height: '80vh',
 		alignItems: 'center',
 		justifyContent: 'center',

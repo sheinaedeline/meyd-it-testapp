@@ -1,5 +1,6 @@
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'
+import theme from '@/config/theme'
 // import MUI components
 import AppBar from '@material-ui/core/AppBar'
 import Box from '@material-ui/core/Box'
@@ -10,6 +11,9 @@ import Typography from '@material-ui/core/Typography'
 import DefaultNavDrawer from './DefaultNavDrawer'
 
 const useStyles = makeStyles((theme) => ({
+	appBar: {
+		backgroundColor: theme.palette.primary.lighten4,
+	},
 	title: {
 		flexGrow: 1,
 	},
@@ -32,14 +36,14 @@ const LayoutNavBar = () => {
 	const classes = useStyles()
 
 	return (
-		<AppBar position="static" elevation={0} >
+		<AppBar position="static" elevation={0} className={classes.appBar}>
 			<Toolbar>
 				<DefaultNavDrawer>
 					{navButtonText}
 				</DefaultNavDrawer>
 
 				<Box className={classes.title}>
-					<Button color="secondary">
+					<Button>
 						<Typography>MEYD.IT</Typography>
 					</Button>
 				</Box>
@@ -50,7 +54,7 @@ const LayoutNavBar = () => {
 					))}
 				</Box>
 
-				<Button variant="outlined" className={classes.loginButton} color="secondary">
+				<Button variant="outlined" className={classes.loginButton}>
           LOGIN/JOIN
 				</Button>
 			</Toolbar>
