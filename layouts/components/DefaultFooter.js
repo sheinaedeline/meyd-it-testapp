@@ -24,7 +24,7 @@ import CompanyDetails from '@/content/CompanyDetails'
 
 const useStyles = makeStyles({
 	root: {
-		backgroundColor: theme.palette.secondary.dark,
+		backgroundColor: theme.palette.primary.main,
 		width: '100%',
 		padding: theme.spacing(2),
 	},
@@ -54,6 +54,7 @@ const useStyles = makeStyles({
 		[theme.breakpoints.up('sm')]: {
 			margin: theme.spacing(4),
 		},
+		color: theme.palette.primary.light,
 	},
 	importantLinks: {
 		margin: theme.spacing(2),
@@ -62,9 +63,11 @@ const useStyles = makeStyles({
 			fontSize: '130%',
 		},
 		fontSize: '100%',
+		color: theme.palette.primary.light,
 	},
 	linkList: {
 		justifyContent: 'center',
+		color: theme.palette.primary.light,
 	},
 })
 
@@ -147,7 +150,7 @@ const DefaultFooter = () => {
 
 									{/* The title */}
 									<ListItem className={classes.linkList}>
-										<Typography color="primary" style={{ fontWeight: 'bold' }} align="center">
+										<Typography color={theme.palette.primary.light} style={{ fontWeight: 'bold' }} align="center">
 											{item.title}
 										</Typography>
 									</ListItem>
@@ -155,8 +158,8 @@ const DefaultFooter = () => {
 									{/* The list of links */}
 									{item.links.map((link, index) => (
 										<ListItem key={index} className={classes.linkList}>
-											<Typography align="center">
-												<Link color="primary"> {link} </Link>
+											<Typography align="center" color={theme.palette.primary.light}>
+												<Link color="inherit" href="#"> {link} </Link>
 											</Typography>
 										</ListItem>
 									))}
@@ -176,8 +179,8 @@ const DefaultFooter = () => {
 				<Grid item xs={12} md={6}>
 					<Paper className={classes.paper} elevation={0}>
 						{importantLinks.map((text, index) => (
-							<Typography key={index} align="center" className={classes.importantLinks}>
-								<Link href="#" color="primary">
+							<Typography key={index} align="center" color={theme.palette.primary.light} className={classes.importantLinks}>
+								<Link href="#" color="inherit">
 									{text}
 								</Link>
 							</Typography>

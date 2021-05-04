@@ -4,14 +4,11 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
 // import material ui components
-import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import SvgIcon from '@material-ui/core/SvgIcon'
-// import icons
-import { CircleIcon } from '@/icons/shapes'
 
 const useStyles = makeStyles({
 	paper: {
@@ -33,17 +30,14 @@ const useStyles = makeStyles({
 		paddingBottom: theme.spacing(2),
 		color: theme.palette.primary.contrastText,
 	},
-	socialsDiv: {
+	socialsGrid: {
 		display: 'flex',
-		flexDirection: 'row',
-		[theme.breakpoints.down('md')]: {
-			flexDirection: 'column',
-		},
 		alignItems: 'center',
+		justifyContent: 'center',
 		maxWidth: '100%',
 	},
 	socialIconButton: {
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: theme.palette.primary.main,
 		borderRadius: '50%',
 		margin: theme.spacing(2),
 	},
@@ -72,18 +66,19 @@ const Overview = ({ details }) => {
 				<Typography className={classes.story}>{details.story}</Typography>
 
 				{/* The social media links */}
-				<div className={classes.socialsDiv}>
+				<Grid container className={classes.socialsGrid}>
 					{details.socials.map((item) => (
-						<Button
-							key={item.name}
-							elevation={0}
-							className={classes.socialIconButton}
-							href={item.href}
-						>
-							<SvgIcon className={classes.socialIcon} component={item.icon}/>
-						</Button>
+						<Grid item key={item.name}>
+							<Button
+								elevation={0}
+								className={classes.socialIconButton}
+								href={item.href}
+							>
+								<SvgIcon className={classes.socialIcon} component={item.icon}/>
+							</Button>
+						</Grid>
 					))}
-				</div>
+				</Grid>
 			</Paper>
 		</div>
 	)

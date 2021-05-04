@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 		marginBottom: 50,
 	},
 	purpScheme: {
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: theme.palette.primary.main,
 		color: theme.palette.text.secondary,
 		height: '100%',
 	},
@@ -36,13 +36,17 @@ const useStyles = makeStyles({
 const Introduction = () => {
 	const classes = useStyles()
 
-	/* Because the introduction bit is a grid of 2 items (text on the left and text on the right),
+	/**
+	 *
+	 * @param {prop} colorScheme - style prop for Grid container
+	 * @param {prop} contentAlignment - alignItems prop for Grid container
+	 * @param {prop} textAlignment - align prop for heading typography
+	 * @param {JSX element} heading - heading typography
+	 * @param {JSX element} content - can be any component
+	 * @param {string} contentWidth - the width of the content
+	 * @returns Because the introduction bit is a grid of 2 items (text on the left and text on the right),
 		each of those items can be a gridItem.
-		Parameters: colorScheme (style prop for Grid container),
-					contentAlignment (alignItems prop for Grid container)
-					textAlignment (align prop for heading typography)
-					heading (heading typography)
-					content (can be any component)  */
+	 */
 	const gridItem = (colorScheme, contentAlignment, textAlignment, heading, content, contentWidth) => (
 		<Grid item md={6} xs={12}>
 			{/* Each grid item is a grid with elements aligned in a column. */}
@@ -91,8 +95,8 @@ const Introduction = () => {
 				'center',
 				'Browse creative makings and find your favourites',
 				[
-					<Button variant="contained" disableElevation={true} color="secondary">
-                        EXPLORE MAKINGS
+					<Button variant="contained" color="primary" disableElevation={true}>
+						<Typography color="textSecondary">EXPLORE MAKINGS</Typography>
 					</Button>,
 					<Button>OR START YOUR MAKING RIGHT AWAY</Button>,
 				],

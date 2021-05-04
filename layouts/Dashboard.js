@@ -33,8 +33,15 @@ import {
 
 const drawerWidth = 240
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	root: {
+		display: 'flex',
+		flexDirection: 'column',
+		width: '100%',
+		overflow: 'hidden hidden',
+		backgroundColor: theme.palette.primary.lighten5,
+	},
+	drawerRoot: {
 		display: 'flex',
 		flexDirection: 'column',
 		width: '100%',
@@ -80,6 +87,9 @@ const useStyles = makeStyles((theme) => ({
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 		marginLeft: 0,
+		'&& > *': {
+			backgroundColor: 'transparent',
+		},
 	},
 	contentShift: {
 		transition: theme.transitions.create('margin', {
@@ -143,7 +153,7 @@ const useStyles = makeStyles((theme) => ({
 		height: 'auto',
 		fill: 'transparent',
 	},
-}))
+})
 
 const Layout = ({ children, directories }) => {
 	const classes = useStyles()
@@ -175,7 +185,7 @@ const Layout = ({ children, directories }) => {
 	}
 
 	const drawer = (
-		<div className={classes.root}>
+		<div className={classes.drawerRoot}>
 
 			{/* The logo, name, and subtext */}
 			<div className={classes.meyditBlock}>

@@ -80,7 +80,7 @@ const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive }) => {
 							Each card item will have a title, tags, and picture. */}
 					{galleryItems.map((item, i) => (
 						<Box className={classes.masonryItem} key={i}>
-							<Card className={classes.root} square>
+							<Card className={classes.root} square elevation={0}>
 								<CardActionArea>
 
 									{/* If photoOnly is set to false, display the title and tags, otherwise
@@ -97,7 +97,6 @@ const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive }) => {
 												{/* The tags */}
 												<Typography
 													variant="body2"
-													color="textSecondary"
 													component="p"
 												>
 													{item.tags.map((tag, i) => (
@@ -106,7 +105,7 @@ const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive }) => {
 															size="small"
 															className={classes.chip}
 															variant="outlined"
-															color="secondary"
+															color="primary"
 															label={tag.toUpperCase()}
 														/>
 													))}

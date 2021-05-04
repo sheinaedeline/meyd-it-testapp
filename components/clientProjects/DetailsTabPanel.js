@@ -93,6 +93,7 @@ const DetailsTabPanel = ({ children, tabs, url }) => {
 					onChange={handleChange}
 					scrollButtons="auto"
 					aria-label="details tabs"
+					indicatorColor="primary"
 				>
 					{tabs.map((item) => (
 						<Tab

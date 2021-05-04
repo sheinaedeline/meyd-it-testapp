@@ -71,7 +71,7 @@ const MakingOverview = ({ making }) => {
 						<Grid item xs={12}>
 							{making.tags.map((item, index) => {
 								return (
-									<Chip size="medium" label={item} color="secondary" key={index} className={classes.chip}/>
+									<Chip size="medium" label={item} color="primary" key={index} className={classes.chip}/>
 								)
 							})}
 						</Grid>
