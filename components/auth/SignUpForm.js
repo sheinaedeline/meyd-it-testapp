@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // import stylings
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
 // import material ui components
@@ -12,7 +13,10 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
 // import custom components
-import { MeyditLogoIcon } from '@/assets/meydit/'
+import {
+	MeyditLogoIcon,
+	MeyditLogoLightIcon,
+} from '@/assets/meydit/'
 import { FacebookIcon } from '@/icons/brands'
 import { MailIcon } from '@/icons/communication'
 import TextInputs from './TextInputs'
@@ -46,6 +50,20 @@ const useStyles = makeStyles({
 		width: '100px',
 		minWidth: '80px',
 		margin: theme.spacing(3),
+	},
+	darkTitle: {
+		color: theme.palette.primary.light,
+		fontSize: '3.5em',
+		[theme.breakpoints.down('md')]: {
+			fontSize: '3em',
+		},
+	},
+	lightTitle: {
+		color: theme.palette.primary.main,
+		fontSize: '3.5em',
+		[theme.breakpoints.down('md')]: {
+			fontSize: '3em',
+		},
 	},
 	card: {
 		backgroundColor: theme.palette.primary.light,
@@ -97,7 +115,7 @@ const useStyles = makeStyles({
 	},
 })
 
-const SignUpForm = ({ title }) => {
+const SignUpForm = ({ dark, title }) => {
 	const classes = useStyles()
 
 	return (
@@ -105,8 +123,15 @@ const SignUpForm = ({ title }) => {
 			<Grid container direction='column' className={classes.gridContainer}>
 				<Grid item xs={2}>
 					<div className={classes.titleDiv}>
-						<MeyditLogoIcon className={classes.logo}/>
-						<Typography color="inherit" variant="h3"> {title} </Typography>
+						{dark
+							? <MeyditLogoLightIcon className={classes.logo} />
+							: <MeyditLogoIcon className={classes.logo}/>
+						}
+						<Typography
+							className={clsx(dark ? classes.darkTitle : classes.lightTitle)}
+						>
+							{title}
+						</Typography>
 					</div>
 				</Grid>
 
@@ -144,6 +169,7 @@ const SignUpForm = ({ title }) => {
 }
 
 SignUpForm.propTypes = {
+	dark: PropTypes.bool,
 	title: PropTypes.string.isRequired,
 }
 

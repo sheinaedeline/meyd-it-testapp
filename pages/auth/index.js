@@ -14,27 +14,28 @@ import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 // import Icons
-import { MeyditLogoIcon } from '@/assets/meydit'
+import {
+	MeyditLogoIcon,
+	MeyditLogoLightIcon,
+} from '@/assets/meydit'
+
+const cardHeight = '70vh'
 
 const useStyles = makeStyles({
 	gridContainer: {
-		minHeight: 'calc(100vh - 64px)',
-		[theme.breakpoints.down('sm')]: {
-			minHeight: 'calc(100vh - 54px)',
-		},
 		display: 'flex',
-		alignItems: 'center',
 		justifyContent: 'center',
+		marginTop: theme.spacing(2),
 	},
 	gridItem: {
 		padding: theme.spacing(2),
 	},
 	logo: {
-		maxWidth: '200px',
+		maxWidth: '150px',
 		height: 'auto',
 	},
 	purpleCard: {
-		height: '80vh',
+		minHeight: cardHeight,
 		[theme.breakpoints.down('sm')]: {
 			height: '50vh',
 		},
@@ -51,7 +52,7 @@ const useStyles = makeStyles({
 		backgroundColor: theme.palette.primary.light,
 	},
 	whiteCard: {
-		height: '79.5vh',
+		minHeight: cardHeight,
 		[theme.breakpoints.down('sm')]: {
 			height: '50vh',
 		},
@@ -62,7 +63,6 @@ const useStyles = makeStyles({
 		color: theme.palette.primary.main,
 		backgroundColor: theme.palette.primary.light,
 		borderColor: theme.palette.primary.main,
-		marginTop: theme.spacing(4),
 	},
 	purpleButton: {
 		margin: theme.spacing(2),
@@ -70,10 +70,25 @@ const useStyles = makeStyles({
 		backgroundColor: theme.palette.primary.main,
 	},
 	cardActionArea: {
+		height: cardHeight,
+		[theme.breakpoints.down('sm')]: {
+			height: '50vh',
+		},
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
-		height: '100%',
+		minHeight: '100%',
+	},
+	loginDiv: {
+		width: '100%',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		marginBottom: theme.spacing(2),
+	},
+	loginButton: {
+		display: 'flex',
+		// flex: 1,
 	},
 })
 
@@ -82,44 +97,45 @@ const Index = () => {
 
 	return (
 		<Layout>
-			<Grid container className={classes.gridContainer}>
-				{/* The client login */}
-				<Grid item xs={12} md={3} className={classes.gridItem}>
-					<Card square elevation={0} className={classes.purpleCard}>
-						<CardActionArea className={classes.cardActionArea} href="/auth/client">
-							<MeyditLogoIcon className={classes.logo} />
-							<Button variant="contained" disableElevation className={classes.whiteButton}>
+			<div>
+				<Grid container className={classes.gridContainer}>
+					{/* The client login */}
+					<Grid item xs={12} md={3} className={classes.gridItem}>
+						<Card square elevation={0} className={classes.purpleCard}>
+							<CardActionArea className={classes.cardActionArea} href="/auth/client">
+								<MeyditLogoLightIcon className={classes.logo} />
+								<Button variant="contained" disableElevation className={classes.whiteButton}>
 								I'M A CLIENT
-							</Button>
-							<Typography color="inherit">
+								</Button>
+								<Typography color="inherit">
 								I NEED SOMETHING MADE
-							</Typography>
-						</CardActionArea>
-					</Card>
-				</Grid>
+								</Typography>
+							</CardActionArea>
+						</Card>
+					</Grid>
 
-				{/* The creative login */}
-				<Grid item xs={12} md={3} className={classes.gridItem}>
-					<Card square elevation={0} className={classes.whiteCard} variant="outlined">
-						<CardActionArea className={classes.cardActionArea} href="/auth/creative">
-							<MeyditLogoIcon className={classes.logo} />
-							<Button variant="contained" disableElevation className={classes.purpleButton}>
+					{/* The creative login */}
+					<Grid item xs={12} md={3} className={classes.gridItem}>
+						<Card square elevation={0} className={classes.whiteCard} variant="outlined">
+							<CardActionArea className={classes.cardActionArea} href="/auth/creative">
+								<MeyditLogoIcon className={classes.logo} />
+								<Button variant="contained" disableElevation className={classes.purpleButton}>
 								I'M A CREATIVE
-							</Button>
-							<Typography color="inherit">
+								</Button>
+								<Typography color="inherit">
 								I CAN MAKE THINGS
-							</Typography>
-						</CardActionArea>
-					</Card>
-					<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+								</Typography>
+							</CardActionArea>
+						</Card>
+					</Grid>
+					<div className={classes.loginDiv}>
 						<Typography style={{ color: theme.palette.primary.contrastText, paddingTop: theme.spacing(1) }}>
 					Already have an account?
 						</Typography>
-						<Button>LOG BACK IN</Button>
+						<Button className={classes.loginButton}>LOG BACK IN</Button>
 					</div>
 				</Grid>
-			</Grid>
-
+			</div>
 		</Layout>
 	)
 }

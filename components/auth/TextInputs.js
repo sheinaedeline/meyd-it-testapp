@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 		justifyContent: 'center',
 	},
 	textField: {
-		paddingBottom: theme.spacing(4),
+		paddingBottom: theme.spacing(2),
 		width: '100%',
 		'& > *': {
 			color: theme.palette.primary.main,
@@ -65,6 +65,7 @@ const TextInputs = () => {
 		passwordMessage: '',
 		confirmPassword: false,
 		confirmPasswordMessage: '',
+		noErrors: false,
 	})
 
 	const fields = [
@@ -175,11 +176,16 @@ const TextInputs = () => {
 					: (data.confirmPassword !== data.password
 						? errorMessages.cannotConfirm
 						: '')],
+
+			noErrors: !error.firstName && !error.lastName &&
+			!error.email && !error.confirmEmail && !error.password && !error.confirmPassword,
 		})
+
+		goToSuccess()
 	}
 
 	const goToSuccess = () => {
-		if (!error.firstName && !error.lastName && !error.email && !error.confirmEmail && !error.password && !error.confirmPassword) {
+		if (error.noErrors) {
 			router.push('/auth/client/success')
 		}
 	}
@@ -207,7 +213,8 @@ const TextInputs = () => {
 					<FormHelperText>{item.errorMessage}</FormHelperText>
 				</FormControl>
 			))}
-			<Button variant="contained" disableElevation className={classes.button} onClick={validateData}>
+			<Button variant="contained" disableElevation className={classes.button}
+				onClick={validateData}>
         SUBMIT
 			</Button>
 		</div>
