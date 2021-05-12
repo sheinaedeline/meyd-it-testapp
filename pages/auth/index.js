@@ -1,114 +1,141 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 // import Stylings
-import { makeStyles } from '@material-ui/core/styles'
+import {
+	makeStyles,
+} from '@material-ui/core/styles'
 import theme from '@/config/theme'
 // import Layout
 import Layout from '@/layouts/Default'
 // import MUI components
-import {
-	Grid,
-	Button,
-	Typography,
-	Card,
-	CardActionArea,
-	Hidden,
-} from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 // import Icons
 import {
 	MeyditLogoIcon,
-	ClientIcon,
-	CreativeIcon,
+	MeyditLogoLightIcon,
 } from '@/assets/meydit'
 
+const cardHeight = '70vh'
+
 const useStyles = makeStyles({
+	gridContainer: {
+		display: 'flex',
+		justifyContent: 'center',
+		marginTop: theme.spacing(2),
+	},
 	gridItem: {
-		height: 'calc(100vh - 64px)',
+		padding: theme.spacing(2),
+	},
+	logo: {
+		maxWidth: '150px',
+		height: 'auto',
+	},
+	purpleCard: {
+		minHeight: cardHeight,
 		[theme.breakpoints.down('sm')]: {
-			height: 'calc(100vh - 54px)',
+			height: '50vh',
+		},
+		padding: theme.spacing(2),
+		flexDirection: 'column',
+		display: 'flex',
+		justifyContent: 'center',
+		color: theme.palette.primary.light,
+		backgroundColor: theme.palette.primary.main,
+	},
+	whiteButton: {
+		margin: theme.spacing(2),
+		color: '#000',
+		backgroundColor: theme.palette.primary.light,
+	},
+	whiteCard: {
+		minHeight: cardHeight,
+		[theme.breakpoints.down('sm')]: {
+			height: '50vh',
+		},
+		padding: theme.spacing(2),
+		flexDirection: 'column',
+		display: 'flex',
+		justifyContent: 'center',
+		color: theme.palette.primary.main,
+		backgroundColor: theme.palette.primary.light,
+		borderColor: theme.palette.primary.main,
+	},
+	purpleButton: {
+		margin: theme.spacing(2),
+		color: '#fff',
+		backgroundColor: theme.palette.primary.main,
+	},
+	cardActionArea: {
+		height: cardHeight,
+		[theme.breakpoints.down('sm')]: {
+			height: '50vh',
 		},
 		display: 'flex',
 		flexDirection: 'column',
-		alignItems: 'center',
 		justifyContent: 'center',
+		minHeight: '100%',
 	},
-	logo: {
-		width: '50%',
-		height: 'auto',
-	},
-	card: {
-		margin: theme.spacing(2),
-		flexDirection: 'column',
+	loginDiv: {
+		width: '100%',
 		display: 'flex',
+		flexDirection: 'row',
 		justifyContent: 'center',
-		height: '100%',
+		marginBottom: theme.spacing(2),
 	},
-	cardActionArea: {
+	loginButton: {
 		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'center',
-	},
-	icon: {
+		// flex: 1,
 	},
 })
 
 const Index = () => {
 	const classes = useStyles()
 
-	// This component is the card which will have the person icon and login button in it.
-	const loginCard = (bgColor, icon, buttonColor, buttonText, textColor, descText) => (
-		<Card square elevation={0} className={classes.card} style={{ backgroundColor: bgColor }}>
-			<CardActionArea className={classes.cardActionArea}>
-				{icon}
-				<Button color={buttonColor} variant="contained" disableElevation style={{ margin: theme.spacing(2) }}>
-					{buttonText}
-				</Button>
-				<Typography color={textColor} style={{ margin: theme.spacing(2) }}>
-					{descText}
-				</Typography>
-			</CardActionArea>
-		</Card>
-	)
-
 	return (
 		<Layout>
-			<Grid container>
-
-				{/* Grid item containing Meydit logo. This item is hidden on small screens. */}
-				<Hidden smDown>
-					<Grid item sm={5} className={classes.gridItem}
-						style={{ backgroundColor: theme.palette.primary.main }}>
-						<MeyditLogoIcon className={classes.logo}/>
+			<div>
+				<Grid container className={classes.gridContainer}>
+					{/* The client login */}
+					<Grid item xs={12} md={3} className={classes.gridItem}>
+						<Card square elevation={0} className={classes.purpleCard}>
+							<CardActionArea className={classes.cardActionArea} href="/auth/client">
+								<MeyditLogoLightIcon className={classes.logo} />
+								<Button variant="contained" disableElevation className={classes.whiteButton}>
+								I'M A CLIENT
+								</Button>
+								<Typography color="inherit">
+								I NEED SOMETHING MADE
+								</Typography>
+							</CardActionArea>
+						</Card>
 					</Grid>
-				</Hidden>
 
-				{/* Grid item containing login buttons */}
-				<Grid item xs={12} md={7} className={classes.gridItem}>
-					<Grid container style={{ height: '60%' }} justify="center" alignContent="center">
-
-						{/* The client login */}
-						<Grid item xs={12} md={6} style={{ height: '100%' }}>
-							{loginCard(
-								theme.palette.secondary.main,
-								<ClientIcon height="50%" />,
-								'primary',
-								"I'M A CLIENT",
-								'textSecondary',
-								'I NEED SOMETHING MADE.')}
-						</Grid>
-
-						{/* The creative login */}
-						<Grid item xs={12} md={6} style={{ height: '100%' }}>
-							{loginCard(
-								theme.palette.primary.main,
-								<CreativeIcon height="50%" />,
-								'secondary',
-								"I'M A CREATIVE",
-								'textPrimary',
-								'I CAN MAKE THINGS.')}
-						</Grid>
+					{/* The creative login */}
+					<Grid item xs={12} md={3} className={classes.gridItem}>
+						<Card square elevation={0} className={classes.whiteCard} variant="outlined">
+							<CardActionArea className={classes.cardActionArea} href="/auth/creative">
+								<MeyditLogoIcon className={classes.logo} />
+								<Button variant="contained" disableElevation className={classes.purpleButton}>
+								I'M A CREATIVE
+								</Button>
+								<Typography color="inherit">
+								I CAN MAKE THINGS
+								</Typography>
+							</CardActionArea>
+						</Card>
 					</Grid>
+					<div className={classes.loginDiv}>
+						<Typography style={{ color: theme.palette.primary.contrastText, paddingTop: theme.spacing(1) }}>
+					Already have an account?
+						</Typography>
+						<Button className={classes.loginButton}>LOG BACK IN</Button>
+					</div>
 				</Grid>
-			</Grid>
+			</div>
 		</Layout>
 	)
 }
