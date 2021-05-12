@@ -1,3 +1,5 @@
+// The header and form card in the auth page
+
 import React from 'react'
 import PropTypes from 'prop-types'
 // import stylings
@@ -5,13 +7,13 @@ import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
 // import material ui components
-import Typography from '@material-ui/core/Typography'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
 // import custom components
 import {
 	MeyditLogoIcon,
@@ -115,6 +117,12 @@ const useStyles = makeStyles({
 	},
 })
 
+/**
+ *
+ * @param {bool} dark - Dark mode or not
+ * @param {string} title - The header title above the form
+ * @returns The header title and sign up card
+ */
 const SignUpForm = ({ dark, title }) => {
 	const classes = useStyles()
 

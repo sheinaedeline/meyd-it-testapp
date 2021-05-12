@@ -8,11 +8,11 @@ import theme from '@/config/theme'
 // import Layout
 import Layout from '@/layouts/Default'
 // import MUI components
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 // import Icons
 import {
 	MeyditLogoIcon,

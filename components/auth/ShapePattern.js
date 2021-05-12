@@ -1,3 +1,5 @@
+// The grid of shapes in the corner of the auth page
+
 import React from 'react'
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'

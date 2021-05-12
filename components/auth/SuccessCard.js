@@ -1,11 +1,13 @@
+// The successful authentication card in the success page
+
 import React from 'react'
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
 // import material ui components
+import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
@@ -40,6 +42,10 @@ const useStyles = makeStyles({
 	},
 })
 
+/**
+ *
+ * @returns The successful authentication card in the success page
+ */
 const SuccessCard = () => {
 	const classes = useStyles()
 

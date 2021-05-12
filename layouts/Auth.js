@@ -1,3 +1,5 @@
+// A page with the grid of shapes in the corner
+
 import React from 'react'
 import PropTypes from 'prop-types'
 // import styling
@@ -33,6 +35,11 @@ const useStyles = makeStyles({
 	},
 })
 
+/**
+ *
+ * @param {bool} dark - Dark mode or not
+ * @returns A page with the grid of shapes in the corner
+ */
 const Layout = ({ dark, children }) => {
 	const classes = useStyles()
 
