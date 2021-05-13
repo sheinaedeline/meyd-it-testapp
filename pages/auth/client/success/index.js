@@ -4,7 +4,7 @@ import SuccessTemplate from '@/components/auth/SuccessTemplate'
 
 const Index = () => {
 	return (
-		<SuccessTemplate dark={true} />
+		<SuccessTemplate dark={true} href="/client/dashboard/makings" />
 	)
 }
 

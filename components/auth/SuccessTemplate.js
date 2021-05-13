@@ -12,10 +12,10 @@ import SuccessCard from '@/components/auth/SuccessCard'
  * @param {bool} dark - Dark mode or not
  * @returns The template for the whole success page
  */
-const SuccessTemplate = ({ dark }) => {
+const SuccessTemplate = ({ dark, href }) => {
 	return (
 		<Layout dark={dark}>
-			<SuccessCard />
+			<SuccessCard href={href}/>
 
 			<div style={{ zIndex: -1, transform: 'scale(-1, -1)', position: 'absolute', left: 0, bottom: 0 }}>
 				<ShapePattern />
@@ -26,6 +26,7 @@ const SuccessTemplate = ({ dark }) => {
 
 SuccessTemplate.propTypes = {
 	dark: PropTypes.bool,
+	href: PropTypes.string,
 }
 
 export default SuccessTemplate

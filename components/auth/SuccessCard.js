@@ -1,6 +1,7 @@
 // The successful authentication card in the success page
 
 import React from 'react'
+import PropTypes from 'prop-types'
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
@@ -46,7 +47,7 @@ const useStyles = makeStyles({
  *
  * @returns The successful authentication card in the success page
  */
-const SuccessCard = () => {
+const SuccessCard = ({ href }) => {
 	const classes = useStyles()
 
 	return (
@@ -62,12 +63,16 @@ const SuccessCard = () => {
 				Please check your email for account validation. <br />
 				</Typography>
 
-				<Button variant="contained" disableElevation className={classes.button}>
+				<Button variant="contained" disableElevation className={classes.button} href={href}>
 				OK
 				</Button>
 			</CardContent>
 		</Card>
 	)
+}
+
+SuccessCard.propTypes = {
+	href: PropTypes.string,
 }
 
 export default SuccessCard
