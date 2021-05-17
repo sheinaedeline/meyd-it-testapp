@@ -1,5 +1,6 @@
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'
+import theme from '@/config/theme'
 // import MUI components
 import AppBar from '@material-ui/core/AppBar'
 import Box from '@material-ui/core/Box'
@@ -8,11 +9,11 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 // import custom components
 import DefaultNavDrawer from './DefaultNavDrawer'
-import { ListItemAvatar } from '@material-ui/core'
-
-import { MeyditLogoIcon } from '@/assets/meydit'
 
 const useStyles = makeStyles((theme) => ({
+	appBar: {
+		backgroundColor: theme.palette.primary.lighten4,
+	},
 	title: {
 		flexGrow: 1,
 	},
@@ -27,53 +28,33 @@ const useStyles = makeStyles((theme) => ({
 	loginButton: {
 		fontWeight: 'bold',
 	},
-	meyditLogo: {
-		minWidth: '40px',
-		alignContent: 'center',
-		margin: theme.spacing(2),
-	},
 }))
 
-const navButtonText = [
-	{ text: 'LEARN MORE', href: '#' },
-	{ text: 'GET INSPIRED', href: '/client' },
-	{ text: 'FEED', href: '#' },
-]
+const navButtonText = ['LEARN MORE', 'GET INSPIRED', 'FEED']
 
 const LayoutNavBar = () => {
 	const classes = useStyles()
 
 	return (
-		<AppBar position="static" elevation={0}>
+		<AppBar position="static" elevation={0} className={classes.appBar}>
 			<Toolbar>
 				<DefaultNavDrawer>{navButtonText}</DefaultNavDrawer>
 
-				{/*This is the logo*/}
 				<Box className={classes.title}>
-					<Button color="secondary" href="/" style={{ height: '40px' }}>
-						<MeyditLogoIcon className={classes.meyditLogo} />
+					<Button>
 						<Typography>MEYD.IT</Typography>
 					</Button>
 				</Box>
 
 				<Box>
-					{navButtonText.map((item, index) => (
-						<Button
-							key={'button-item-' + index}
-							className={classes.navButton}
-							href={item.href}
-						>
-							{item.text}
+					{navButtonText.map((text, index) => (
+						<Button key={'button-item-' + index} className={classes.navButton}>
+							{text}
 						</Button>
 					))}
 				</Box>
 
-				<Button
-					variant="outlined"
-					className={classes.loginButton}
-					color="secondary"
-					href="/auth"
-				>
+				<Button variant="outlined" className={classes.loginButton}>
 					LOGIN/JOIN
 				</Button>
 			</Toolbar>
