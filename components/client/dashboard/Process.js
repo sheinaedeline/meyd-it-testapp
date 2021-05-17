@@ -3,14 +3,39 @@ import { makeStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepButton from '@material-ui/core/StepButton'
+import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import Tags from '@/components/client/dashboard/Tags'
 import TheStory from '@/components/client/dashboard/TheStory'
 import NameIt from '@/components/client/dashboard/NameIt'
 import Review from './Review'
 import Footer from '@/layouts/components/DefaultFooter'
+import theme from '@/config/theme'
+{
+	/***
+This is the process of the new projects section. 
+This defines the breadcrumb trail up above, and the steps down below.
+*/
+}
+
+const muiTheme = createMuiTheme({
+	overrides: {
+		MuiStepIcon: {
+			root: {
+				'color': '#8460C2', // or 'rgba(0, 0, 0, 1)'
+				'&$active': {
+					color: '#00000061',
+				},
+				'&$completed': {
+					color: '#8460C2',
+				},
+			},
+		},
+	},
+})
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -105,18 +130,28 @@ export default function HorizontalNonLinearStepper() {
 		<div className={classes.root}>
 			<div style={{ margin: '6vh', backgroundColor: '#ffffff' }}>
 				<br />
-				<Stepper nonLinear activeStep={activeStep}>
-					{steps.map((label, index) => (
-						<Step key={label}>
-							<StepButton
-								onClick={handleStep(index)}
-								completed={completed[index]}
-							>
-								{label}
-							</StepButton>
-						</Step>
-					))}
-				</Stepper>
+				<MuiThemeProvider theme={muiTheme}>
+					<Stepper
+						nonLinear
+						activeStep={activeStep}
+						style={{
+							color: '#00000061',
+						}}
+					>
+						{steps.map((label, index) => (
+							<Step key={label}>
+								<StepLabel
+									completed={completed[index]}
+									style={{
+										color: '#00000061',
+									}}
+								>
+									{label}
+								</StepLabel>
+							</Step>
+						))}
+					</Stepper>
+				</MuiThemeProvider>
 				<div>
 					{allStepsCompleted() ? (
 						<div>
@@ -138,33 +173,27 @@ export default function HorizontalNonLinearStepper() {
 									disabled={activeStep === 0}
 									onClick={handleBack}
 									className={classes.button}
+									style={{
+										marginLeft: '3%',
+									}}
 								>
 									Back
 								</Button>
-								<Button
-									variant="contained"
-									color="primary"
-									onClick={handleNext}
-									className={classes.button}
-								>
-									Next
-								</Button>
-								{activeStep !== steps.length &&
-									(completed[activeStep] ? (
-										<Typography variant="caption" className={classes.completed}>
-											Step {activeStep + 1} already completed
-										</Typography>
-									) : (
-										<Button
-											variant="contained"
-											color="primary"
-											onClick={handleComplete}
-										>
-											{completedSteps() === totalSteps() - 1
-												? 'Finish'
-												: 'Complete Step'}
-										</Button>
-									))}
+
+								{activeStep !== steps.length && (
+									<Button
+										variant="contained"
+										onClick={handleComplete}
+										style={{
+											backgroundColor: '#8460C2',
+											color: '#ffffff',
+											float: 'right',
+											marginRight: '3%',
+										}}
+									>
+										Proceed to
+									</Button>
+								)}
 							</div>
 						</div>
 					)}
