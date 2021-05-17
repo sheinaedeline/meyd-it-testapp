@@ -38,9 +38,7 @@ const LayoutNavBar = () => {
 	return (
 		<AppBar position="static" elevation={0} className={classes.appBar}>
 			<Toolbar>
-				<DefaultNavDrawer>
-					{navButtonText}
-				</DefaultNavDrawer>
+				<DefaultNavDrawer>{navButtonText}</DefaultNavDrawer>
 
 				<Box className={classes.title}>
 					<Button>
@@ -50,12 +48,16 @@ const LayoutNavBar = () => {
 
 				<Box>
 					{navButtonText.map((text, index) => (
-						<Button key={'button-item-' + index} className={classes.navButton}>{text}</Button>
+						<Button key={'button-item-' + index} className={classes.navButton}>
+							{text}
+						</Button>
 					))}
 				</Box>
 
 				<Button variant="outlined" className={classes.loginButton}>
+
           LOGIN/JOIN
+
 				</Button>
 			</Toolbar>
 		</AppBar>
