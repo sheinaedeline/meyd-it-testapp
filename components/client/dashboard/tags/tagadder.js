@@ -1,14 +1,21 @@
 import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Input from '@material-ui/core/Input'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import ListItemText from '@material-ui/core/ListItemText'
-import Select from '@material-ui/core/Select'
-import NativeSelect from '@material-ui/core/NativeSelect'
-import Checkbox from '@material-ui/core/Checkbox'
-import Chip from '@material-ui/core/Chip'
+import {
+	Input,
+	Box,
+	MenuItem,
+	FormControl,
+	ListItemText,
+	Select,
+	Checkbox,
+	Chip,
+} from '@material-ui/core/'
+import XIcon from '@/assets/icons/user-interface/x.svg'
+
+/**
+ * This is the part where tags are added to the tags section for
+ *  part 1 of starting a new project.
+ */
 
 const useStyles = makeStyles((theme) => ({
 	formControl: {
@@ -72,12 +79,10 @@ export default function MultipleSelect() {
 
 	return (
 		<div>
-			<FormControl className={classes.formControl}>
-				<InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+			<FormControl variant="outlined" className={classes.formControl}>
 				<Select
-					labelId="demo-mutiple-chip-label"
-					id="demo-mutiple-chip"
 					multiple
+					variant="outlined"
 					value={personName}
 					onChange={handleChange}
 					input={<Input id="select-multiple-chip" />}
@@ -85,12 +90,15 @@ export default function MultipleSelect() {
 						<div className={classes.chips}>
 							{selected.map((value) => (
 								<Chip
+									clickable
 									key={value}
 									label={value}
 									className={classes.chip}
+									deleteIcon={<XIcon style={{ color: '#ffffff' }} />}
 									onDelete={handleDelete}
 									style={{
 										backgroundColor: '#8460C2',
+										color: '#ffffff',
 									}}
 								/>
 							))}
@@ -109,23 +117,6 @@ export default function MultipleSelect() {
 						</MenuItem>
 					))}
 				</Select>
-			</FormControl>
-
-			<FormControl className={classes.formControl}>
-				<NativeSelect id="select" variant="outlined">
-					{tags.map((name, index) => (
-						<option value={index}>
-							<MenuItem
-								key={index}
-								value={name}
-								style={getStyles(name, personName, theme)}
-							>
-								<Checkbox checked={personName.indexOf(name) > -1} />
-								<ListItemText primary={name} />
-							</MenuItem>
-						</option>
-					))}
-				</NativeSelect>
 			</FormControl>
 		</div>
 	)
