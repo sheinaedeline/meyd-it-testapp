@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, Typography, Box } from '@material-ui/core'
 import TextBoxes from '@/components/client/dashboard/thestory/TextBoxes'
 import React from 'react'
+import Check from '@/assets/icons/user-interface/check.svg'
 
 const useStyles = makeStyles({
 	root: {
@@ -77,7 +78,17 @@ const Review = () => {
 
 			<TextBoxes />
 
-			<Button classes={{ root: classes.tag }}>NAME IT</Button>
+			<Button
+				classes={{ root: classes.tag }}
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					flexWrap: 'wrap',
+				}}
+			>
+				<Check />
+				FINALISE YOUR MAKING
+			</Button>
 			<br />
 			<Typography variant="p" classes={{ root: classes.centered }}>
 				We'll get started with yout making inspirations after this.
