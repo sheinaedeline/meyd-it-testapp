@@ -54,18 +54,18 @@ const useStyles = makeStyles({
 		height: '80vh',
 	},
 	purpScheme: {
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: theme.palette.primary.main,
 		color: theme.palette.text.secondary,
 	},
 	whiteScheme: {
-		backgroundColor: theme.palette.primary.main,
-		color: '#000',
+		backgroundColor: theme.palette.primary.lighten5,
+		color: theme.palette.primary.contrastText,
 	},
 	purpButton: {
-		color: theme.palette.primary.main,
+		color: theme.palette.primary.lighten5,
 	},
 	whiteButton: {
-		color: '#858585',
+		color: theme.palette.primary.main,
 	},
 })
 
@@ -73,7 +73,7 @@ const Values = () => {
 	const classes = useStyles()
 
 	return (
-		<Grid container spacing={3} style={{ padding: 10 }}>
+		<Grid container spacing={3} style={{ padding: 0, width: '100%' }}>
 
 			{/* For each item in the text array, create a new Grid item.
 				Each item will be a grid container with a heading,

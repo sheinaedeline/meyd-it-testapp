@@ -55,7 +55,9 @@ const LayoutNavBar = () => {
 				</Box>
 
 				<Button variant="outlined" className={classes.loginButton}>
-					LOGIN/JOIN
+
+          LOGIN/JOIN
+
 				</Button>
 			</Toolbar>
 		</AppBar>

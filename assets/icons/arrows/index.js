@@ -13,6 +13,10 @@ import ArrowUpIcon from './arrow-up.svg'
 import ChevronDownIcon from './chevron-down.svg'
 import ChevronLeftIcon from './chevron-left.svg'
 import ChevronRightIcon from './chevron-right.svg'
+import ChevronToBottomIcon from './chevron-to-bottom.svg'
+import ChevronToLeftIcon from './chevron-to-left.svg'
+import ChevronToRightIcon from './chevron-to-right.svg'
+import ChevronToTopIcon from './chevron-to-top.svg'
 import ChevronUpIcon from './chevron-up.svg'
 import ChevronsDownIcon from './chevrons-down.svg'
 import ChevronsLeftIcon from './chevrons-left.svg'
@@ -50,6 +54,10 @@ export {
 	ChevronDownIcon,
 	ChevronLeftIcon,
 	ChevronRightIcon,
+	ChevronToBottomIcon,
+	ChevronToLeftIcon,
+	ChevronToRightIcon,
+	ChevronToTopIcon,
 	ChevronUpIcon,
 	ChevronsDownIcon,
 	ChevronsLeftIcon,

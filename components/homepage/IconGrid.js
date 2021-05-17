@@ -29,13 +29,11 @@ const useStyles = makeStyles({
 		margin: '0 auto',
 	},
 	cardStyle: {
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: theme.palette.primary.lighten5,
 		display: 'block',
 		alignItems: 'center',
-		height: 'auto',
 		padding: '100% 0 0 0',
 		position: 'relative',
-		width: '100%',
 	},
 	containerStyle: {
 		margin: 0,
@@ -51,6 +49,11 @@ const useStyles = makeStyles({
 		top: 0,
 		left: 0,
 	},
+	buttonBox: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+	},
 })
 
 const IconGrid = () => {
@@ -63,7 +66,7 @@ const IconGrid = () => {
 
 				{/* Media component containing the icon */}
 				<CardMedia style={{ alignContent: 'center', padding: 10 }}>
-					<SvgIcon component={item.component} className={classes.iconStyle} color="secondary" />
+					<SvgIcon component={item.component} className={classes.iconStyle} />
 				</CardMedia>
 
 				{/* Content component containing the fashion tag text */}
@@ -77,7 +80,7 @@ const IconGrid = () => {
 	)
 
 	return (
-		<Box p={2}>
+		<Box style={{ padding: theme.spacing(2), paddingLeft: 'calc(theme.spacing(2) / 2)' }}>
 			<Typography variant="h6" className={classes.titleStyle}>Pick Your Style</Typography>
 			<Grid container spacing={1} justify="center" className={classes.containerStyle}>
 
@@ -91,8 +94,8 @@ const IconGrid = () => {
 				))}
 
 			</Grid>
-			<Box style={{ width: '100%' }}>
-				<Button style={{ display: 'flex', justifyContent: 'flex-end' }}>
+			<Box className={classes.buttonBox}>
+				<Button>
 					<Typography variant="h6" className={classes.moreText}>AND LOTS MORE...</Typography>
 				</Button>
 			</Box>

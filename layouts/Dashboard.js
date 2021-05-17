@@ -26,7 +26,10 @@ import ListItemText from '@material-ui/core/ListItemText'
 import DefaultFooter from '@/layouts/components/DefaultFooter'
 // import icons
 import { MeyditLogoIcon } from '@/assets/meydit'
-import { ChevronLeftIcon, ChevronRightIcon } from '@/icons/arrows'
+import {
+	ChevronLeftIcon,
+	ChevronRightIcon,
+} from '@/icons/arrows'
 
 const drawerWidth = 240
 
@@ -78,12 +81,12 @@ const useStyles = makeStyles({
 		width: '0px',
 	},
 	content: {
-		'flexGrow': 1,
-		'transition': theme.transitions.create('margin', {
+		flexGrow: 1,
+		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
-		'marginLeft': 0,
+		marginLeft: 0,
 		'&& > *': {
 			backgroundColor: 'transparent',
 		},
@@ -94,6 +97,7 @@ const useStyles = makeStyles({
 			duration: theme.transitions.duration.enteringScreen,
 		}),
 		[theme.breakpoints.up('md')]: {
+
 			marginLeft: drawerWidth,
 		},
 	},
@@ -182,7 +186,8 @@ const Layout = ({ children, directories }) => {
 
 	const drawer = (
 		<div className={classes.drawerRoot}>
-			{/* The logo, name, and subtext */}
+
+    {/* The logo, name, and subtext */}
 			<div className={classes.meyditBlock}>
 				{/* The logo */}
 				<Link href="/" className={classes.meyditLink}>
@@ -195,7 +200,11 @@ const Layout = ({ children, directories }) => {
 				</Link>
 
 				{/* Text that goes under the logo */}
-				<Typography align="center" color="initial" className={classes.subtext}>
+				<Typography
+					align="center"
+					color="initial"
+					className={classes.subtext}
+				>
 					{subtext}
 				</Typography>
 			</div>
@@ -204,7 +213,7 @@ const Layout = ({ children, directories }) => {
 			{/* The list of directories */}
 			<List>
 				{directories.map((item) =>
-					listItem(item.icon, item.href, item.text, item.text)
+					listItem(item.icon, item.href, item.text, item.text),
 				)}
 			</List>
 			<Divider />
@@ -212,7 +221,7 @@ const Layout = ({ children, directories }) => {
 			{/* The close drawer button */}
 			<div className={classes.toolbarIcon}>
 				<IconButton onClick={toggleDrawer(false)}>
-					<ChevronLeftIcon style={{ height: '30px' }} />
+					<ChevronLeftIcon style={{ height: '30px' }}/>
 				</IconButton>
 			</div>
 		</div>
@@ -255,7 +264,9 @@ const Layout = ({ children, directories }) => {
 				})}
 			>
 				<div className={classes.container}>
-					<Container maxWidth="lg">
+					<Container
+						maxWidth="lg"
+					>
 						{children}
 
 						<Zoom

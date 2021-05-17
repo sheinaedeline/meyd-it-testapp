@@ -54,29 +54,32 @@ const Index = () => {
 
 	return (
 		<ClientLayout>
+
 			{/* The text and button above the image masonry */}
 			<div className={classes.topDiv}>
+
 				<Typography style={{ marginBottom: theme.spacing(2) }}>
-					MY MAKINGS
+				MY MAKINGS
 				</Typography>
 				<div className={classes.buttonDiv}>
+
 					<Button
 						variant="outlined"
 						href="./NewProject"
 						className={classes.addButton}
 						startIcon={<PlusIcon className={classes.plusIcon} />}
 					>
-						NEW MAKINGS
+					NEW MAKINGS
 					</Button>
 				</div>
 			</div>
 
 			{/* If projects is empty, display button to add makings.
 				Otherwise, display image gallery. */}
-			{projects.length === 0 || !projects ? (
-				<div className={classes.contentDiv}>
+			{projects.length === 0 || !projects
+				? (<div className={classes.contentDiv}>
 					<Typography variant="h4" align="center">
-						Uh-oh, looks like you don&apos;t have any makings yet!
+					Uh-oh, looks like you don&apos;t have any makings yet!
 					</Typography>
 
 					<Button
@@ -85,14 +88,13 @@ const Index = () => {
 						className={classes.startMakingButton}
 						startIcon={<PlusIcon className={classes.plusIcon} />}
 					>
-						START YOUR FIRST MAKING
+					START YOUR FIRST MAKING
 					</Button>
-				</div>
-			) : (
-				<Makings makings={projects} />
-			)}
+				</div>)
+				: <Makings makings={projects} /> }
 		</ClientLayout>
 	)
 }
 
 export default Index
+
