@@ -4,7 +4,6 @@ import ProjectsPage from '@/components/client/ProjectsPage'
 const Index = () => (
 	<div>
 		<SideBar />
-		<ProjectsPage />
 	</div>
 )
 

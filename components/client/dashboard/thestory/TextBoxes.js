@@ -37,7 +37,6 @@ export default function TextBoxes() {
 	var curr = new Date()
 	curr.setDate(curr.getDate())
 
-	// The first commit of Material-UI
 	const [selectedDate, setSelectedDate] = React.useState(new Date(curr))
 
 	const handleDateChange = (date) => {
