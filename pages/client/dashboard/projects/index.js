@@ -65,7 +65,7 @@ const Index = () => {
 
 					<Button
 						variant="outlined"
-						href="./NewProject"
+						href='../dashboard/makings/new'
 						className={classes.addButton}
 						startIcon={<PlusIcon className={classes.plusIcon} />}
 					>
@@ -97,4 +97,3 @@ const Index = () => {
 }
 
 export default Index
-

@@ -31,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const navButtonText = ['LEARN MORE', 'GET INSPIRED', 'FEED']
+const links = ['/#', '/client/dashboard/projects/', '/#']
+// const links = ['/#', '/#', '/#']
 
 const LayoutNavBar = () => {
 	const classes = useStyles()
@@ -41,23 +43,21 @@ const LayoutNavBar = () => {
 				<DefaultNavDrawer>{navButtonText}</DefaultNavDrawer>
 
 				<Box className={classes.title}>
-					<Button>
+					<Button href="/">
 						<Typography>MEYD.IT</Typography>
 					</Button>
 				</Box>
 
 				<Box>
 					{navButtonText.map((text, index) => (
-						<Button key={'button-item-' + index} className={classes.navButton}>
+						<Button key={'button-item-' + index} className={classes.navButton} href={links[index]}>
 							{text}
 						</Button>
 					))}
 				</Box>
 
-				<Button variant="outlined" className={classes.loginButton}>
-
-          LOGIN/JOIN
-
+				<Button variant="outlined" className={classes.loginButton} href='/auth'>
+					LOGIN/JOIN
 				</Button>
 			</Toolbar>
 		</AppBar>
