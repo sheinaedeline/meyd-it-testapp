@@ -1,5 +1,8 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import {
+	makeStyles,
+	useTheme,
+} from '@material-ui/core/styles'
 import {
 	Input,
 	Box,
@@ -56,7 +59,7 @@ const tags = [
 	'Adaptive',
 ]
 
-function getStyles(name, personName, theme) {
+function getStyles (name, personName, theme) {
 	return {
 		fontWeight:
 			personName.indexOf(name) === -1
@@ -65,7 +68,7 @@ function getStyles(name, personName, theme) {
 	}
 }
 
-export default function MultipleSelect() {
+export default function MultipleSelect () {
 	const classes = useStyles()
 	const theme = useTheme()
 	const [personName, setPersonName] = React.useState([])

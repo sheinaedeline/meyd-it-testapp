@@ -5,14 +5,12 @@ import {
 	createMuiTheme,
 } from '@material-ui/core/styles'
 
-import {
-	Stepper,
-	Step,
-	StepLabel,
-	Button,
-	Typography,
-	Container,
-} from '@material-ui/core'
+import Stepper from '@material-ui/core/Stepper'
+import Step from '@material-ui/core/Step'
+import StepLabel from '@material-ui/core/StepLabel'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
 
 import Tags from '@/components/client/dashboard/Tags'
 import TheStory from '@/components/client/dashboard/TheStory'
@@ -42,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	button: {
 		marginRight: theme.spacing(1),
+	},
+	finishButton: {
+		backgroundColor: '#8460C2',
+		color: '#ffffff',
+		float: 'right',
+		marginRight: '3%',
 	},
 	instructions: {
 		marginTop: theme.spacing(1),
@@ -92,6 +96,13 @@ export default function CustomizedSteppers () {
 		setActiveStep(0)
 	}
 
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		})
+	}
+
 	return (
 		<div className={classes.root}>
 			<Container className={classes.container}>
@@ -105,50 +116,46 @@ export default function CustomizedSteppers () {
 							</Step>
 						))}
 					</Stepper>
-
-					<div>
-						{activeStep === steps.length
-							? (
-								<div>
-									<Review />
-									<Button onClick={handleReset} className={classes.button}>
+				</MuiThemeProvider>
+				<div>
+					{activeStep === steps.length
+						? (
+							<div>
+								<Review />
+								<Button
+									onClick = {function (event) { handleReset(); scrollToTop() }}
+									className={classes.button}>
 								Reset
+								</Button>
+							</div>
+						)
+						: (
+							<div>
+								<Typography className={classes.instructions}>
+									{getStepContent(activeStep)}
+								</Typography>
+								<div>
+									<Button
+										disabled={activeStep === 0}
+										onClick = {function (event) { handleBack(); scrollToTop() }}
+										className = {classes.button}
+									>
+										Back
+									</Button>
+									<Button
+										variant="contained"
+										color="primary"
+										onClick = {function (event) { handleNext(); scrollToTop() }}
+										className={[classes.button, classes.finishButton]}
+									>
+										{activeStep === steps.length - 1 ? 'Finish' : 'Proceed To'}
 									</Button>
 								</div>
-							)
-							: (
-								<div>
-									<Typography className={classes.instructions}>
-										{getStepContent(activeStep)}
-									</Typography>
-									<div>
-										<Button
-											disabled={activeStep === 0}
-											onClick={handleBack}
-											className={classes.button}
-										>
-									Back
-										</Button>
-										<Button
-											variant="contained"
-											color="primary"
-											onClick={handleNext}
-											className={classes.button}
-											style={{
-												backgroundColor: '#8460C2',
-												color: '#ffffff',
-												float: 'right',
-												marginRight: '3%',
-											}}
-										>
-											{activeStep === steps.length - 1 ? 'Finish' : 'Proceed To'}
-										</Button>
-									</div>
-								</div>
-							)
-						}
-					</div>
-				</MuiThemeProvider>
+							</div>
+						)
+					}
+				</div>
+
 			</Container>
 		</div>
 	)

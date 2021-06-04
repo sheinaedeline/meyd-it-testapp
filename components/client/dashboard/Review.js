@@ -1,10 +1,15 @@
 /*
-Making a new Project is in 3 steps. Step 1 involves 
+Making a new Project is in 3 steps. Step 1 involves
 getting the required tags and picture for the project
 */
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Typography, Box } from '@material-ui/core'
+import {
+	Button,
+	Typography,
+	Box,
+	Grid,
+} from '@material-ui/core'
 import TextBoxes from '@/components/client/dashboard/thestory/TextBoxes'
 import React from 'react'
 import Check from '@/assets/icons/user-interface/check.svg'
@@ -28,11 +33,15 @@ const useStyles = makeStyles({
 		font: 'Cabin',
 		fontStyle: 'normal',
 		fontWeight: 'normal',
+		padding: '20px',
 	},
 
 	tag: {
 		color: '#ffffff',
 		backgroundColor: '#8460c2',
+		'&:hover': {
+			background: '#8460C261',
+		},
 		textAlign: 'center',
 		display: 'block',
 		margin: '0 auto',
@@ -41,19 +50,14 @@ const useStyles = makeStyles({
 
 const Review = () => {
 	const classes = useStyles()
-
 	return (
 		<div>
 			<Typography variant="h5" classes={{ root: classes.centered }}>
-				Let's Review
+				Let&apos;s Review
 			</Typography>
-			<br />
-
 			<Typography variant="h4" classes={{ root: classes.centered }}>
 				Navy Blue Graduation Dress
 			</Typography>
-
-			<br />
 			<Box style={{ margin: '50px 50px' }}>
 				<Typography variant="p">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut amet nisi
@@ -86,12 +90,17 @@ const Review = () => {
 					flexWrap: 'wrap',
 				}}
 			>
-				<Check />
-				FINALISE YOUR MAKING
+				<Grid container direction="row" alignItems="center">
+					<Grid item>
+						<Check style={{ width: '30px' }}/>
+					</Grid>
+					<Grid item>
+						FINALISE YOUR MAKING
+					</Grid>
+				</Grid>
 			</Button>
-			<br />
 			<Typography variant="p" classes={{ root: classes.centered }}>
-				We'll get started with yout making inspirations after this.
+				We&apos;ll get started with yout making inspirations after this.
 			</Typography>
 		</div>
 	)

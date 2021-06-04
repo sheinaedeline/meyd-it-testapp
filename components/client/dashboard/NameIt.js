@@ -1,5 +1,5 @@
 /*
-Making a new Project is in 3 steps. Step 1 involves 
+Making a new Project is in 3 steps. Step 1 involves
 getting the required tags and picture for the project
 */
 
@@ -10,7 +10,7 @@ import {
 	FormControl,
 	OutlinedInput,
 	FormHelperText,
-	Box,
+	Grid,
 } from '@material-ui/core'
 import React from 'react'
 import Check from '@/assets/icons/user-interface/check.svg'
@@ -31,24 +31,24 @@ const useStyles = makeStyles({
 		textAlign: 'center',
 		display: 'block',
 		margin: '0 auto',
-		font: 'Cabin',
+		fontFamily: 'sans-serif',
 		fontStyle: 'normal',
 		fontWeight: 'normal',
 	},
 
 	tag: {
-		'color': '#ffffff',
-		'backgroundColor': '#8460c2',
+		color: '#ffffff',
+		backgroundColor: '#8460c2',
 		'&:hover': {
 			background: '#8460C261',
 		},
-		'textAlign': 'center',
-		'display': 'block',
-		'margin': '0 auto',
+		textAlign: 'center',
+		display: 'block',
+		margin: '0 auto',
 	},
 
 	button: {
-		'backgroundColor': '#8460C2',
+		backgroundColor: '#8460C2',
 		'&:hover': {
 			background: '#8460C2 38%',
 		},
@@ -75,20 +75,22 @@ const NameIt = () => {
 				</FormHelperText>
 			</FormControl>
 			<br />
+
 			<Button
 				classes={{ root: classes.tag }}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					flexWrap: 'wrap',
-				}}
 			>
-				<Check />
-				<Typography>NAME IT</Typography>
+				<Grid container direction="row" alignItems="center">
+					<Grid item>
+						<Check style={{ width: '30px' }} />
+					</Grid>
+					<Grid item>
+						<Typography>NAME IT</Typography>
+					</Grid>
+				</Grid>
 			</Button>
 			<br />
 			<Typography variant="p" classes={{ root: classes.centered }}>
-				* You'll be able to modify your making anytime later.
+				* You&apos;ll be able to modify your making anytime later.
 			</Typography>
 		</div>
 	)
