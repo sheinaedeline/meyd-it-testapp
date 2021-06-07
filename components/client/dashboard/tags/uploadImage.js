@@ -2,20 +2,19 @@
 Making a new Project is in 3 steps. This is the file uploader and preview
 */
 
+// import stylings
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
-import React, {
-	useState,
-	useEffect,
-} from 'react'
-import {
-	Typography,
-	Box,
-	Button,
-	Card,
-	CardActionArea,
-	CardMedia,
-} from '@material-ui/core'
+import React from 'react'
+// import material ui components
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardMedia from '@material-ui/core/CardMedia'
+import Grid from '@material-ui/core/Grid'
+// import custom components
 import {
 	UploadIcon,
 	TrashIcon,
@@ -50,74 +49,75 @@ const useStyles = makeStyles({
 		marginTop: theme.spacing(1),
 		marginLeft: '4%',
 	},
-	media: {
-		minWidth: '64px',
-		minHeight: '64px',
-		width: '300px',
+	imgCard: {
+		margin: theme.spacing(2),
 		height: '300px',
 		display: 'block',
 	},
+	media: {
+		width: '100%',
+		height: '100%',
+	},
+	trashButton: {
+		display: 'block',
+		background: theme.palette.primary.light,
+		color: theme.palette.primary.contrastText,
+		top: '75%',
+		left: '65%',
+		[theme.breakpoints.up('sm')]: {
+			left: '75%',
+		},
+		minWidth: '64px',
+		width: '10%',
+		height: 'auto',
+		borderRadius: '50%',
+	},
 })
 
+/**
+ *
+ * @returns A component that allows the user to upload images
+ */
 const UploadImage = () => {
 	const classes = useStyles()
 	const [selectedFiles, setSelectedFiles] = React.useState([])
-
-	const [filesArray, setFilesArray] = useState()
-
-	const [isEmpty, setIsEmpty] = useState(false)
 
 	const handleImageChange = (e) => {
 		if (e.target.files) {
 			const filesArray = Array.from(e.target.files).map((file) =>
 				URL.createObjectURL(file),
 			)
-			console.log(filesArray)
 			setSelectedFiles((prevImages) => prevImages.concat(filesArray))
 			Array.from(e.target.files).map(
 				(file) => URL.revokeObjectURL(file), // avoid memory leak
 			)
 		}
-		setFilesArray(e)
+	}
+
+	const handleDelete = (source, index) => {
+		// Find the image that's been selected
+		const deletedImage = source.splice(index, 1)
+		// Make a new array that is the same as the current image array but
+		// without the selected image
+		const newArray = selectedFiles.filter((image) => image !== deletedImage)
+		setSelectedFiles(newArray)
 	}
 
 	const renderPhotos = (source) => {
-		const handleDelete = (index) => {
-			source.splice(index, 1)
-			console.log(index, source)
-		}
-
 		return source.map((photo, index) => {
 			return (
-				<div style={{ margin: '3%' }} key={`photo-item-${index}`}>
-					<Card
-						className={classes.media}
-						style={{ float: 'left', margin: '10px' }}
-					>
+				<Grid item xs={12} sm={6} md={4} key={`photo-item-${index}`}>
+					<Card className={classes.imgCard}>
 						<CardMedia className={classes.media} image={photo}>
-							<Button
-								style={{
-									display: 'block',
-									background: '#ffffff',
-									color: theme.palette.primary.light,
-									top: '75%',
-									left: '75%',
-									height: '64px',
-
-									borderRadius: '50px',
-								}}
-							>
-								<TrashIcon onClick={() => handleDelete(index)} />
+							<Button className={classes.trashButton}>
+								<TrashIcon onClick={() => handleDelete(source, index)} />
 							</Button>
 						</CardMedia>
 					</Card>
-				</div>
+				</Grid>
 			)
 		})
 	}
-
-	React.useEffect(() => {
-	}, [filesArray])
 
 	return (
 		<div className="root">
@@ -153,7 +153,7 @@ const UploadImage = () => {
 					These images will help us determine your making&apos;s tags
 				</Typography>
 
-				<div className="result">{renderPhotos(selectedFiles)}</div>
+				<Grid container>{renderPhotos(selectedFiles)}</Grid>
 			</div>
 		</div>
 	)
