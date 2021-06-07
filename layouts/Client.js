@@ -73,7 +73,7 @@ const ClientLayout = ({ children }) => {
 						</Grid>
 					)
 					: null}
-				<Grid item xs={12} style={{ margin: theme.spacing(2) }}>
+				<Grid item xs={12} style={{ marginTop: theme.spacing(2) }}>
 					{children}
 				</Grid>
 			</Grid>
