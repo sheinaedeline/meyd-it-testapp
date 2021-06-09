@@ -187,7 +187,7 @@ const Layout = ({ children, directories }) => {
 	const drawer = (
 		<div className={classes.drawerRoot}>
 
-    {/* The logo, name, and subtext */}
+			{/* The logo, name, and subtext */}
 			<div className={classes.meyditBlock}>
 				{/* The logo */}
 				<Link href="/" className={classes.meyditLink}>
