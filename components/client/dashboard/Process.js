@@ -1,17 +1,19 @@
 import React from 'react'
+// import styles
 import {
 	makeStyles,
 	MuiThemeProvider,
 	createMuiTheme,
 } from '@material-ui/core/styles'
-
+// import material ui components
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
-
+import Hidden from '@material-ui/core/Hidden'
+// import custom components
 import Tags from '@/components/client/dashboard/Tags'
 import TheStory from '@/components/client/dashboard/TheStory'
 import NameIt from '@/components/client/dashboard/NameIt'
@@ -60,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedSteppers () {
 	const classes = useStyles()
-	const [activeStep, setActiveStep] = React.useState(1)
+	const [activeStep, setActiveStep] = React.useState(0)
 	const steps = [
 		{
 			id: 0,
@@ -107,15 +109,32 @@ export default function CustomizedSteppers () {
 		<div className={classes.root}>
 			<Container className={classes.container}>
 				<MuiThemeProvider theme={muiTheme}>
-					<Stepper activeStep={activeStep} style={{
-						color: '#00000061',
-					}}>
-						{steps.map((item) => (
-							<Step key={item}>
-								<StepLabel>{item.name}</StepLabel>
-							</Step>
-						))}
-					</Stepper>
+					{/* The stepper for non mobile users, hidden on mobile screens */}
+					<Hidden xsDown>
+						<Stepper activeStep={activeStep} style={{
+							color: theme.palette.primary.grey,
+						}}>
+							{steps.map((item) => (
+								<Step key={item}>
+									<StepLabel>{item.name}</StepLabel>
+								</Step>
+							))}
+						</Stepper>
+					</Hidden>
+
+					{/* Stepper for mobile users, hidden on other screens */}
+					<Hidden smUp>
+						<Stepper activeStep={activeStep} alternativeLabel style={{
+							color: theme.palette.primary.grey,
+							width: '95%',
+						}}>
+							{steps.map((item) => (
+								<Step key={item}>
+									<StepLabel>{item.name}</StepLabel>
+								</Step>
+							))}
+						</Stepper>
+					</Hidden>
 				</MuiThemeProvider>
 				<div>
 					{activeStep === steps.length

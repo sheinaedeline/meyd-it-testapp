@@ -4,7 +4,7 @@ getting the required tags and picture for the project
 */
 
 import { makeStyles } from '@material-ui/core/styles'
-// import { ThemeProvider } from '@material-ui/styles'
+import theme from '@/config/theme'
 import { Typography } from '@material-ui/core'
 // import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import React from 'react'
@@ -14,10 +14,9 @@ import UploadImages from '@/components/client/dashboard/tags/uploadImage'
 
 const useStyles = makeStyles({
 	addTagsText: {
-		margin: '50px',
-		color: '#757575',
+		margin: theme.spacing(8),
+		color: theme.palette.primary.grey,
 		fontSize: '14px',
-		overflow: 'hidden',
 		display: 'block',
 		whiteSpace: 'normal',
 	},
