@@ -19,19 +19,14 @@ import {
 	Grid,
 	FormControl,
 	FormHelperText,
-	Input,
 	OutlinedInput,
 	InputAdornment,
+	SvgIcon,
 } from '@material-ui/core'
 
-import {
-	ValidatorForm,
-	TextValidator,
-} from 'react-material-ui-form-validator'
-
-import { DollarSignIcon } from '@/assets/icons/commerce'
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
+import DollarSignIcon from '@/assets/icons/commerce/dollar-sign.svg'
+import MapPinIcon from '@/assets/icons/location/map-pin.svg'
+import CalendarIcon from '@/assets/icons/time/calendar.svg'
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -53,7 +48,20 @@ const useStyles = makeStyles((theme) => ({
 		fontFamily: 'sans-serif',
 	},
 	icon: {
-		color: '#00000061',
+		// color: '#00000061',
+		color: '#000000',
+	},
+	number: {
+		'& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
+			'-webkit-appearance': 'none',
+			margin: 0,
+		},
+	},
+	input: {
+		'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+			'-webkit-appearance': 'none',
+			margin: 0,
+		},
 	},
 }))
 
@@ -82,7 +90,6 @@ export default function TextBoxes () {
 						<KeyboardDatePicker
 							disablePast
 							inputVariant="outlined"
-							variant="inline"
 							format="dd/MM/yyyy"
 							margin="0 auto"
 							placeholder="Due Date"
@@ -92,6 +99,10 @@ export default function TextBoxes () {
 							KeyboardButtonProps={{
 								'aria-label': 'change date',
 							}}
+							variant="inline"
+							keyboardIcon={<SvgIcon>
+								<CalendarIcon style={{ color: '#00000061' }} />
+							</SvgIcon>}
 						/>
 						<FormHelperText
 							id="component-helper-text"
@@ -103,18 +114,19 @@ export default function TextBoxes () {
 				</Grid>
 
 				<Grid item xs>
-					<ValidatorForm>
-						<TextValidator validators={['minNumber: 0', 'matchRegexp:^[0-9]$']} />
-					</ValidatorForm>
-					<br />
-					<br />
 					<FormControl variant="outlined">
 						<OutlinedInput
 							id="component-outlined"
 							placeholder="Budget"
+							type="number"
+							min='0'
+							className={classes.number}
+							// inputProps={{ className: classes.input }}
 							endAdornment={
 								<InputAdornment position="start">
-									<AttachMoneyIcon className={classes.icon} />
+									<SvgIcon>
+										<DollarSignIcon style={{ color: '#00000061' }} />
+									</SvgIcon>
 								</InputAdornment>
 							}
 						/>
@@ -122,19 +134,21 @@ export default function TextBoxes () {
 							id="component-helper-text"
 							className={classes.helperText}
 						>
-							Typically starting at $500
+							Typically starting at $500 (numbers only)
 						</FormHelperText>
 					</FormControl>
 				</Grid>
 
-				<Grid item xs={3}>
+				<Grid item xs>
 					<FormControl variant="outlined">
 						<OutlinedInput
 							id="component-outlined"
 							placeholder="Location"
 							endAdornment={
 								<InputAdornment position="start">
-									<LocationOnOutlinedIcon className={classes.icon} />
+									<SvgIcon>
+										<MapPinIcon style={{ color: '#00000061' }} />
+									</SvgIcon>
 								</InputAdornment>
 							}
 						/>
@@ -142,7 +156,7 @@ export default function TextBoxes () {
 							id="component-helper-text"
 							className={classes.helperText}
 						>
-							So we can match you with the closest creative in your location
+							We can match you with the closest creatives
 						</FormHelperText>
 					</FormControl>
 				</Grid>
