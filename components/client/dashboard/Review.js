@@ -10,6 +10,7 @@ import {
 	Box,
 	Grid,
 } from '@material-ui/core'
+import theme from '@/config/theme'
 import TextBoxes from '@/components/client/dashboard/thestory/TextBoxes'
 import React from 'react'
 import Check from '@/assets/icons/user-interface/check.svg'
@@ -30,10 +31,9 @@ const useStyles = makeStyles({
 		textAlign: 'center',
 		display: 'block',
 		margin: '0 auto',
-		font: 'Cabin',
 		fontStyle: 'normal',
 		fontWeight: 'normal',
-		padding: '20px',
+		padding: theme.spacing(2),
 	},
 
 	tag: {
@@ -92,7 +92,7 @@ const Review = () => {
 			>
 				<Grid container direction="row" alignItems="center">
 					<Grid item>
-						<Check style={{ width: '30px' }}/>
+						<Check style={{ marginTop: '25%', width: '25px' }}/>
 					</Grid>
 					<Grid item>
 						FINALISE YOUR MAKING

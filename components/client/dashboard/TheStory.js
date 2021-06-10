@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 	helperText: {
 		marginLeft: '4%',
 		color: theme.palette.primary.main,
-		fontFamily: 'sans-serif',
+		// fontFamily: theme.typography.fontFamily,
 	},
 }))
 

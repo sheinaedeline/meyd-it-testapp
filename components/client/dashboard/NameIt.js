@@ -31,7 +31,6 @@ const useStyles = makeStyles({
 		textAlign: 'center',
 		display: 'block',
 		margin: '0 auto',
-		fontFamily: 'sans-serif',
 		fontStyle: 'normal',
 		fontWeight: 'normal',
 	},
@@ -81,7 +80,7 @@ const NameIt = () => {
 			>
 				<Grid container direction="row" alignItems="center">
 					<Grid item>
-						<Check style={{ width: '30px' }} />
+						<Check style={{ marginTop: '25%', width: '25px' }} />
 					</Grid>
 					<Grid item>
 						<Typography>NAME IT</Typography>

@@ -71,7 +71,6 @@ const TagAdder = () => {
 
 	const handlePhotoSelect = (index) => {
 		photoArray[index].selectedPhoto = !photoArray[index].selectedPhoto
-		console.log(photoArray)
 	}
 
 	const handleChange = (e, tag, action) => {
