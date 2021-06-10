@@ -132,7 +132,7 @@ const DefaultFooter = () => {
 					</Paper>
 					<Paper className={classes.detailsText} elevation={0}>
 						<Typography color="inherit" align="center"> Address: {CompanyDetails.address} </Typography>
-						<Typography ccolor="inherit" align="center"> Email: {CompanyDetails.email} </Typography>
+						<Typography color="inherit" align="center"> Email: {CompanyDetails.email} </Typography>
 					</Paper>
 				</Grid>
 
@@ -150,7 +150,7 @@ const DefaultFooter = () => {
 
 									{/* The title */}
 									<ListItem className={classes.linkList}>
-										<Typography color={theme.palette.primary.light} style={{ fontWeight: 'bold' }} align="center">
+										<Typography color="inherit" style={{ fontWeight: 'bold' }} align="center">
 											{item.title}
 										</Typography>
 									</ListItem>
@@ -158,7 +158,7 @@ const DefaultFooter = () => {
 									{/* The list of links */}
 									{item.links.map((link, index) => (
 										<ListItem key={index} className={classes.linkList}>
-											<Typography align="center" color={theme.palette.primary.light}>
+											<Typography align="center" color="inherit">
 												<Link color="inherit" href="#"> {link} </Link>
 											</Typography>
 										</ListItem>
@@ -179,7 +179,7 @@ const DefaultFooter = () => {
 				<Grid item xs={12} md={6}>
 					<Paper className={classes.paper} elevation={0}>
 						{importantLinks.map((text, index) => (
-							<Typography key={index} align="center" color={theme.palette.primary.light} className={classes.importantLinks}>
+							<Typography key={index} align="center" color="inherit" className={classes.importantLinks}>
 								<Link href="#" color="inherit">
 									{text}
 								</Link>

@@ -115,7 +115,7 @@ export default function CustomizedSteppers () {
 							color: theme.palette.primary.grey,
 						}}>
 							{steps.map((item) => (
-								<Step key={item}>
+								<Step key={item.id}>
 									<StepLabel>{item.name}</StepLabel>
 								</Step>
 							))}
@@ -150,7 +150,7 @@ export default function CustomizedSteppers () {
 						)
 						: (
 							<div>
-								<Typography className={classes.instructions}>
+								<Typography component={'span'} className={classes.instructions}>
 									{getStepContent(activeStep)}
 								</Typography>
 								<div>
@@ -165,7 +165,7 @@ export default function CustomizedSteppers () {
 										variant="contained"
 										color="primary"
 										onClick = {function (event) { handleNext(); scrollToTop() }}
-										className={[classes.button, classes.finishButton]}
+										className={classes.finishButton}
 									>
 										{activeStep === steps.length - 1 ? 'Finish' : 'Proceed To'}
 									</Button>
