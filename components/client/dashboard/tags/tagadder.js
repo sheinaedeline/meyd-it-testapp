@@ -9,19 +9,19 @@ import theme from '@/config/theme'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 // import material ui components
+import Autocomplete from '@material-ui/lab/Autocomplete'
 import Box from '@material-ui/core/Box'
 import Card from '@material-ui/core/Card'
-import Chip from '@material-ui/core/Chip'
-import Autocomplete from '@material-ui/lab/Autocomplete'
-import TextField from '@material-ui/core/TextField'
-import CardMedia from '@material-ui/core/CardMedia'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import CardActionArea from '@material-ui/core/CardActionArea'
+import CardMedia from '@material-ui/core/CardMedia'
+import Chip from '@material-ui/core/Chip'
+import TextField from '@material-ui/core/TextField'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 // import custom components
-import Gallery from '@/components/homepage/Gallery'
-import Slugify from '@/config/Slugify'
-import { XIcon } from '@/icons/user-interface'
-import { Typography } from '@material-ui/core'
+import {
+	XIcon,
+	CheckIcon,
+} from '@/icons/user-interface'
 
 const useStyles = makeStyles((theme) => ({
 	chipText: {
@@ -44,6 +44,22 @@ const useStyles = makeStyles((theme) => ({
 		height: 'auto',
 		minWidth: '100%',
 	},
+	checkIcon: {
+		display: 'block',
+		position: 'absolute',
+		margin: '0 auto',
+		left: '50%',
+		top: '50%',
+		transform: 'translate(-50%, -50%)',
+		color: theme.palette.primary.light,
+		[theme.breakpoints.down('xs')]: {
+			width: '30vw',
+		},
+		width: '10vw',
+		height: 'auto',
+		opacity: 1,
+		zIndex: 2,
+	},
 }))
 
 const tags = [
@@ -55,51 +71,48 @@ const tags = [
 	'Adaptive',
 ]
 
-const TagAdder = () => {
+// how many photos to generate
+const numToGenerate = 12
+
+export default function TagAdder () {
 	const classes = useStyles()
-	const [selected, setSelected] = React.useState([])
+	const [selectedTags, setSelectedTags] = React.useState([])
 	const [url, setURL] = React.useState('')
 
 	// array of photos
 	const [photoArray, setPhotoArray] = React.useState([])
-	// how many photos to generate
-	const numToGenerate = 12
 	// random number generator
 	const getRandomNum = () => {
 		return Math.floor(Math.random() * 206)
 	}
 
 	const handlePhotoSelect = (index) => {
-		photoArray[index].selectedPhoto = !photoArray[index].selectedPhoto
-		console.log(photoArray)
+		const temp = [...photoArray]
+		temp[index].isSelected = !temp[index].isSelected
+		setPhotoArray(temp)
 	}
 
-	const handleChange = (e, tag, action) => {
-		setSelected(tag)
+	const handleTagChange = (e, tag, action) => {
+		setSelectedTags(tag)
 
 		if (action === 'clear') {
-			setSelected([])
+			setSelectedTags([])
 		}
 	}
 
-	// everytime selected changes, change the url
+	// everytime selectedTags changes, change the url
 	React.useEffect(() => {
-		let temp = ''
-		for (let i = 0; i < selected.length; i++) {
-			if (temp.length > 1) {
-				temp = temp.concat(',')
-			}
-			temp = temp.concat(Slugify(selected[i]))
-		}
-		setURL(temp)
-	}, [selected])
+		const uri = encodeURI(selectedTags.join(','))
+		setURL(uri)
+	}, [selectedTags])
 
 	React.useEffect(() => {
 		const temp = []
 		for (let i = 0; i < numToGenerate; i++) {
 			temp.push({
 				index: i,
-				selectedPhoto: false,
+				isSelected: false,
+				randomNum: getRandomNum(),
 			})
 		}
 		setPhotoArray(temp)
@@ -112,7 +125,7 @@ const TagAdder = () => {
 				id="tags-standard"
 				options={tags}
 				getOptionLabel={(option) => option}
-				onChange={(e, tag, action) => handleChange(e, tag, action)}
+				onChange={(e, tag, action) => handleTagChange(e, tag, action)}
 				renderInput={(params) => (
 					<TextField
 						{...params}
@@ -142,21 +155,22 @@ const TagAdder = () => {
 					columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
 					gutter="0"
 				>
-					<Masonry gutter="0" className={classes.masonryContainer}>
+					<Masonry gutter="0">
 
-						{selected.length > 0 && photoArray.map((item) => (
-							<Card className={classes.card} elevation={0} key={item.index}>
-								<CardActionArea onClick={() => handlePhotoSelect(item.index)}>
-									{item.selectedPhoto && <Typography>hello</Typography>}
-									<CardMedia
-										component="img"
-										className={clsx(item.selectedPhoto
-											? classes.selectedMedia
-											: classes.media)}
-										src={`https://source.unsplash.com/featured/?${url}/${getRandomNum()}`}
-									/>
-								</CardActionArea>
-							</Card>
+						{selectedTags.length > 0 && photoArray.map((item) => (
+							<div key={`${item.index}-selectedTags-is-${item.isSelected}`} style={{ position: 'relative' }}>
+								{item.isSelected && <CheckIcon className={classes.checkIcon} />}
+
+								<Card className={classes.card} elevation={0}>
+									<CardActionArea onClick={() => handlePhotoSelect(item.index)}>
+										<CardMedia
+											component="img"
+											className={clsx(classes.media, item.isSelected && classes.selectedMedia)}
+											src={`https://source.unsplash.com/featured/?${url}/${item.randomNum}`}
+										/>
+									</CardActionArea>
+								</Card>
+							</div>
 						))}
 					</Masonry>
 				</ResponsiveMasonry>
@@ -164,5 +178,3 @@ const TagAdder = () => {
 		</div>
 	)
 }
-
-export default TagAdder
