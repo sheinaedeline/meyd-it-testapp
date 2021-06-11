@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
 		opacity: 1,
 		zIndex: 2,
 	},
+	box: {
+		padding: theme.spacing(1),
+	},
 }))
 
 const tags = [
@@ -150,7 +153,7 @@ export default function TagAdder () {
 			/>
 
 			{/* Render masonry */}
-			<Box>
+			<Box className={classes.box}>
 				<ResponsiveMasonry
 					columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
 					gutter="0"

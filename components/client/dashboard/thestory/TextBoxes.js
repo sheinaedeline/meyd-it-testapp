@@ -6,19 +6,19 @@ import 'date-fns'
 import React from 'react'
 import DateFnsUtils from '@date-io/date-fns'
 import theme from '@/config/theme'
-// eslint-disable-next-line no-restricted-imports
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import { makeStyles } from '@material-ui/core/styles/'
 
 import {
 	MuiPickersUtilsProvider,
 	KeyboardDatePicker,
 } from '@material-ui/pickers'
-import {
-	Grid,
-	TextField,
-	InputAdornment,
-	SvgIcon,
-} from '@material-ui/core'
+// import MuiPickersUtilsProvider from '@material-ui/pickers/MuiPickersUtilsProvider'
+// import KeyboardDatePicker from '@material-ui/pickers/KeyboardDatePicker'
+
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import SvgIcon from '@material-ui/core/SvgIcon'
 
 import DollarSignIcon from '@/assets/icons/commerce/dollar-sign.svg'
 import MapPinIcon from '@/assets/icons/location/map-pin.svg'
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	grid: {
 		margin: '0 auto',
-		width: '96%',
+		width: '97%',
 	},
 	number: {
 		'& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
@@ -94,7 +94,7 @@ export default function TextBoxes () {
 						}}
 						variant="inline"
 						keyboardIcon={<SvgIcon>
-							<CalendarIcon style={{ color: '#00000061' }} />
+							<CalendarIcon style={{ color: theme.palette.grey }} />
 						</SvgIcon>}
 					/>
 				</Grid>
@@ -115,7 +115,7 @@ export default function TextBoxes () {
 							endAdornment:
 								<InputAdornment position="start">
 									<SvgIcon>
-										<DollarSignIcon style={{ color: '#00000061' }} />
+										<DollarSignIcon style={{ color: theme.palette.primary.grey }} />
 									</SvgIcon>
 								</InputAdornment>,
 						}}
@@ -136,7 +136,7 @@ export default function TextBoxes () {
 							endAdornment:
 								<InputAdornment position="start">
 									<SvgIcon>
-										<MapPinIcon style={{ color: '#00000061' }} />
+										<MapPinIcon style={{ color: theme.palette.primary.grey }} />
 									</SvgIcon>
 								</InputAdornment>,
 						}}

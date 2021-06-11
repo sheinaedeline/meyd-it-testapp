@@ -13,30 +13,18 @@ import TextBoxes from './thestory/TextBoxes'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		color: '#8460C2',
+		color: theme.palette.primary.main,
 	},
-	textBox: {
+	main: {
+		width: '95%',
 		align: 'center',
-		display: 'block',
 		margin: '0 auto',
-		textAlign: 'center',
-		height: '20vh',
-	},
-	centered: {
-		textAlign: 'center',
 		display: 'block',
-		margin: '0 auto',
-	},
-	tag: {
-		borderRadius: '25px',
-		color: '#ffffff',
-		backgroundColor: '#8460c2',
-		margin: '8px',
 	},
 	helperText: {
 		marginLeft: '4%',
 		color: theme.palette.primary.main,
-		// fontFamily: theme.typography.fontFamily,
+		marginBottom: theme.spacing(2),
 	},
 }))
 
@@ -46,12 +34,7 @@ const TheStory = () => {
 	return (
 		<div>
 			<div
-				style={{
-					width: '94%',
-					align: 'center',
-					margin: '0 auto',
-					display: 'block',
-				}}
+				className={classes.main}
 			>
 				<TextField
 					id="outlined-multiline-static"
@@ -71,7 +54,6 @@ const TheStory = () => {
 				Tell us about your making. What’s the occasion? How have you visioned
 				it? When do you need it?
 			</Typography>
-			<br />
 
 			{/* This loads the text boxes. There are three of them. */}
 			<TextBoxes />

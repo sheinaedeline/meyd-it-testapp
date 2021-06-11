@@ -7,6 +7,7 @@ const theme = createMuiTheme({
 			// Base
 			main: '#8460C2',
 			// Lighten 4
+			mainHighlight: '#8460C261',
 			dark: '#DACFED',
 			contrastText: '#000',
 			accent1: '#EFE8FF',

@@ -6,24 +6,24 @@ Making a new Project is in 3 steps. This is the file uploader and preview
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
 import React from 'react'
+
 // import material ui components
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
 import CardMedia from '@material-ui/core/CardMedia'
 import Grid from '@material-ui/core/Grid'
+
 // import custom components
-import {
-	UploadIcon,
-	TrashIcon,
-} from '@/assets/icons/user-interface'
+import UploadIcon from '@/assets/icons/user-interface/upload.svg'
+import TrashIcon from '@/assets/icons/user-interface/trash.svg'
 
 const useStyles = makeStyles({
 	root: {
 		color: theme.palette.primary.main,
 		margin: '0 auto',
+		alignItems: 'left',
 	},
 	uploadButton: {
 		width: '20px',
@@ -32,16 +32,9 @@ const useStyles = makeStyles({
 	},
 	box: {
 		margin: '0 auto',
-		padding: '10px',
+		padding: theme.spacing(1),
 		width: '94%',
 		alignItems: 'center ',
-	},
-
-	tag: {
-		borderRadius: '25px',
-		color: theme.palette.primary.light,
-		backgroundColor: theme.palette.primary.main,
-		margin: '8px',
 	},
 	message: {
 		color: theme.palette.primary.grey,
@@ -58,9 +51,17 @@ const useStyles = makeStyles({
 		width: '100%',
 		height: '100%',
 	},
+	typography: {
+		display: 'block',
+		position: 'relative',
+		wordWrap: 'break-word',
+	},
 	trashButton: {
 		display: 'block',
 		background: theme.palette.primary.light,
+		'&:hover': {
+			background: theme.palette.primary.grey,
+		},
 		color: theme.palette.primary.contrastText,
 		top: '75%',
 		left: '65%',
@@ -123,15 +124,9 @@ const UploadImage = () => {
 		<div className="root">
 			<div>
 				<Box border={1} classes={{ root: classes.box }}>
-					<div className={classes.root} style={{ alignItems: 'left' }}>
+					<div className={classes.root}>
 						<label htmlFor="file">
-							<Typography
-								style={{
-									display: 'block',
-									position: 'relative',
-									wordWrap: 'break-word',
-								}}
-							>
+							<Typography className={classes.typography}>
 								<UploadIcon className={classes.uploadButton} />
 								Add images of your inspirations
 							</Typography>
@@ -141,7 +136,6 @@ const UploadImage = () => {
 							accept="image/*"
 							type="file"
 							id="file"
-							// className={classes.input}
 							multiple
 							onChange={handleImageChange}
 							style={{ display: 'none' }}

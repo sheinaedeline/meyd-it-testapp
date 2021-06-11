@@ -3,14 +3,13 @@ Making a new Project is in 3 steps. Step 1 involves
 getting the required tags and picture for the project
 */
 
-import { makeStyles } from '@material-ui/core/styles'
-import theme from '@/config/theme'
-import { Typography } from '@material-ui/core'
-// import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+import { makeStyles } from '@material-ui/core/styles/'
+import Typography from '@material-ui/core/Typography'
 import React from 'react'
 
-import TagAdder from './tags/tagadder'
+import theme from '@/config/theme'
 import UploadImages from '@/components/client/dashboard/tags/uploadImage'
+import TagAdder from './tags/tagadder'
 
 const useStyles = makeStyles({
 	addTagsText: {
