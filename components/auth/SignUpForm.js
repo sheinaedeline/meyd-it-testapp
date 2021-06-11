@@ -167,7 +167,7 @@ const SignUpForm = ({ dark, title }) => {
 							</div>
 
 							{/* User inputs and submit button */}
-							<TextInputs />
+							<TextInputs userType={dark ? 'client' : 'creative'}/>
 						</div>
 					</Card>
 				</Grid>

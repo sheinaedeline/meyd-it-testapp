@@ -1,6 +1,7 @@
 // The text fields for the auth page including form validation features
 
 import React from 'react'
+import PropTypes from 'prop-types'
 // import styling
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
  *
  * @returns The text fields for the auth page including form validation features
  */
-const TextInputs = () => {
+const TextInputs = ({ userType }) => {
 	const classes = useStyles()
 	const router = useRouter()
 
@@ -185,8 +186,9 @@ const TextInputs = () => {
 	}
 
 	const goToSuccess = () => {
+		const uri = '/join/' + userType + '/success'
 		if (error.noErrors) {
-			router.push('/auth/client/success')
+			router.push(uri)
 		}
 	}
 
@@ -219,6 +221,10 @@ const TextInputs = () => {
 			</Button>
 		</div>
 	)
+}
+
+TextInputs.propTypes = {
+	userType: PropTypes.oneOf(['client', 'creative']).isRequired,
 }
 
 export default TextInputs
