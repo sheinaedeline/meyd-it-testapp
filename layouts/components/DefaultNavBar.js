@@ -56,7 +56,7 @@ const LayoutNavBar = () => {
 					))}
 				</Box>
 
-				<Button variant="outlined" className={classes.loginButton} href='/auth'>
+				<Button variant="outlined" className={classes.loginButton} href='/login'>
 					LOGIN/JOIN
 				</Button>
 			</Toolbar>
