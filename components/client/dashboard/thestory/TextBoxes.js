@@ -1,40 +1,62 @@
+/** These are the text boxes for the second part of the new projects page.
+ * There are three sections: The date, the cost and the location.
+*/
+
 import 'date-fns'
 import React from 'react'
 import DateFnsUtils from '@date-io/date-fns'
-import { makeStyles } from '@material-ui/core/styles'
+import theme from '@/config/theme'
+import { makeStyles } from '@material-ui/core/styles/'
 
 import {
 	MuiPickersUtilsProvider,
 	KeyboardDatePicker,
 } from '@material-ui/pickers'
-import {
-	Grid,
-	FormControl,
-	FormHelperText,
-	Input,
-	OutlinedInput,
-	InputAdornment,
-} from '@material-ui/core'
+// import MuiPickersUtilsProvider from '@material-ui/pickers/MuiPickersUtilsProvider'
+// import KeyboardDatePicker from '@material-ui/pickers/KeyboardDatePicker'
 
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import SvgIcon from '@material-ui/core/SvgIcon'
+
+import DollarSignIcon from '@/assets/icons/commerce/dollar-sign.svg'
+import MapPinIcon from '@/assets/icons/location/map-pin.svg'
+import CalendarIcon from '@/assets/icons/time/calendar.svg'
 
 const useStyles = makeStyles((theme) => ({
 	container: {
 		display: 'flex',
 		flexWrap: 'wrap',
 	},
-	textField: {
-		marginLeft: theme.spacing(1),
-		marginRight: theme.spacing(1),
-		width: 200,
+	grid: {
+		margin: '0 auto',
+		width: '97%',
+	},
+	number: {
+		'& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
+			'-webkit-appearance': 'none',
+			margin: 0,
+		},
+		width: '98%',
+	},
+	input: {
+		'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+			'-webkit-appearance': 'none',
+			margin: 0,
+		},
+	},
+	margin: {
+		margin: theme.spacing(1),
+	},
+	TextField: {
+		width: '98%',
 	},
 }))
 
-export default function TextBoxes() {
+export default function TextBoxes () {
 	const classes = useStyles()
-	var curr = new Date()
+	const curr = new Date()
 	curr.setDate(curr.getDate())
 
 	const [selectedDate, setSelectedDate] = React.useState(new Date(curr))
@@ -49,72 +71,76 @@ export default function TextBoxes() {
 				container
 				spacing={3}
 				justify="space-around"
-				style={{ margin: '0 auto', width: '96%' }}
+				className={classes.grid}
 			>
-				<Grid item xs>
-					<div>
-						{/*This is the first textBox. This details the date the garment is needed by*/}
-						<KeyboardDatePicker
-							disablePast
-							inputVariant="outlined"
-							variant="inline"
-							format="dd/MM/yyyy"
-							margin="0 auto"
-							placeholder="Due Date"
-							id="date-picker-inline"
-							value={selectedDate}
-							onChange={handleDateChange}
-							KeyboardButtonProps={{
-								'aria-label': 'change date',
-							}}
-						/>
-						<FormHelperText
-							id="component-helper-text"
-							style={{ marginLeft: '10px', color: '#000000' }}
-						>
-							The exact date you need the garment by.
-						</FormHelperText>
-					</div>
+				<Grid item xs={12} sm={4}>
+					{/* This is the first textBox. This details the date the garment is needed by */}
+					<KeyboardDatePicker
+						disablePast
+						inputVariant="outlined"
+						label="Date"
+						InputLabelProps={{
+							style: { color: theme.palette.primary.grey },
+						}}
+						className={classes.TextField}
+						format="dd/MM/yyyy"
+						margin="0 auto"
+						placeholder="Due Date"
+						id="date-picker-inline"
+						value={selectedDate}
+						onChange={handleDateChange}
+						KeyboardButtonProps={{
+							'aria-label': 'change date',
+						}}
+						variant="inline"
+						keyboardIcon={<SvgIcon>
+							<CalendarIcon style={{ color: theme.palette.grey }} />
+						</SvgIcon>}
+					/>
 				</Grid>
 
-				<Grid item xs>
-					<FormControl variant="outlined">
-						<OutlinedInput
-							id="component-outlined"
-							placeholder="Budget"
-							endAdornment={
+				<Grid item xs={12} sm={4}>
+					<TextField
+						variant="outlined"
+						id="outlined-static"
+						placeholder="Start from $500"
+						type="number"
+						min='0'
+						className={classes.number}
+						label="Budget"
+						InputLabelProps={{
+							style: { color: theme.palette.primary.grey },
+						}}
+						InputProps={{
+							endAdornment:
 								<InputAdornment position="start">
-									<AttachMoneyIcon />
-								</InputAdornment>
-							}
-						/>
-						<FormHelperText
-							id="component-helper-text"
-							style={{ color: '#000000' }}
-						>
-							Typically starting at $500
-						</FormHelperText>
-					</FormControl>
+									<SvgIcon>
+										<DollarSignIcon style={{ color: theme.palette.primary.grey }} />
+									</SvgIcon>
+								</InputAdornment>,
+						}}
+					/>
 				</Grid>
 
-				<Grid item xs={3}>
-					<FormControl variant="outlined">
-						<OutlinedInput
-							id="component-outlined"
-							placeholder="Location"
-							endAdornment={
+				<Grid item xs={12} sm={4}>
+					<TextField
+						variant="outlined"
+						id="component-outlined"
+						placeholder="We can match you"
+						label="Location"
+						className={classes.TextField}
+						InputLabelProps={{
+							style: { color: theme.palette.primary.grey },
+						}}
+						InputProps={{
+							endAdornment:
 								<InputAdornment position="start">
-									<LocationOnOutlinedIcon />
-								</InputAdornment>
-							}
-						/>
-						<FormHelperText
-							id="component-helper-text"
-							style={{ color: '#000000' }}
-						>
-							So we can match you with the closest creative in your location
-						</FormHelperText>
-					</FormControl>
+									<SvgIcon>
+										<MapPinIcon style={{ color: theme.palette.primary.grey }} />
+									</SvgIcon>
+								</InputAdornment>,
+						}}
+					/>
 				</Grid>
 			</Grid>
 		</MuiPickersUtilsProvider>

@@ -1,17 +1,23 @@
 /*
-Making a new Project is in 3 steps. Step 1 involves 
+Making a new Project is in 3 steps. Step 1 involves
 getting the required tags and picture for the project
 */
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Typography, Box } from '@material-ui/core'
+
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+
+import theme from '@/config/theme'
 import TextBoxes from '@/components/client/dashboard/thestory/TextBoxes'
 import React from 'react'
 import Check from '@/assets/icons/user-interface/check.svg'
 
 const useStyles = makeStyles({
 	root: {
-		color: '#8460C2',
+		color: theme.palette.primary.main,
 	},
 	box: {
 		width: '94%',
@@ -25,35 +31,37 @@ const useStyles = makeStyles({
 		textAlign: 'center',
 		display: 'block',
 		margin: '0 auto',
-		font: 'Cabin',
 		fontStyle: 'normal',
 		fontWeight: 'normal',
+		padding: theme.spacing(2),
 	},
 
 	tag: {
-		color: '#ffffff',
-		backgroundColor: '#8460c2',
+		color: theme.palette.primary.light,
+		backgroundColor: theme.palette.primary.main,
+		'&:hover': {
+			background: theme.palette.primary.mainHighlight,
+		},
 		textAlign: 'center',
-		display: 'block',
 		margin: '0 auto',
+		display: 'flex',
+		alignItems: 'center',
+		flexWrap: 'wrap',
+		marginTop: theme.spacing(2),
+		marginBottom: theme.spacing(2),
 	},
 })
 
 const Review = () => {
 	const classes = useStyles()
-
 	return (
 		<div>
 			<Typography variant="h5" classes={{ root: classes.centered }}>
-				Let's Review
+				Let&apos;s Review
 			</Typography>
-			<br />
-
 			<Typography variant="h4" classes={{ root: classes.centered }}>
 				Navy Blue Graduation Dress
 			</Typography>
-
-			<br />
 			<Box style={{ margin: '50px 50px' }}>
 				<Typography variant="p">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut amet nisi
@@ -81,17 +89,20 @@ const Review = () => {
 			<Button
 				classes={{ root: classes.tag }}
 				style={{
-					display: 'flex',
-					alignItems: 'center',
-					flexWrap: 'wrap',
+
 				}}
 			>
-				<Check />
-				FINALISE YOUR MAKING
+				<Grid container direction="row" alignItems="center">
+					<Grid item>
+						<Check style={{ marginTop: '25%', width: '25px' }}/>
+					</Grid>
+					<Grid item>
+						FINALISE YOUR MAKING
+					</Grid>
+				</Grid>
 			</Button>
-			<br />
 			<Typography variant="p" classes={{ root: classes.centered }}>
-				We'll get started with yout making inspirations after this.
+				We&apos;ll get started with yout making inspirations after this.
 			</Typography>
 		</div>
 	)

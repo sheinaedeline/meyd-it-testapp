@@ -24,9 +24,6 @@ const useStyles = makeStyles({
 		padding: theme.spacing(4),
 		alignItems: 'center',
 	},
-	paper: {
-		marginTop: theme.spacing(4),
-	},
 	title: {
 		fontWeight: 'bold',
 	},
@@ -53,7 +50,7 @@ const MakingOverview = ({ making }) => {
 	const imgSrc = 'https://source.unsplash.com/' + making.photoid
 
 	return (
-		<Paper elevation={0} square className={classes.paper}>
+		<Paper elevation={0} square>
 			<Grid container className={classes.makingDetails}>
 
 				{/* The title, tags, and input fields */}

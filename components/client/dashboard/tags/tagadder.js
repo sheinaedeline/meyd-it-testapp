@@ -1,51 +1,69 @@
-import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import {
-	Input,
-	Box,
-	MenuItem,
-	FormControl,
-	ListItemText,
-	Select,
-	Checkbox,
-	Chip,
-} from '@material-ui/core/'
-import XIcon from '@/assets/icons/user-interface/x.svg'
-
 /**
  * This is the part where tags are added to the tags section for
  *  part 1 of starting a new project.
  */
 
+import React from 'react'
+// import stylings
+import theme from '@/config/theme'
+import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
+// import material ui components
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import Box from '@material-ui/core/Box'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardMedia from '@material-ui/core/CardMedia'
+import Chip from '@material-ui/core/Chip'
+import TextField from '@material-ui/core/TextField'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+// import custom components
+import {
+	XIcon,
+	CheckIcon,
+} from '@/icons/user-interface'
+
 const useStyles = makeStyles((theme) => ({
-	formControl: {
-		margin: theme.spacing(1),
-		minWidth: '95%',
-		maxWidth: '95%',
-		inline: 'block',
+	chipText: {
+		color: theme.palette.primary.light,
 	},
-	chips: {
-		display: 'flex',
-		flexWrap: 'wrap',
+	masonryItem: {
+		paddingBottom: theme.spacing(4),
+		paddingLeft: theme.spacing(4),
 	},
-	chip: {
-		margin: 2,
+	card: {
+		backgroundColor: theme.palette.primary.main,
+		margin: theme.spacing(2),
 	},
-	noLabel: {
-		marginTop: theme.spacing(3),
+	media: {
+		height: 'auto',
+		minWidth: '100%',
+	},
+	selectedMedia: {
+		opacity: '0.5',
+		height: 'auto',
+		minWidth: '100%',
+	},
+	checkIcon: {
+		display: 'block',
+		position: 'absolute',
+		margin: '0 auto',
+		left: '50%',
+		top: '50%',
+		transform: 'translate(-50%, -50%)',
+		color: theme.palette.primary.light,
+		[theme.breakpoints.down('xs')]: {
+			width: '30vw',
+		},
+		width: '10vw',
+		height: 'auto',
+		opacity: 1,
+		zIndex: 2,
+	},
+	box: {
+		padding: theme.spacing(1),
 	},
 }))
-
-const ITEM_HEIGHT = 48
-const ITEM_PADDING_TOP = 8
-const MenuProps = {
-	PaperProps: {
-		style: {
-			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
-		},
-	},
-}
 
 const tags = [
 	'Bohemian',
@@ -56,68 +74,110 @@ const tags = [
 	'Adaptive',
 ]
 
-function getStyles(name, personName, theme) {
-	return {
-		fontWeight:
-			personName.indexOf(name) === -1
-				? theme.typography.fontWeightRegular
-				: theme.typography.fontWeightMedium,
-	}
-}
+// how many photos to generate
+const numToGenerate = 12
 
-export default function MultipleSelect() {
+export default function TagAdder () {
 	const classes = useStyles()
-	const theme = useTheme()
-	const [personName, setPersonName] = React.useState([])
+	const [selectedTags, setSelectedTags] = React.useState([])
+	const [url, setURL] = React.useState('')
 
-	const handleChange = (event) => {
-		setPersonName(event.target.value)
+	// array of photos
+	const [photoArray, setPhotoArray] = React.useState([])
+	// random number generator
+	const getRandomNum = () => {
+		return Math.floor(Math.random() * 206)
 	}
-	const handleDelete = () => {
-		console.info('You clicked the delete icon.')
+
+	const handlePhotoSelect = (index) => {
+		const temp = [...photoArray]
+		temp[index].isSelected = !temp[index].isSelected
+		setPhotoArray(temp)
 	}
+
+	const handleTagChange = (e, tag, action) => {
+		setSelectedTags(tag)
+
+		if (action === 'clear') {
+			setSelectedTags([])
+		}
+	}
+
+	// everytime selectedTags changes, change the url
+	React.useEffect(() => {
+		const uri = encodeURI(selectedTags.join(','))
+		setURL(uri)
+	}, [selectedTags])
+
+	React.useEffect(() => {
+		const temp = []
+		for (let i = 0; i < numToGenerate; i++) {
+			temp.push({
+				index: i,
+				isSelected: false,
+				randomNum: getRandomNum(),
+			})
+		}
+		setPhotoArray(temp)
+	}, [])
 
 	return (
 		<div>
-			<FormControl variant="outlined" className={classes.formControl}>
-				<Select
-					multiple
-					variant="outlined"
-					value={personName}
-					onChange={handleChange}
-					input={<Input id="select-multiple-chip" />}
-					renderValue={(selected) => (
-						<div className={classes.chips}>
-							{selected.map((value) => (
-								<Chip
-									clickable
-									key={value}
-									label={value}
-									className={classes.chip}
-									deleteIcon={<XIcon style={{ color: '#ffffff' }} />}
-									onDelete={handleDelete}
-									style={{
-										backgroundColor: '#8460C2',
-										color: '#ffffff',
-									}}
-								/>
-							))}
-						</div>
-					)}
-					MenuProps={MenuProps}
+			<Autocomplete
+				multiple
+				id="tags-standard"
+				options={tags}
+				getOptionLabel={(option) => option}
+				onChange={(e, tag, action) => handleTagChange(e, tag, action)}
+				renderInput={(params) => (
+					<TextField
+						{...params}
+						variant="outlined"
+						placeholder="Tags"
+					/>
+				)}
+				renderTags={(value, getTagProps) =>
+					value.map((option, index) => (
+						<Chip
+							key={option}
+							color="primary"
+							style={{ color: theme.palette.primary.light }}
+							label={option}
+							{...getTagProps({ index })}
+							deleteIcon={
+								<XIcon style={{ color: theme.palette.primary.light }} />
+							}
+						/>
+					))
+				}
+			/>
+
+			{/* Render masonry */}
+			<Box className={classes.box}>
+				<ResponsiveMasonry
+					columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+					gutter="0"
 				>
-					{tags.map((name) => (
-						<MenuItem
-							key={name}
-							value={name}
-							style={getStyles(name, personName, theme)}
-						>
-							<Checkbox checked={personName.indexOf(name) > -1} />
-							<ListItemText primary={name} />
-						</MenuItem>
-					))}
-				</Select>
-			</FormControl>
+					<Masonry gutter="0">
+
+						{selectedTags.length > 0 && photoArray.map((item) => (
+							<div key={`${item.index}-selectedTags-is-${item.isSelected}`} style={{ position: 'relative' }}>
+								{item.isSelected && <CheckIcon className={classes.checkIcon} />}
+
+								<Card className={classes.card} elevation={0}>
+									<CardActionArea onClick={() => handlePhotoSelect(item.index)}>
+										<CardMedia
+											component="img"
+											className={clsx(classes.media, item.isSelected && classes.selectedMedia)}
+											src={`https://source.unsplash.com/featured/?${url}/${item.randomNum}`}
+										/>
+									</CardActionArea>
+								</Card>
+							</div>
+						))}
+					</Masonry>
+				</ResponsiveMasonry>
+			</Box>
 		</div>
 	)
 }
