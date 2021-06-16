@@ -58,7 +58,7 @@ const useStyles = makeStyles({
  * @returns A grid of images laid out in masonry
  */
 
-const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive }) => {
+const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive, onClick }) => {
 	const classes = useStyles()
 	const imgSrc = (item) => {
 		if (isCollection) {
@@ -81,7 +81,7 @@ const Gallery = ({ galleryItems, photoOnly, isCollection, buttonActive }) => {
 					{galleryItems.map((item, i) => (
 						<Box className={classes.masonryItem} key={i}>
 							<Card className={classes.root} square elevation={0}>
-								<CardActionArea>
+								<CardActionArea onClick={onClick}>
 
 									{/* If photoOnly is set to false, display the title and tags, otherwise
 										just display the photo */}
@@ -154,6 +154,7 @@ Gallery.propTypes = {
 	photoOnly: PropTypes.bool,
 	isCollection: PropTypes.bool,
 	buttonActive: PropTypes.bool,
+	onClick: PropTypes.func,
 }
 
 export default Gallery
