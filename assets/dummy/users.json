@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"name": "Kevin Hong",
+		"email": "kevin@meyd.it",
+		"password": "adogfollowedmehome",
+		"role": "client"
+	},
+	{
+		"id": 2,
+		"name": "Armin Money",
+		"email": "armin@meyd.it",
+		"password": "falafel@jimmy's",
+		"role": "god"
+	},
+	{
+		"id": 3,
+		"name": "Bob Dylan",
+		"email": "bobby@dyl.an",
+		"password": "mcDylanInDaHouse",
+		"role": "creative"
+	}
+]
