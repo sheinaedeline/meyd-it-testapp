@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 // import custom components
 import Gallery from '@/components/homepage/Gallery'
+import PhotoDetails from './PhotoDetails'
 
 const useStyles = makeStyles({
 	card: {
@@ -32,13 +33,16 @@ const Moodboard = ({ making, url }) => {
 	const classes = useStyles()
 	// const router = useRouter()
 	const [isClicked, setIsClicked] = React.useState(false)
+	const [selectedPhoto, setSelectedPhoto] = React.useState('')
 	const handlePhotoClick = (photo) => {
 		// router.push(`${url}/${photo}`, undefined, { shallow: true })
 		setIsClicked(!isClicked)
+		setSelectedPhoto(`https://source.unsplash.com/${photo}`)
+		console.log(isClicked)
 	}
 
 	return (
-		<Box>
+		<div>
 			{!isClicked
 				? (
 					<ResponsiveMasonry
@@ -60,8 +64,8 @@ const Moodboard = ({ making, url }) => {
 						</Masonry>
 					</ResponsiveMasonry>
 				)
-				: null}
-		</Box>
+				: <PhotoDetails photo={selectedPhoto} />}
+		</div>
 	)
 }
 
