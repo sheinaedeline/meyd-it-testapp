@@ -5,17 +5,21 @@ import MousePosition from 'mouse-position'
 import theme from '@/config/theme'
 import { makeStyles } from '@material-ui/core/styles'
 // import material ui components
-import Card from '@material-ui/core/Card'
-import CardMedia from '@material-ui/core/CardMedia'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardActions from '@material-ui/core/CardActions'
-import TextField from '@material-ui/core/TextField'
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardMedia from '@material-ui/core/CardMedia'
 import Fab from '@material-ui/core/Fab'
-import Paper from '@material-ui/core/Paper'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import Paper from '@material-ui/core/Paper'
+import Popover from '@material-ui/core/Popover'
+import Switch from '@material-ui/core/Switch'
+import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
+import Zoom from '@material-ui/core/Zoom'
 // import custom components
 import InspoMarkerText from './InspoMarkerText'
 
@@ -66,6 +70,10 @@ const PhotoDetails = ({ photo }) => {
 		markers: [],
 		markerID: 0,
 	})
+	// To show markers or not to show, that is the question
+	const [isShown, setIsShown] = React.useState(true)
+	// The anchor el for popover element when fab is clicked
+	const [anchorEl, setAnchorEl] = React.useState(null)
 
 	const handleAddMarker = (mouseX, mouseY) => {
 		setMousePos({
@@ -86,7 +94,25 @@ const PhotoDetails = ({ photo }) => {
 		})
 	}
 
+	const handleClick = (event, id) => {
+		const temp = data.markers
+		if (temp[id - 1]) {
+			temp[id - 1].isClicked = !temp[id - 1].isClicked
+		}
+		setData({
+			...data,
+			markers: temp,
+		})
+		setAnchorEl(event.currentTarget)
+	}
+
 	const handleDeleteMarker = (id) => {
+		// make sure that the one that we want to delete is actually being passed
+		let foundItem = data.markers.find((item) => item.id === id)
+		if (!foundItem.isClicked) {
+			foundItem = data.markers.find((item) => item.isClicked)
+			id = foundItem.id
+		}
 		// make a new array that doesn't contain the item to be deleted
 		const temp = data.markers.filter((item) => item.id !== id)
 
@@ -109,6 +135,7 @@ const PhotoDetails = ({ photo }) => {
 			markers: temp,
 			markerID: tempID,
 		})
+		setAnchorEl(null)
 	}
 
 	React.useEffect(() => {
@@ -122,13 +149,16 @@ const PhotoDetails = ({ photo }) => {
 		const xPos = ((mousePos.x - cardSize.x) / cardSize.width) * 100
 		const yPos = ((mousePos.y - cardSize.y) / cardSize.height) * 100
 
-		tempMarkers.push(
-			{
-				id: tempID,
-				xPos: xPos,
-				yPos: yPos,
-			},
-		)
+		if (data.markerID !== 0) {
+			tempMarkers.push(
+				{
+					id: tempID,
+					xPos: xPos,
+					yPos: yPos,
+					isClicked: false,
+				},
+			)
+		}
 
 		setData({
 			...data,
@@ -175,19 +205,69 @@ const PhotoDetails = ({ photo }) => {
 				{/* the photo */}
 				<Grid item xs={12} sm={6}>
 					<Card className={classes.card} elevation={0} id="imgCard">
+						{/* the inspo markers */}
 						{data.markers.map((item) => (
-							<Fab
-								key={item.id}
-								className={classes.markerButtons}
-								style={{
-									left: `calc(${item.xPos}% - 20px)`,
-									top: `calc(${item.yPos}% - 20px)`,
-								}}
-								size="small"
-								onClick={() => handleDeleteMarker(item.id)}
-							>
-								{item.id}
-							</Fab>
+							<div key={item.id}>
+
+								{/* the marker button */}
+								<Zoom in={isShown}>
+									<Fab
+										className={classes.markerButtons}
+										style={{
+											left: `calc(${item.xPos}% - 20px)`,
+											top: `calc(${item.yPos}% - 20px)`,
+										}}
+										size="small"
+										onClick={(e) => handleClick(e, item.id)}
+									>
+										{item.id}
+									</Fab>
+								</Zoom>
+
+								{/* the popover */}
+								<Popover
+									id={item.isClicked ? 'popover' : undefined}
+									open={Boolean(anchorEl)}
+									anchorEl={anchorEl}
+									onClose={() => setAnchorEl(null)}
+									anchorOrigin={{
+										vertical: 'bottom',
+										horizontal: 'center',
+									}}
+									transformOrigin={{
+										vertical: 'top',
+										horizontal: 'center',
+									}}
+								>
+
+									{/* Question to ask to delete marker */}
+									<Typography
+										style={{ color: theme.palette.primary.contrastText, marginTop: theme.spacing(1) }}
+										variant="body2"
+										align="center"
+									>
+										Delete marker?
+									</Typography>
+
+									{/* cancel button */}
+									<Button
+										variant="text"
+										style={{ color: theme.palette.primary.grey }}
+										onClick={() => setAnchorEl(null)}
+									>
+										CANCEL
+									</Button>
+
+									{/* delete button */}
+									<Button
+										variant="text"
+										color="secondary"
+										onClick={() => handleDeleteMarker(item.id)}
+									>
+										DELETE
+									</Button>
+								</Popover>
+							</div>
 						))}
 						<CardActionArea onClick={() => handleAddMarker(mouse[0], mouse[1])}>
 							<CardMedia
@@ -201,7 +281,7 @@ const PhotoDetails = ({ photo }) => {
 
 				{/* the list of inspo markers */}
 				<Grid item xs={12} sm={6}>
-					{data.markers.length <= 0
+					{data.markers.length < 1
 						? (
 							// If there are no markers, prompt the user to add markers
 							<Paper elevation={0} className={classes.list} style={{ padding: theme.spacing(4) }}>
@@ -222,6 +302,19 @@ const PhotoDetails = ({ photo }) => {
 										onDelete={() => handleDeleteMarker(item.id)}
 									/>
 								))}
+								<ListItem>
+									<FormControlLabel
+										control={
+											<Switch
+												checked={isShown}
+												onChange={() => setIsShown(!isShown)}
+												name="Show Markers"
+												color="primary"
+											/>
+										}
+										label="SHOW MARKERS"
+									/>
+								</ListItem>
 							</List>
 						)
 					}
