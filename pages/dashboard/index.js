@@ -1,12 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
-import ClientLayout from '@/layouts/Client'
 
-const index = () => {
-	return (
-		<ClientLayout>
-
-		</ClientLayout>
-	)
+export default function Dashboard ({ test }) {
+	return <div>The test is {test}</div>
 }
 
-export default index
+export async function getServerSideProps ({ query }) {
+	console.table(query)
+	return { props: { test: 'Yo' } }
+}

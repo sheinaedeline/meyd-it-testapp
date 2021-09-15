@@ -19,6 +19,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import SwipeableViews from 'react-swipeable-views'
 // import custom components
 import Slugify from '@/config/Slugify'
+import Moodboard from '@/components/clientProjects/Moodboard'
+import Measurements from '@/components/clientProjects/Measurements'
+import MakingTimeline from '@/components/clientProjects/MakingTimeline'
 
 const TabPanel = (props) => {
 	const { children, value, index, ...other } = props
@@ -67,10 +70,27 @@ const useStyles = makeStyles((theme) => ({
  * @param {string} url - The home url of the current making
  * @returns The tabs underneath the making overview
  */
-const DetailsTabPanel = ({ children, tabs, url }) => {
+const DetailsTabPanel = ({ children, url, making }) => {
 	const classes = useStyles()
 	const router = useRouter()
 	const [value, setValue] = React.useState(0)
+	const tabs = [
+		{
+			id: 0,
+			text: 'moodboard',
+			component: <Moodboard making={making} url={`${url}/moodboard`}/>,
+		},
+		{
+			id: 1,
+			text: 'measurements',
+			component: <Measurements measurements={making.measurements}/>,
+		},
+		{
+			id: 2,
+			text: 'timeline',
+			component: <MakingTimeline timeline={making.timeline} />,
+		},
+	]
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue)
@@ -118,8 +138,8 @@ const DetailsTabPanel = ({ children, tabs, url }) => {
 DetailsTabPanel.propTypes = {
 	children: PropTypes.node,
 	id: PropTypes.number,
-	tabs: PropTypes.array.isRequired,
 	url: PropTypes.string,
+	making: PropTypes.array.isRequired,
 }
 
 export default DetailsTabPanel

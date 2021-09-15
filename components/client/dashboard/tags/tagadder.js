@@ -162,10 +162,10 @@ export default function TagAdder () {
 
 						{selectedTags.length > 0 && photoArray.map((item) => (
 							<div key={`${item.index}-selectedTags-is-${item.isSelected}`} style={{ position: 'relative' }}>
-								{item.isSelected && <CheckIcon className={classes.checkIcon} />}
 
 								<Card className={classes.card} elevation={0}>
 									<CardActionArea onClick={() => handlePhotoSelect(item.index)}>
+										{item.isSelected && <CheckIcon className={classes.checkIcon} />}
 										<CardMedia
 											component="img"
 											className={clsx(classes.media, item.isSelected && classes.selectedMedia)}
