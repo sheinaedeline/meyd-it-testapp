@@ -138,6 +138,14 @@ const PhotoDetails = ({ photo }) => {
 		setAnchorEl(null)
 	}
 
+	const handleBin = (id) => {
+		const foundItem = data.markers.find((item) => item.id === id)
+		foundItem.isClicked = true
+
+		setData({ ...foundItem })
+		handleDeleteMarker(id)
+	}
+
 	React.useEffect(() => {
 		const tempMarkers = [...data.markers]
 		const tempID = data.markerID
@@ -299,7 +307,7 @@ const PhotoDetails = ({ photo }) => {
 										onChangeText={(e) => handleChangeMarkerText(e, item.id)}
 										number={item.id}
 										text={item.description}
-										onDelete={() => handleDeleteMarker(item.id)}
+										onDelete={() => handleBin(item.id)}
 									/>
 								))}
 								<ListItem>
