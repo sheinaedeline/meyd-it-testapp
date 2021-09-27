@@ -6,11 +6,37 @@ import Index from './index'
 import MakingOverview from '@/components/clientProjects/MakingOverview'
 import DetailsTabPanel from '@/components/clientProjects/DetailsTabPanel'
 import list from '@/assets/dummy/makings'
+import Moodboard from '@/components/clientProjects/Moodboard'
+import Measurements from '@/components/clientProjects/Measurements'
+import MakingTimeline from '@/components/clientProjects/MakingTimeline'
 
 const Post = ({ children }) => {
 	const router = useRouter()
 	const { makingID } = router.query
 	const making = list.makings.find((item) => item.id === makingID)
+	const url = '/client/dashboard/makings/'
+
+	const generateTabs = () => {
+		const tabs = [
+			{
+				id: 0,
+				text: 'moodboard',
+				component: <Moodboard making={making} url={`${url}/moodboard`}/>,
+			},
+			{
+				id: 1,
+				text: 'measurements',
+				component: <Measurements measurements={making.measurements}/>,
+			},
+			{
+				id: 2,
+				text: 'timeline',
+				component: <MakingTimeline timeline={making.timeline} />,
+			},
+		]
+
+		return tabs
+	}
 
 	return (
 		<Index>
@@ -18,7 +44,7 @@ const Post = ({ children }) => {
 				? (
 					<div>
 						<MakingOverview making={making} />
-						<DetailsTabPanel making={making} url={`/client/dashboard/makings/${making.id}`}>
+						<DetailsTabPanel tabs={generateTabs()} making={making} url={`/client/dashboard/makings/${making.id}`}>
 							{children}
 						</DetailsTabPanel>
 					</div>

@@ -70,27 +70,10 @@ const useStyles = makeStyles((theme) => ({
  * @param {string} url - The home url of the current making
  * @returns The tabs underneath the making overview
  */
-const DetailsTabPanel = ({ children, url, making }) => {
+const DetailsTabPanel = ({ children, url, making, tabs }) => {
 	const classes = useStyles()
 	const router = useRouter()
 	const [value, setValue] = React.useState(0)
-	const tabs = [
-		{
-			id: 0,
-			text: 'moodboard',
-			component: <Moodboard making={making} url={`${url}/moodboard`}/>,
-		},
-		{
-			id: 1,
-			text: 'measurements',
-			component: <Measurements measurements={making.measurements}/>,
-		},
-		{
-			id: 2,
-			text: 'timeline',
-			component: <MakingTimeline timeline={making.timeline} />,
-		},
-	]
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue)
@@ -140,6 +123,7 @@ DetailsTabPanel.propTypes = {
 	id: PropTypes.number,
 	url: PropTypes.string,
 	making: PropTypes.array.isRequired,
+	tabs: PropTypes.array.isRequired,
 }
 
 export default DetailsTabPanel
