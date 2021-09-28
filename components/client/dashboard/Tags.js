@@ -34,7 +34,7 @@ const Tags = () => {
 				</Typography>
 			</div>
 
-			<TagAdder />
+			<TagAdder numToGenerate={12}/>
 		</div>
 	)
 }
