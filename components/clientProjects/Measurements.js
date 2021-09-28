@@ -136,7 +136,7 @@ const Measurements = ({ measurements }) => {
 			field: 'approx',
 			headerName: ' ',
 			type: 'boolean',
-			flex: 0.5,
+			flex: 0.2,
 			renderCell: (params) => {
 				if (params.value === true) {
 					return < ApproximatelyEqualIcon className={classes.estimateIcon} />
@@ -147,6 +147,7 @@ const Measurements = ({ measurements }) => {
 		{
 			field: 'size',
 			type: 'number',
+			flex: 0.5,
 			headerName: 'Size',
 		},
 	]
@@ -169,7 +170,7 @@ const Measurements = ({ measurements }) => {
 
 			{/* The table of measurements */}
 			<Grid item xs={12} sm={6}>
-				<Paper square elevation={0} style={{ height: '100%' }}>
+				<Paper square elevation={0} style={{ height: '100%', padding: theme.spacing(4) }}>
 					{searchBar()}
 					<DataGrid
 						rows={data}
