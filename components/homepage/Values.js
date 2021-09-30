@@ -1,7 +1,6 @@
 /* This is the company values on the homepage i.e. Made for you, eco-friendly, etc */
 
 import React from 'react'
-import clsx from 'clsx'
 // import stylings
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '@/config/theme'
@@ -9,111 +8,110 @@ import theme from '@/config/theme'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-
-const text = [
-	{
-		id: 1,
-		title: 'Made for you',
-		content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-			'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut' +
-			'aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in' +
-			'voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-	},
-	{
-		id: 2,
-		title: 'Eco-friendly',
-		content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-			'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut' +
-			'aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in' +
-			'voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-	},
-	{
-		id: 3,
-		title: 'Community driven',
-		content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-			'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut' +
-			'aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in' +
-			'voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-	},
-	{
-		id: 4,
-		title: 'Modern',
-		content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-			'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut' +
-			'aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in' +
-			'voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-	},
-]
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+// import custom components
+import {
+	CommunityDrivenImage,
+	EcoFriendlyImage,
+	MadeForYouImage,
+	ModernImage,
+} from '@/assets/graphics'
 
 const useStyles = makeStyles({
 	gridItemStyle: {
-		height: '80vh',
-	},
-	purpScheme: {
-		backgroundColor: theme.palette.primary.main,
-		color: theme.palette.text.secondary,
-	},
-	whiteScheme: {
-		backgroundColor: theme.palette.primary.lighten5,
+		minHeight: '50vh',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
 		color: theme.palette.primary.contrastText,
+		padding: theme.spacing(10),
+		[theme.breakpoints.down('md')]: {
+			padding: theme.spacing(5),
+		},
+		[theme.breakpoints.down('xs')]: {
+			height: '50%',
+		},
 	},
-	purpButton: {
-		color: theme.palette.primary.lighten5,
-	},
-	whiteButton: {
-		color: theme.palette.primary.main,
+	icon: {
+		height: '200px',
+		[theme.breakpoints.down('md')]: {
+			height: '150px',
+		},
+		[theme.breakpoints.down('xs')]: {
+			height: '250px',
+		},
 	},
 })
 
 const Values = () => {
 	const classes = useStyles()
 
+	const values = [
+		{
+			id: 1,
+			title: 'Made for you',
+			content: 'Wear clothes that support your values and interests. ' +
+			'Get clothes made that are unique. Get accessible and inclusive clothing ' +
+			'designed to meet your special needs.',
+			icon: <MadeForYouImage className={classes.icon} />,
+		},
+		{
+			id: 2,
+			title: 'Modern',
+			content: 'We bring the latest in Fashion Technology to empower independent ' +
+			'fashion creatives.We are making slow fashion digital.Our services make ' +
+			'made to order, on demand and to measure, easy and convenient.',
+			icon: <ModernImage className={classes.icon} />,
+		},
+		{
+			id: 3,
+			title: 'Community driven',
+			content: 'Collaboration is key to our existence. We create a very special ' +
+			'experience between client and creative.We want to see fashion designers ' +
+			'and garment workers thriving, treated with the respect they deserve.',
+			icon: <CommunityDrivenImage className={classes.icon} />,
+		},
+		{
+			id: 4,
+			title: 'Eco-friendly',
+			content: 'What does ecological health of the planet have to do with fashion? ' +
+			'Everything! The production and consumption of fashion is an environmental ' +
+			'disaster Made on order prevents over production and waste.',
+			icon: <EcoFriendlyImage className={classes.icon} />,
+		},
+	]
+
 	return (
-		<Grid container spacing={3} style={{ padding: 0, width: '100%' }}>
+		<Grid container>
 
-			{/* For each item in the text array, create a new Grid item.
-				Each item will be a grid container with a heading,
+			{/* For each item in the values array, create a new Grid item.
+				Each item will contain an icon, a heading,
 				content, and 'learn more' button. */}
-			{text.map(text => (
-				<Grid item key={text.id} className={classes.gridItemStyle} md={6} xs={12}>
+			{values.map(values => (
+				<Grid item key={values.id} xs={12} sm={6} md={3}>
+					<Card elevation={0} style={{ backgroundColor: 'transparent' }}>
+						<CardActionArea className={classes.gridItemStyle}>
+							{/* The icon */}
+							{values.icon}
 
-					{/* Container settings */}
-					<Grid container
-						justify="center" alignContent="center" alignItems="center"
-						className={clsx(classes.purpScheme, {
-							[classes.whiteScheme]: text.id === 1 || text.id % 4 === 0,
-						})}
-						direction="column"
-						style={{ height: '100%' }}>
-
-						{/* The heading */}
-						<Grid item>
+							{/* The heading */}
 							<Typography variant="h4" align="center" style={{ fontWeight: 'bold' }}>
-								{text.title}
+								{values.title}
 							</Typography>
-						</Grid>
 
-						{/* The content */}
-						<Grid item style={{ width: '80%', padding: 20 }}>
+							{/* The content */}
 							<Typography align="center">
-								{text.content}
+								{values.content}
 							</Typography>
-						</Grid>
 
-						{/* Learn more button */}
-						<Grid item>
-							<Button size="small" style={{ justify: 'center', opacity: '60%' }}
-								className={clsx(classes.purpButton, {
-									[classes.whiteButton]: text.id === 1 || text.id % 4 === 0,
-								})}>
-								LEARN MORE</Button>
-						</Grid>
+							{/* Learn more button */}
+							<Button size="small" color="primary">
+						LEARN MORE
+							</Button>
+						</CardActionArea>
+					</Card>
 
-					</Grid>
 				</Grid>
 			))}
 		</Grid>
