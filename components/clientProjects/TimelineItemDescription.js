@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 		marginBottom: theme.spacing(2),
 	},
 	xIcon: {
-		left: '90%',
 		padding: 0,
 		margin: 0,
 		alignSelf: 'end',

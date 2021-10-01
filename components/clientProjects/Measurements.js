@@ -3,6 +3,7 @@
 /* eslint-disable react/display-name */
 import React from 'react'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
 // import styling
 import {
 	makeStyles,
@@ -33,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	mannequinPaper: {
 		backgroundColor: theme.palette.primary.main,
-		height: '80vh',
 		alignItems: 'center',
 		justifyContent: 'center',
 		display: 'flex',
@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 	},
+	dataTable: {
+		padding: theme.spacing(4),
+	},
 }))
 
 /**
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
  * @param {array} measurements - An array of measurement objects (with part, approx, and size props)
  * @returns The mannequin and a sortable, searchable table of measurements
  */
-const Measurements = ({ measurements }) => {
+const Measurements = ({ measurements, style }) => {
 	const classes = useStyles()
 
 	const [query, setQuery] = React.useState('')
@@ -130,13 +133,13 @@ const Measurements = ({ measurements }) => {
 		{
 			field: 'part',
 			headerName: 'Region',
-			flex: 1,
+			flex: 0.4,
 		},
 		{
 			field: 'approx',
 			headerName: ' ',
 			type: 'boolean',
-			flex: 0.2,
+			flex: 0.15,
 			renderCell: (params) => {
 				if (params.value === true) {
 					return < ApproximatelyEqualIcon className={classes.estimateIcon} />
@@ -147,7 +150,7 @@ const Measurements = ({ measurements }) => {
 		{
 			field: 'size',
 			type: 'number',
-			flex: 0.5,
+			flex: 0.35,
 			headerName: 'Size',
 		},
 	]
@@ -160,17 +163,17 @@ const Measurements = ({ measurements }) => {
 
 	return (
 		<Grid container className={classes.gridContainer}>
-			<Grid item xs={12} sm={6}>
+			<Grid item xs={12} md={6}>
 
 				{/* The mannequin */}
-				<Paper className={classes.mannequinPaper} square elevation={0}>
+				<Paper className={classes.mannequinPaper} style={style || { height: '80vh' }} square elevation={0}>
 					<MannequinImage className={classes.mannequin}/>
 				</Paper>
 			</Grid>
 
 			{/* The table of measurements */}
-			<Grid item xs={12} sm={6}>
-				<Paper square elevation={0} style={{ height: '100%', padding: theme.spacing(4) }}>
+			<Grid item xs={12} md={6}>
+				<Paper square elevation={0} className={classes.dataTable} style={style || { height: '100%' }}>
 					{searchBar()}
 					<DataGrid
 						rows={data}
@@ -179,10 +182,14 @@ const Measurements = ({ measurements }) => {
 						hideFooterRowCount
 						hideFooterSelectedRowCount
 						autoPageSize
-						autoHeight
+						// autoHeight
+						pagination
 						className={classes.dataGrid}
 						components={{
 							NoRowsOverlay: rowOverlay,
+						}}
+						componentsProps={{
+							pagination: { position: 'inherit' },
 						}}
 					/>
 
@@ -211,6 +218,7 @@ const Measurements = ({ measurements }) => {
 
 Measurements.propTypes = {
 	measurements: PropTypes.array.isRequired,
+	style: PropTypes.object,
 }
 
 export default Measurements

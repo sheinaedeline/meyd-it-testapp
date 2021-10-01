@@ -4,6 +4,7 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 // import stylings
 import theme from '@/config/theme'
 import { makeStyles } from '@material-ui/core/styles'
@@ -74,10 +75,7 @@ const tags = [
 	'Adaptive',
 ]
 
-// how many photos to generate
-const numToGenerate = 12
-
-export default function TagAdder () {
+const TagAdder = ({ numToGenerate, initialised }) => {
 	const classes = useStyles()
 	const [selectedTags, setSelectedTags] = React.useState([])
 	const [url, setURL] = React.useState('')
@@ -119,6 +117,10 @@ export default function TagAdder () {
 			})
 		}
 		setPhotoArray(temp)
+
+		if (initialised) {
+			setSelectedTags(['Bohemian'])
+		}
 	}, [])
 
 	return (
@@ -136,6 +138,7 @@ export default function TagAdder () {
 						placeholder="Tags"
 					/>
 				)}
+				value={selectedTags}
 				renderTags={(value, getTagProps) =>
 					value.map((option, index) => (
 						<Chip
@@ -181,3 +184,10 @@ export default function TagAdder () {
 		</div>
 	)
 }
+
+TagAdder.propTypes = {
+	numToGenerate: PropTypes.number,
+	initialised: PropTypes.bool,
+}
+
+export default TagAdder
