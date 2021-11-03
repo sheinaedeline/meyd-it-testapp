@@ -11,12 +11,16 @@ import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 // import custom components
-import {
-	CommunityDrivenImage,
-	EcoFriendlyImage,
-	MadeForYouImage,
-	ModernImage,
-} from '@/assets/graphics'
+// import {
+// 	CommunityDrivenImage,
+// 	EcoFriendlyImage,
+// 	MadeForYouImage,
+// 	ModernImage,
+// } from '@/assets/graphics'
+import CommunityDrivenImage from '@/assets/graphics/community_driven.svg'
+import EcoFriendlyImage from '@/assets/graphics/eco_friendly.svg'
+import MadeForYouImage from '@/assets/graphics/made_for_you.svg'
+import ModernImage from '@/assets/graphics/modern.svg'
 
 const useStyles = makeStyles({
 	gridItemStyle: {
