@@ -140,6 +140,7 @@ const InfoSlide = () => {
 								elevation={0}
 								className={clsx(item.id === expanded ? classes.accordionExpanded : classes.accordion)}
 								expanded={expanded === item.id}
+								disabled={expanded === item.id}
 								onChange={handleExpand(item.id)}
 							>
 								<AccordionSummary>
