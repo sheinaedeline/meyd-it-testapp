@@ -10,7 +10,7 @@ import DefaultFooter from '@/layouts/components/DefaultFooter'
 
 const useStyles = makeStyles((theme) => ({
 	layoutStyle: {
-		backgroundColor: theme.palette.primary.light,
+		backgroundColor: theme.palette.primary.lightest,
 		margin: 0,
 		padding: 0,
 		display: 'flex',

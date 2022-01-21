@@ -94,7 +94,7 @@ const MakingTimeline = ({ timeline }) => {
 								can display its details */}
 					<TimelineContent style={{ minWidth: '40%', alignSelf: 'center' }}>
 						<Card elevation={0} square>
-							<CardActionArea onClick={() => setSelected(item)}>
+							<CardActionArea onClick={() => selected === item ? setSelected(null) : setSelected(item)}>
 								<CardContent>
 									<Typography noWrap variant="h6" className={classes.timelineTitle}>
 										{item.title}

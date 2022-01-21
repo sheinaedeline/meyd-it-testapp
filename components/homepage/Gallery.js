@@ -41,8 +41,7 @@ const useStyles = makeStyles({
 		minWidth: '100%',
 	},
 	box: {
-		padding: '5%',
-		backgroundColor: '#fff4ff',
+		padding: '0 5% 5% 5%',
 	},
 	chip: {
 		margin: theme.spacing(0.5),

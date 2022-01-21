@@ -3,20 +3,20 @@
 // import layout
 import Layout from '@/layouts/Default'
 // import custom components
-import Gallery from '@/components/homepage/Gallery'
-import IconGrid from '@/components/homepage/IconGrid'
-import Introduction from '@/components/homepage/Introduction'
+import Hero from '@/components/homepage/Hero'
+import InfoSlide from '@/components/homepage/InfoSlide'
 import Values from '@/components/homepage/Values'
-// import content
-import GalleryItems from '@/content/GalleryItems'
+import MakersGrid from '@/components/homepage/MakersGrid'
+import Questionnaire from '@/components/homepage/Questionnaire'
 
 export default function Home () {
 	return (
 		<Layout>
-			<Introduction />
-			<IconGrid />
+			<Hero />
+			<InfoSlide />
 			<Values />
-			<Gallery galleryItems={GalleryItems} photoOnly={false} isCollection={true}/>
+			<MakersGrid />
+			<Questionnaire />
 		</Layout>
 	)
 }

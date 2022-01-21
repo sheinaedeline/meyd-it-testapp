@@ -14,6 +14,11 @@ import Typography from '@material-ui/core/Typography'
 const useStyles = makeStyles({
 	card: {
 		margin: theme.spacing(1),
+		height: '100%',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	title: {
 		color: theme.palette.primary.contrastText,
@@ -47,6 +52,7 @@ const Collections = ({ collections }) => {
 		<Image
 			src={`https://source.unsplash.com/collection/${item.id}/?sig=${randNum}`}
 			className={classes.imageGridItems}
+			cover
 		/>
 	)
 
@@ -55,7 +61,7 @@ const Collections = ({ collections }) => {
 			{collections.map((item) => (
 				<Grid item xs={12} sm={6} md={4} key={item.name}>
 					<Card className={classes.card} elevation={0}>
-						<CardActionArea>
+						<CardActionArea style={{ width: '100%', height: '100%' }}>
 							<CardContent className={classes.photoGrid}>
 								{/* The title */}
 								<Typography variant="h5" className={classes.title}>
